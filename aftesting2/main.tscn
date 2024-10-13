@@ -1,0 +1,878 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvvwf1xkmkct0"]
+
+[ext_resource type="Theme" uid="uid://bslm7a0k4d7vn" path="res://af_theme_01.tres" id="1_cmgfb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w3k7"]
+border_width_left = 1
+border_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="Theme" id="Theme_pc4da"]
+
+[node name="GameWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Primary-VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="System-VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SysHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="SysHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer"]
+layout_mode = 2
+
+[node name="SysMinimize-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="SysMinimize-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysMinimize-MarginContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SysLeftBars-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysLeftBars-MarginContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect4" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="SysHeader-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer"]
+layout_mode = 2
+text = "System"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SysRightBars-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysRightBars-MarginContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect4" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="PlayerName-SysSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="PlayerName-SysSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/PlayerName-SysSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="PlayerName-SysSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/PlayerName-SysSubHeader-PanelContainer/PlayerName-SysSubHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="PlayerName-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/PlayerName-SysSubHeader-PanelContainer/PlayerName-SysSubHeaderElements-MarginContainer/PlayerName-SysSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player Name:"
+vertical_alignment = 1
+
+[node name="PlayerNameVar-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/PlayerName-SysSubHeader-PanelContainer/PlayerName-SysSubHeaderElements-MarginContainer/PlayerName-SysSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$PlayerNameVar"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GameTimer-SysSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="GameTimer-SysSubHeader-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/GameTimer-SysSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="GameTimer-SysSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/GameTimer-SysSubHeader-PanelContainer/GameTimer-SysSubHeader-MarginContainer"]
+layout_mode = 2
+
+[node name="GameTimer-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/GameTimer-SysSubHeader-PanelContainer/GameTimer-SysSubHeader-MarginContainer/GameTimer-SysSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game Timer:"
+vertical_alignment = 1
+
+[node name="GameTimerVar-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/GameTimer-SysSubHeader-PanelContainer/GameTimer-SysSubHeader-MarginContainer/GameTimer-SysSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$CurrentGameTimeVar(00:00:00:00)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StateButtons-SysSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/StateButtons-SysSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/StateButtons-SysSubHeader-PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/StateButtons-SysSubHeader-PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/StateButtons-SysSubHeader-PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Pause"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/StateButtons-SysSubHeader-PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/StateButtons-SysSubHeader-PanelContainer/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "New"
+
+[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/StateButtons-SysSubHeader-PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/System-VBoxContainer/StateButtons-SysSubHeader-PanelContainer/MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Inventory-VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="InvHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="InvHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer"]
+layout_mode = 2
+
+[node name="InvMinimize-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="InvMinimize-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvMinimize-MarginContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="InvLeftBars-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvLeftBars-MarginContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect4" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="InvHeader-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvRightBars-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvRightBars-MarginContainer"]
+custom_minimum_size = Vector2(157, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect4" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/InvHeader-PanelContainer/InvHeaderElements-HBoxContainer/InvRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="CurrencySymbols-InvSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="CurrencySymbols-InvSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencySymbols-InvSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="CurrencySymbols-InvSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencySymbols-InvSubHeader-PanelContainer/CurrencySymbols-InvSubHeaderElements-MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="¢Symbol-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencySymbols-InvSubHeader-PanelContainer/CurrencySymbols-InvSubHeaderElements-MarginContainer/CurrencySymbols-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "¢"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="¤Symbol-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencySymbols-InvSubHeader-PanelContainer/CurrencySymbols-InvSubHeaderElements-MarginContainer/CurrencySymbols-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "¤"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="§Symbol-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencySymbols-InvSubHeader-PanelContainer/CurrencySymbols-InvSubHeaderElements-MarginContainer/CurrencySymbols-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "§"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="¥Symbol-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencySymbols-InvSubHeader-PanelContainer/CurrencySymbols-InvSubHeaderElements-MarginContainer/CurrencySymbols-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "¥"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrencyTitles-InvSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="CurrencyTitles-InvSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyTitles-InvSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="Currencytitles-InvSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyTitles-InvSubHeader-PanelContainer/CurrencyTitles-InvSubHeaderElements-MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinsTitle-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyTitles-InvSubHeader-PanelContainer/CurrencyTitles-InvSubHeaderElements-MarginContainer/Currencytitles-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Coins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeedsTitle-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyTitles-InvSubHeader-PanelContainer/CurrencyTitles-InvSubHeaderElements-MarginContainer/Currencytitles-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Seeds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterTitle-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyTitles-InvSubHeader-PanelContainer/CurrencyTitles-InvSubHeaderElements-MarginContainer/Currencytitles-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Water"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CropsTitle-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyTitles-InvSubHeader-PanelContainer/CurrencyTitles-InvSubHeaderElements-MarginContainer/Currencytitles-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Crops"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrencyValues-InvSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="CurrencyValues-InvSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyValues-InvSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="CurrencyValues-InvSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyValues-InvSubHeader-PanelContainer/CurrencyValues-InvSubHeaderElements-MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinsValue-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyValues-InvSubHeader-PanelContainer/CurrencyValues-InvSubHeaderElements-MarginContainer/CurrencyValues-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$CoinVar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeedsValue-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyValues-InvSubHeader-PanelContainer/CurrencyValues-InvSubHeaderElements-MarginContainer/CurrencyValues-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$SeedVar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterValue-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyValues-InvSubHeader-PanelContainer/CurrencyValues-InvSubHeaderElements-MarginContainer/CurrencyValues-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$WaterVar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CropsValue-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer/CurrencyValues-InvSubHeader-PanelContainer/CurrencyValues-InvSubHeaderElements-MarginContainer/CurrencyValues-InvSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$CropVar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tools&Upgrades-VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="t&uHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="t&uHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer"]
+layout_mode = 2
+
+[node name="t&uMinimize-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="t&uMinimize-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uMinimize-MarginContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="t&uLeftBars-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uLeftBars-MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect4" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="t&uHeader-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer"]
+layout_mode = 2
+text = "Tools & Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="t&uRightBars-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uRightBars-MarginContainer"]
+custom_minimum_size = Vector2(114, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect4" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/t&uHeader-PanelContainer/t&uHeaderElements-HBoxContainer/t&uRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Tools-t&uSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="Tools-t&uSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="Tools-t&uSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubHeader-PanelContainer/Tools-t&uSubHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="Tools-t&u-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubHeader-PanelContainer/Tools-t&uSubHeaderElements-MarginContainer/Tools-t&uSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tools"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tools-t&uSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="Tools-t&uSubSection-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer"]
+layout_mode = 2
+
+[node name="WaterCap-t&uSubSection-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 0
+
+[node name="WaterCap-t&uSubSection-VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/WaterCap-t&uSubSection-MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaterCapTitle-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/WaterCap-t&uSubSection-MarginContainer/WaterCap-t&uSubSection-VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Water Capacity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterCapVar-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/WaterCap-t&uSubSection-MarginContainer/WaterCap-t&uSubSection-VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$WaterCapVar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToolSelectionButtons-t&uSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5w3k7")
+
+[node name="ToolSelectionButtons-t&uSubSection-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/ToolSelectionButtons-t&uSubSection-PanelContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ToolSelectionButtons-t&uSubSection-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/ToolSelectionButtons-t&uSubSection-PanelContainer/ToolSelectionButtons-t&uSubSection-MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="PlowButton-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/ToolSelectionButtons-t&uSubSection-PanelContainer/ToolSelectionButtons-t&uSubSection-MarginContainer/ToolSelectionButtons-t&uSubSection-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="PlowButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/ToolSelectionButtons-t&uSubSection-PanelContainer/ToolSelectionButtons-t&uSubSection-MarginContainer/ToolSelectionButtons-t&uSubSection-HBoxContainer/PlowButton-MarginContainer"]
+layout_mode = 2
+text = "Plow"
+
+[node name="WateringCanButton-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/ToolSelectionButtons-t&uSubSection-PanelContainer/ToolSelectionButtons-t&uSubSection-MarginContainer/ToolSelectionButtons-t&uSubSection-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="WateringCanButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/ToolSelectionButtons-t&uSubSection-PanelContainer/ToolSelectionButtons-t&uSubSection-MarginContainer/ToolSelectionButtons-t&uSubSection-HBoxContainer/WateringCanButton-MarginContainer"]
+layout_mode = 2
+text = "Watering
+Can"
+
+[node name="ScytheButton-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/ToolSelectionButtons-t&uSubSection-PanelContainer/ToolSelectionButtons-t&uSubSection-MarginContainer/ToolSelectionButtons-t&uSubSection-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ScytheButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/Tools-t&uSubSection-PanelContainer/Tools-t&uSubSection-HBoxContainer/ToolSelectionButtons-t&uSubSection-PanelContainer/ToolSelectionButtons-t&uSubSection-MarginContainer/ToolSelectionButtons-t&uSubSection-HBoxContainer/ScytheButton-MarginContainer"]
+layout_mode = 2
+text = "Scythe"
+
+[node name="ExpandedClick-t&uSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="ExpandedClick-t&uSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/ExpandedClick-t&uSubHeader-PanelContainer"]
+layout_mode = 2
+
+[node name="ExpandedClick-t&u-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/ExpandedClick-t&uSubHeader-PanelContainer/ExpandedClick-t&uSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Expanded Click Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EpandedClick-t&uSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="ExpandedClick-t&uSubSection-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_pc4da")
+
+[node name="ECMk1-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_cmgfb")
+alignment = 1
+
+[node name="ECMk1-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer/ECMk1-HBoxContainer"]
+layout_mode = 2
+text = "Mk. 1"
+
+[node name="ECMk1-CheckButton" type="CheckButton" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer/ECMk1-HBoxContainer"]
+layout_mode = 2
+
+[node name="ECMk2-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_cmgfb")
+alignment = 1
+
+[node name="ECMk2-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer/ECMk2-HBoxContainer"]
+layout_mode = 2
+text = "Mk. 2"
+
+[node name="ECMk2-CheckButton" type="CheckButton" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer/ECMk2-HBoxContainer"]
+layout_mode = 2
+
+[node name="ECMk3-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_cmgfb")
+alignment = 1
+
+[node name="ECMk3-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer/ECMk3-HBoxContainer"]
+layout_mode = 2
+text = "Mk. 3"
+
+[node name="ECMk3-CheckButton" type="CheckButton" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer/ExpandedClick-t&uSubSection-HBoxContainer/ECMk3-HBoxContainer"]
+layout_mode = 2
+
+[node name="Store-VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="StoreHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="StoreHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer"]
+layout_mode = 2
+
+[node name="StoreMinimize-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StoreMinimize-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreMinimize-MarginContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="StoreLeftBars-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreLeftBars-MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect4" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreLeftBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="StoreHeader-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer"]
+layout_mode = 2
+text = "Store
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StoreRightBars-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer"]
+custom_minimum_size = Vector2(173, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreRightBars-MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="ColorRect4" type="ColorRect" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreHeader-PanelContainer/StoreHeaderElements-HBoxContainer/StoreRightBars-MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Supplies-StoreSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="Supplies-StoreSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="Supplies-StoreSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubHeader-PanelContainer/Supplies-StoreSubHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="Supplies-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubHeader-PanelContainer/Supplies-StoreSubHeaderElements-MarginContainer/Supplies-StoreSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Supplies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Supplies-StoreSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="Supplies-StoreSubSectionElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSection-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="Supplies-StoreSubSectionElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSection-PanelContainer/Supplies-StoreSubSectionElements-MarginContainer"]
+layout_mode = 2
+
+[node name="Seeds-Supplies-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSection-PanelContainer/Supplies-StoreSubSectionElements-MarginContainer/Supplies-StoreSubSectionElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy Seeds (¤)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Water-Supplies-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSection-PanelContainer/Supplies-StoreSubSectionElements-MarginContainer/Supplies-StoreSubSectionElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy Water (§)"
+horizontal_alignment = 1
+vertical_alignment = 1
