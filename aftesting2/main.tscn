@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvvwf1xkmkct0"]
+[gd_scene load_steps=5 format=3 uid="uid://cvvwf1xkmkct0"]
 
 [ext_resource type="Theme" uid="uid://bslm7a0k4d7vn" path="res://af_theme_01.tres" id="1_cmgfb"]
 
@@ -8,11 +8,17 @@ border_color = Color(0.176471, 0.176471, 0.176471, 1)
 
 [sub_resource type="Theme" id="Theme_pc4da"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxd0l"]
+border_width_left = 2
+border_width_right = 2
+border_color = Color(0.176471, 0.176471, 0.176471, 1)
+
 [node name="GameWindow" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -688,6 +694,7 @@ layout_mode = 2
 theme = ExtResource("1_cmgfb")
 
 [node name="ExpandedClick-t&uSubSection-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer/EpandedClick-t&uSubSection-PanelContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = SubResource("Theme_pc4da")
 
@@ -850,29 +857,361 @@ text = "Supplies"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Supplies-StoreSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+[node name="Supplies-StoreSubSectionHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme = ExtResource("1_cmgfb")
 
-[node name="Supplies-StoreSubSectionElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSection-PanelContainer"]
+[node name="Supplies-StoreSubSectionHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSectionHeader-PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_right = 2
 
-[node name="Supplies-StoreSubSectionElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSection-PanelContainer/Supplies-StoreSubSectionElements-MarginContainer"]
+[node name="Supplies-StoreSubSectionHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSectionHeader-PanelContainer/Supplies-StoreSubSectionHeaderElements-MarginContainer"]
 layout_mode = 2
 
-[node name="Seeds-Supplies-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSection-PanelContainer/Supplies-StoreSubSectionElements-MarginContainer/Supplies-StoreSubSectionElements-HBoxContainer"]
+[node name="Seeds-Supplies-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSectionHeader-PanelContainer/Supplies-StoreSubSectionHeaderElements-MarginContainer/Supplies-StoreSubSectionHeaderElements-HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Buy Seeds (¤)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Water-Supplies-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSection-PanelContainer/Supplies-StoreSubSectionElements-MarginContainer/Supplies-StoreSubSectionElements-HBoxContainer"]
+[node name="Water-Supplies-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Supplies-StoreSubSectionHeader-PanelContainer/Supplies-StoreSubSectionHeaderElements-MarginContainer/Supplies-StoreSubSectionHeaderElements-HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_cmgfb")
 text = "Buy Water (§)"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SuppliesBuyButtons-StoreSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="SuppliesBuyButtons-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer"]
+layout_mode = 2
+
+[node name="SeedsBuyButtons-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_cmgfb")
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="SeedsBuyButtons-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer/SeedsBuyButtons-MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+alignment = 1
+
+[node name="1x-SeedsBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer/SeedsBuyButtons-MarginContainer/SeedsBuyButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "1x"
+
+[node name="3x-SeedsBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer/SeedsBuyButtons-MarginContainer/SeedsBuyButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+text = "3x"
+
+[node name="9x-SeedsBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer/SeedsBuyButtons-MarginContainer/SeedsBuyButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+text = "9x"
+
+[node name="WaterBuyButtons-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="WaterBuyButtons-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer/WaterBuyButtons-MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="10x-WaterBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer/WaterBuyButtons-MarginContainer/WaterBuyButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "10x"
+
+[node name="30x-WaterBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer/WaterBuyButtons-MarginContainer/WaterBuyButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+text = "30x"
+
+[node name="90x-WaterBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/SuppliesBuyButtons-StoreSubSection-PanelContainer/SuppliesBuyButtons-HBoxContainer/WaterBuyButtons-MarginContainer/WaterBuyButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+text = "90x"
+
+[node name="Market-StoreSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="Market-StoreSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Market-StoreSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="Market-StoreSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Market-StoreSubHeader-PanelContainer/Market-StoreSubHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="Market-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Market-StoreSubHeader-PanelContainer/Market-StoreSubHeaderElements-MarginContainer/Market-StoreSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Maket"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Market-StoreSubSectionHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="Market-StoreSubSectionHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Market-StoreSubSectionHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="Market-StoreSubSectionHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Market-StoreSubSectionHeader-PanelContainer/Market-StoreSubSectionHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="Crops-Market-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/Market-StoreSubSectionHeader-PanelContainer/Market-StoreSubSectionHeaderElements-MarginContainer/Market-StoreSubSectionHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sell Crops (¥)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarketSaleButtons-StoreSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="MarketSaleButtons-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/MarketSaleButtons-StoreSubSection-PanelContainer"]
+layout_mode = 2
+
+[node name="MarketSaleButtons-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/MarketSaleButtons-StoreSubSection-PanelContainer/MarketSaleButtons-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_cmgfb")
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="MarketSaleButtons-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/MarketSaleButtons-StoreSubSection-PanelContainer/MarketSaleButtons-HBoxContainer/MarketSaleButtons-MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+alignment = 1
+
+[node name="1x-SeedsBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/MarketSaleButtons-StoreSubSection-PanelContainer/MarketSaleButtons-HBoxContainer/MarketSaleButtons-MarginContainer/MarketSaleButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "1x"
+
+[node name="3x-SeedsBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/MarketSaleButtons-StoreSubSection-PanelContainer/MarketSaleButtons-HBoxContainer/MarketSaleButtons-MarginContainer/MarketSaleButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+text = "3x"
+
+[node name="9x-SeedsBuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/MarketSaleButtons-StoreSubSection-PanelContainer/MarketSaleButtons-HBoxContainer/MarketSaleButtons-MarginContainer/MarketSaleButtons-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+text = "9x"
+
+[node name="UpgradeTokens-StoreSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="UpgradeTokens-StoreSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/UpgradeTokens-StoreSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="UpgradeTokens-StoreSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/UpgradeTokens-StoreSubHeader-PanelContainer/UpgradeTokens-StoreSubHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="UpgradeTokens-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/UpgradeTokens-StoreSubHeader-PanelContainer/UpgradeTokens-StoreSubHeaderElements-MarginContainer/UpgradeTokens-StoreSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Upgrade Tokens"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="ExpandedClickUpgrades-StoreSubSectionHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="ExpandedClickUpgrades-StoreSubSectionHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer/ExpandedClickUpgrades-StoreSubSectionHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="ExpandedClickUpgrades-Market-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer/ExpandedClickUpgrades-StoreSubSectionHeaderElements-MarginContainer/ExpandedClickUpgrades-StoreSubSectionHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Expanded Click Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="ExpandedClickUpgradeBuyButtons-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer"]
+layout_mode = 2
+
+[node name="ExpandedClickUpgradeBuy-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_cmgfb")
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ExpandedClickUpgradeBuy-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer/ExpandedClickUpgradeBuy-MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+alignment = 1
+
+[node name="Mk1-BuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer/ExpandedClickUpgradeBuy-MarginContainer/ExpandedClickUpgradeBuy-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Mk. 1"
+
+[node name="Mk2-BuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer/ExpandedClickUpgradeBuy-MarginContainer/ExpandedClickUpgradeBuy-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Mk. 2"
+
+[node name="Mk3-BuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer/ExpandedClickUpgradeBuy-MarginContainer/ExpandedClickUpgradeBuy-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Mk. 3"
+
+[node name="StoreUpgrade-StoreSubHeader-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxd0l")
+
+[node name="StoreUpgrade-StoreSubHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreUpgrade-StoreSubHeader-PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="StoreUpgrade-StoreSubHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreUpgrade-StoreSubHeader-PanelContainer/StoreUpgrade-StoreSubHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="WaterCapUpgrade-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreUpgrade-StoreSubHeader-PanelContainer/StoreUpgrade-StoreSubHeaderElements-MarginContainer/StoreUpgrade-StoreSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Water Capacity
+Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BulkSeedPurchasing-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreUpgrade-StoreSubHeader-PanelContainer/StoreUpgrade-StoreSubHeaderElements-MarginContainer/StoreUpgrade-StoreSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Bulk Seed
+Purchasing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BulkCropSales-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/StoreUpgrade-StoreSubHeader-PanelContainer/StoreUpgrade-StoreSubHeaderElements-MarginContainer/StoreUpgrade-StoreSubHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Bulk Crop
+Sales"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="ExpandedClickUpgrades-StoreSubSectionHeaderElements-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="ExpandedClickUpgrades-StoreSubSectionHeaderElements-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2/ExpandedClickUpgrades-StoreSubSectionHeaderElements-MarginContainer"]
+layout_mode = 2
+
+[node name="ExpandedClickUpgrades-Market-Store-Label" type="Label" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2/ExpandedClickUpgrades-StoreSubSectionHeaderElements-MarginContainer/ExpandedClickUpgrades-StoreSubSectionHeaderElements-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Expanded Click Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer" type="PanelContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+
+[node name="ExpandedClickUpgradeBuyButtons-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer"]
+layout_mode = 2
+
+[node name="ExpandedClickUpgradeBuy-MarginContainer" type="MarginContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_cmgfb")
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ExpandedClickUpgradeBuy-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer/ExpandedClickUpgradeBuy-MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_cmgfb")
+alignment = 1
+
+[node name="WaterCapUp-BuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer/ExpandedClickUpgradeBuy-MarginContainer/ExpandedClickUpgradeBuy-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Buy Upgrade"
+
+[node name="BulkSeedUp-BuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer/ExpandedClickUpgradeBuy-MarginContainer/ExpandedClickUpgradeBuy-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Buy Upgrade"
+
+[node name="BulkCropUp-BuyButton-Button" type="Button" parent="ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer/ExpandedClickUpgrades-StoreSubSectionHeader-PanelContainer2/ExpandedClickUpgradeBuyButtons-StoreSubSection-PanelContainer/ExpandedClickUpgradeBuyButtons-HBoxContainer/ExpandedClickUpgradeBuy-MarginContainer/ExpandedClickUpgradeBuy-HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Buy Upgrade"
