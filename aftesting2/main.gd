@@ -1,10 +1,17 @@
 extends Control
 
+# Minimize Button Body Variable Definitions
 @onready var sys_body = get_node("ScrollContainer/Primary-VBoxContainer/System-VBoxContainer")
 @onready var inv_body = get_node("ScrollContainer/Primary-VBoxContainer/Inventory-VBoxContainer")
 @onready var tnu_body = get_node("ScrollContainer/Primary-VBoxContainer/Tools&Upgrades-VBoxContainer")
 @onready var str_body = get_node("ScrollContainer/Primary-VBoxContainer/Store-VBoxContainer")
 @onready var fld_body = get_node("ScrollContainer/Primary-VBoxContainer/Field-VBoxContainer")
+
+#Start Window Variable Definitions
+@onready var start_window = get_node($"ScrollContainer/Primary-VBoxContainer/StartWindow-PanelContainer")
+@onready var Player_Name = 
+
+# -------------- System Functions --------- #
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
