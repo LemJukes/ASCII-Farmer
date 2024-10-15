@@ -199,6 +199,7 @@ theme_override_constants/margin_right = 5
 layout_mode = 2
 placeholder_text = "Enter A Name Here"
 max_length = 12
+caret_blink = true
 
 [node name="Buttons-HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Primary-VBoxContainer/StartWindow-PanelContainer/StartWindow-VBoxContainer"]
 layout_mode = 2
@@ -1564,7 +1565,6 @@ layout_mode = 2
 text = "~"
 
 [connection signal="text_changed" from="ScrollContainer/Primary-VBoxContainer/StartWindow-PanelContainer/StartWindow-VBoxContainer/PlayerName-HBoxContainer/PlayerNameInput-MarginContainer/PlayerNameInput-LineEdit" to="." method="_on_player_name_input_line_edit_text_changed"]
-[connection signal="text_submitted" from="ScrollContainer/Primary-VBoxContainer/StartWindow-PanelContainer/StartWindow-VBoxContainer/PlayerName-HBoxContainer/PlayerNameInput-MarginContainer/PlayerNameInput-LineEdit" to="." method="_on_player_name_input_line_edit_text_submitted"]
 [connection signal="pressed" from="ScrollContainer/Primary-VBoxContainer/StartWindow-PanelContainer/StartWindow-VBoxContainer/Buttons-HBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/Primary-VBoxContainer/StartWindow-PanelContainer/StartWindow-VBoxContainer/Buttons-HBoxContainer/QuitButton-MarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/Primary-VBoxContainer/SysHeader-PanelContainer/SysHeaderElements-HBoxContainer/SysMinimize-MarginContainer/SysMinimize-Button" to="." method="_on_sys_minimize_button_pressed"]
