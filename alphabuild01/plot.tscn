@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtobg8r16jpkp"]
+
+[ext_resource type="Script" path="res://plot.gd" id="1_cg0up"]
+
+[node name="Plot" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_cg0up")
+
+[node name="state1" type="Button" parent="."]
+layout_mode = 2
+text = "1"
+
+[node name="state2" type="Button" parent="."]
+visible = false
+layout_mode = 2
+text = "2"
+
+[connection signal="pressed" from="state1" to="." method="_on_state_1_pressed"]
+[connection signal="pressed" from="state2" to="." method="_on_state_2_pressed"]
