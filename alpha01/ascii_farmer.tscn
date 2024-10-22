@@ -1,13 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnr1l5nnh06g3"]
+[gd_scene load_steps=18 format=3 uid="uid://dnr1l5nnh06g3"]
 
 [ext_resource type="Script" path="res://variable_storage.gd" id="1_aatbe"]
-[ext_resource type="Theme" uid="uid://d1wu8h0d7whnk" path="res://background.tres" id="2_kxdou"]
+[ext_resource type="Script" path="res://primary.gd" id="2_wpe2r"]
+[ext_resource type="FontFile" uid="uid://u668ht40xtlg" path="res://DotGothic16/DotGothic16-Regular.ttf" id="3_ryr05"]
 [ext_resource type="Texture2D" uid="uid://cgrhcb8t7lcbw" path="res://jukeLTDlogo1.png" id="3_xcgy7"]
+[ext_resource type="Theme" uid="uid://wp1ne0nrmnnh" path="res://main_window_theme.tres" id="4_qu4rf"]
+[ext_resource type="Script" path="res://player_name_input.gd" id="6_g2vt4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wno1f"]
+bg_color = Color(0.313726, 0.313726, 0.313726, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywvah"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3d3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_om50f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yli1q"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xho5i"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxns1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jwvq"]
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdnel"]
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0abhe"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfkiw"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="AsciiFarmer" type="Node"]
 
@@ -21,8 +72,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("2_wpe2r")
 
 [node name="StartWindow" type="Control" parent="Primary"]
+unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -31,41 +85,589 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 400.0
 offset_bottom = 600.0
-theme = ExtResource("2_kxdou")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wno1f")
 
-[node name="ContentStack" type="VBoxContainer" parent="Primary/StartWindow/Background"]
+[node name="StartContentStack" type="VBoxContainer" parent="Primary/StartWindow/Background"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="BackgroundSystemBar" type="PanelContainer" parent="Primary/StartWindow/Background/ContentStack"]
+[node name="SystemBar" type="PanelContainer" parent="Primary/StartWindow/Background/StartContentStack"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ywvah")
 
-[node name="MarginContainer" type="MarginContainer" parent="Primary/StartWindow/Background/ContentStack/BackgroundSystemBar"]
+[node name="MarginContainer" type="MarginContainer" parent="Primary/StartWindow/Background/StartContentStack/SystemBar"]
 layout_mode = 2
 theme_override_constants/margin_left = 22
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 22
 theme_override_constants/margin_bottom = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Primary/StartWindow/Background/ContentStack/BackgroundSystemBar/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Primary/StartWindow/Background/StartContentStack/SystemBar/MarginContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Primary/StartWindow/Background/ContentStack/BackgroundSystemBar/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Primary/StartWindow/Background/StartContentStack/SystemBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 2
 size_flags_vertical = 4
 texture = ExtResource("3_xcgy7")
 stretch_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="Primary/StartWindow/Background/StartContentStack/SystemBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Primary/StartWindow/Background/StartContentStack/SystemBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_fonts/font = ExtResource("3_ryr05")
+text = "ASCII Farmer: DASH!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Primary/StartWindow/Background/StartContentStack/SystemBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="WelcomeMessage" type="MarginContainer" parent="Primary/StartWindow/Background/StartContentStack"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_qu4rf")
+
+[node name="WelcomeWindow" type="PanelContainer" parent="Primary/StartWindow/Background/StartContentStack/WelcomeMessage"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_qu4rf")
+
+[node name="WelcomeBody" type="Label" parent="Primary/StartWindow/Background/StartContentStack/WelcomeMessage/WelcomeWindow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ryr05")
+text = "Welcome to ASCII Farmer DASH!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PlayerInput" type="MarginContainer" parent="Primary/StartWindow/Background/StartContentStack"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("4_qu4rf")
+theme_override_constants/margin_top = 0
+
+[node name="InputWindow" type="PanelContainer" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_ryr05")
+text = "Player Name:"
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="PlayerNameInput" type="LineEdit" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x3d3s")
+script = ExtResource("6_g2vt4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_om50f")
+text = "Start
+Game"
+
 [node name="GameWindow" type="Control" parent="Primary"]
+unique_name_in_owner = true
+anchors_preset = 0
+
+[node name="Background" type="PanelContainer" parent="Primary/GameWindow"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wno1f")
+
+[node name="GameWindowContentStack" type="VBoxContainer" parent="Primary/GameWindow/Background"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GameSystemContentStack" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="SystemBar" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ywvah")
+
+[node name="MarginContainer" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemBar/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+texture = ExtResource("3_xcgy7")
+stretch_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_fonts/font = ExtResource("3_ryr05")
+text = "ASCII Farmer: DASH!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SystemInfo" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack"]
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("4_qu4rf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo"]
+layout_mode = 2
+alignment = 1
+
+[node name="FarmerLabel" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer"]
+layout_mode = 2
+text = " Farmer"
+vertical_alignment = 1
+
+[node name="PlayerNameDisplay" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$PlayerName"
+vertical_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game Timer:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GameTimer" type="Timer" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer"]
+
+[node name="GameTimeDisplay" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00:00:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Primary/GameWindow/Background/GameWindowContentStack"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameContentStack" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Inventory" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Background" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yli1q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TopBar" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xho5i")
+
+[node name="MarginContainer" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopBarBars1" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars1"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TopBarButton" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarButton"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TopBarBars2" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TopBarTitle" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_right = 1
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarTitle"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ryr05")
+theme_override_font_sizes/font_size = 16
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TopBarBars3" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars3"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_xcgy7")
+stretch_mode = 2
+
+[node name="TopBarBars4" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars4"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/TopBar/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WindowContent" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer"]
+layout_mode = 2
+
+[node name="Content1" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dxns1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1"]
+layout_mode = 2
+alignment = 1
+
+[node name="InventoryItemNames" type="HBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jwvq")
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdnel")
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jwvq")
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdnel")
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer2/PanelContainer2"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jwvq")
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer3/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vdnel")
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer3/PanelContainer2"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer4"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0abhe")
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer4/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer4"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfkiw")
+
+[node name="Label" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer/InventoryItemNames/VBoxContainer4/PanelContainer2"]
+layout_mode = 2
+theme = ExtResource("4_qu4rf")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InventoryItemValues" type="HBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Inventory/Background/VBoxContainer/WindowContent/Content1/VBoxContainer"]
+layout_mode = 2
+
+[node name="WinWindow" type="Control" parent="Primary"]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="winWindow" type="Control" parent="Primary"]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[connection signal="text_changed" from="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer/MarginContainer2/PlayerNameInput" to="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer/MarginContainer2/PlayerNameInput" method="_on_text_changed"]
+[connection signal="text_submitted" from="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer/MarginContainer2/PlayerNameInput" to="Primary" method="_on_player_name_input_text_submitted"]
+[connection signal="pressed" from="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/MarginContainer/StartButton" to="Primary" method="_on_start_button_pressed"]
+[connection signal="timeout" from="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer/GameTimer" to="Primary" method="_on_game_timer_timeout"]
