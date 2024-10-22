@@ -76,7 +76,6 @@ script = ExtResource("2_wpe2r")
 
 [node name="StartWindow" type="Control" parent="Primary"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -209,6 +208,7 @@ Game"
 
 [node name="GameWindow" type="Control" parent="Primary"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 
 [node name="Background" type="PanelContainer" parent="Primary/GameWindow"]
@@ -292,8 +292,10 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="GameTimer" type="Timer" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer"]
+unique_name_in_owner = true
 
 [node name="GameTimeDisplay" type="Label" parent="Primary/GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "00:00:00:00"

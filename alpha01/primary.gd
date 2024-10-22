@@ -5,13 +5,13 @@ extends Control
 @onready var player_name_display = $GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer/PlayerNameDisplay
 
 @onready var game_timer = $GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer/GameTimer
-@onready var game_timer_display = $GameWindow/Background/GameWindowContentStack/ameSystemContentStack/SystemInfo/HBoxContainer/GameTimeDisplay
+@onready var game_timer_display = $GameWindow/Background/GameWindowContentStack/GameSystemContentStack/SystemInfo/HBoxContainer/GameTimeDisplay
 
 var elapsed_time: float = 0.0
 
 
 func _ready() -> void:
-	game_timer.wait_time = 1.0
+	game_timer.wait_time = 0.01
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
@@ -36,15 +36,17 @@ func start_game_timer() -> void:
 	_on_game_timer_timeout()
 	
 func _on_game_timer_timeout() -> void:
-	elapsed_time += 1.0
+	elapsed_time += 0.01
 	
 func format_time(seconds: float) -> String:
 	var hours = int(seconds) / 3600
 	var minutes = (int(seconds) % 3600) / 60
 	var secs = int(seconds) % 60
+	var milliseconds = int((seconds - int(seconds)) * 100)
 	
 	var hours_str = str(hours).pad_zeros(2)
 	var minutes_str = str(minutes).pad_zeros(2)
 	var secs_str = str(secs).pad_zeros(2)
+	var millis_str = str(milliseconds).pad_zeros(2)
 	
-	return hours_str + ":" + minutes_str + ":" + secs_str
+	return hours_str + ":" + minutes_str + ":" + secs_str + "." + millis_str
