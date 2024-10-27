@@ -3,9 +3,9 @@ extends Node
 var player_name: String = "Bean"
 
 # Primary Inventory Variables
-var coins: int = 10
-var seeds: int = 1
-var crops: int = 1
+var coins: int = 100
+var seeds: int = 10
+var crops: int = 10
 var water: int = 10
 var watercap: int = 10 # limits the total amount of water the player can have.
 
@@ -21,14 +21,16 @@ var mk3_ison: bool = false
 
 # Store Variables
 # Prices
-var seed_price: int = 1
-var water_price: int = 1
-var crop_price: int = 1
-var plot_price: int = 10
+const seed_price: int = 1
+const water_price: int = 1
+const crop_price: int = 1
+var base_plot_price: int = 10
+var plot_price_increase_factor: int = 1.33
+
 #Quantities
-var seed_quant: int = 1
-var water_quant: int = 10
-var crop_quant: int = 1
+const seed_quant: int = 1
+const water_quant: int = 10
+const crop_quant: int = 1
 
 # Upgrade Unlock Token Bool Variables
 var mk1_isunlocked: bool = false

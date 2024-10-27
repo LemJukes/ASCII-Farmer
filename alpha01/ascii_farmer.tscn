@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dnr1l5nnh06g3"]
+[gd_scene load_steps=19 format=3 uid="uid://dnr1l5nnh06g3"]
 
 [ext_resource type="Script" path="res://variable_storage.gd" id="1_aatbe"]
 [ext_resource type="Script" path="res://primary.gd" id="2_wpe2r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cgrhcb8t7lcbw" path="res://jukeLTDlogo1.png" id="3_xcgy7"]
 [ext_resource type="Theme" uid="uid://wp1ne0nrmnnh" path="res://main_window_theme.tres" id="4_qu4rf"]
 [ext_resource type="Script" path="res://player_name_input.gd" id="6_g2vt4"]
+[ext_resource type="Script" path="res://fld_handler.gd" id="7_b6mhr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wno1f"]
 bg_color = Color(0.313726, 0.313726, 0.313726, 1)
@@ -70,7 +71,6 @@ script = ExtResource("2_wpe2r")
 
 [node name="StartWindow" type="Control" parent="Primary"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -203,6 +203,7 @@ Game"
 
 [node name="GameWindow" type="Control" parent="Primary"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 
 [node name="Background" type="PanelContainer" parent="Primary/GameWindow"]
@@ -1470,12 +1471,14 @@ text = "10x"
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ryr05")
+disabled = true
 text = "30x"
 
 [node name="90xWaterButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Supplies/HBoxContainer/BuyWaterContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ryr05")
+disabled = true
 text = "90x"
 
 [node name="Market" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent"]
@@ -1518,22 +1521,24 @@ vertical_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="1xSeedButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer"]
+[node name="1xCropButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ryr05")
 text = "1x"
 
-[node name="3xSeedButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer"]
+[node name="3xCropButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ryr05")
+disabled = true
 text = "3x"
 
-[node name="9xSeedButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer"]
+[node name="9xCropButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ryr05")
+disabled = true
 text = "9x"
 
 [node name="BuyPlotContainer" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer"]
@@ -1561,6 +1566,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="PlotBuyButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/BuyPlotContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1919,8 +1925,25 @@ custom_minimum_size = Vector2(10, 1)
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="FldWindowContent" type="GridContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Field/Background/VBoxContainer"]
+[node name="FldWindowContent" type="PanelContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Field/Background/VBoxContainer"]
+custom_minimum_size = Vector2(380, 390)
 layout_mode = 2
+theme = ExtResource("4_qu4rf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Field/Background/VBoxContainer/FldWindowContent"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="FldHandler" type="GridContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Field/Background/VBoxContainer/FldWindowContent/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 25
+columns = 3
+script = ExtResource("7_b6mhr")
 
 [node name="WinWindow" type="Control" parent="Primary"]
 visible = false
@@ -1947,4 +1970,8 @@ offset_bottom = 40.0
 [connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Supplies/HBoxContainer/BuyWaterContainer/VBoxContainer/HBoxContainer/10xWaterButton" to="Primary" method="_on_10x_water_button_pressed"]
 [connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Supplies/HBoxContainer/BuyWaterContainer/VBoxContainer/HBoxContainer/30xWaterButton" to="Primary" method="_on_30x_water_button_pressed"]
 [connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Supplies/HBoxContainer/BuyWaterContainer/VBoxContainer/HBoxContainer/90xWaterButton" to="Primary" method="_on_90x_water_button_pressed"]
+[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer/1xCropButton" to="Primary" method="_on_1x_crop_button_pressed"]
+[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer/3xCropButton" to="Primary" method="_on_3x_crop_button_pressed"]
+[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer/9xCropButton" to="Primary" method="_on_9x_crop_button_pressed"]
+[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/BuyPlotContainer/VBoxContainer/HBoxContainer/PlotBuyButton" to="Primary" method="_on_plot_buy_button_pressed"]
 [connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Field/Background/VBoxContainer/FldTopBar/MarginContainer/HBoxContainer/TopBarButton/FldMinButton" to="Primary" method="_on_fld_min_button_pressed"]

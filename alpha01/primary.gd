@@ -27,13 +27,20 @@ var elapsed_time: float = 0.0
 # Tool Display Vars
 @onready var current_tool_value = $GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/ToolsAndUpgrades/Background/VBoxContainer/TnUWindowContent/ToolButtons/VBoxContainer/HBoxContainer/MarginContainer4/VBoxContainer/PanelContainer2/CurrentToolValue
 
+# Plot Vars
+@onready var fld_handler: GridContainer = %FldHandler
+@onready var plot_buy_button: Button = %PlotBuyButton
+var plot_price: int = vs.base_plot_price
+
 
 # ------- Primary Function Group ------- #
 
 func _ready() -> void:
 	game_timer.wait_time = 0.01
 	update_inventory()
+	update_plot_buy_button()
 	
+
 func _process(delta: float) -> void:
 	game_timer_display.text = format_time(elapsed_time)
 	
@@ -150,39 +157,146 @@ func _on_9x_seed_button_pressed() -> void:
 		transaction_fail_response()
 
 # Water Purchasing
+func water_full_response() -> void:
+	print("Watering Can is full!")
+	return
+
+func water_cap_check() -> void:
+	if vs.water == vs.watercap:
+		water_full_response()
+		transaction_fail_response()
+	else:
+		var temp_water_val = vs.water + vs.water_quant
+		if temp_water_val >= vs.watercap:
+			vs.water = vs.watercap
+			vs.coins -= vs.water_price
+			water_full_response()
+			transaction_success_response()
+		else:
+			vs.water = temp_water_val
+			vs.coins -= vs.water_price
+			transaction_success_response()
+
+func water_cap_check_bulk3() -> void:
+	if vs.water == vs.watercap:
+		water_full_response()
+		transaction_fail_response()
+	else:
+		var bulk_water_price = vs.water_price * 3
+		var bulk_water_quant = vs.water_quant * 3
+		var temp_water_val = vs.water + bulk_water_quant
+		if temp_water_val >= vs.watercap:
+			vs.water = vs.watercap
+			vs.coins -= bulk_water_price
+			water_full_response()
+			transaction_success_response()
+		else:
+			vs.water = temp_water_val
+			vs.coins -= bulk_water_price
+			transaction_success_response()
+
+func water_cap_check_bulk9() -> void:
+	if vs.water == vs.watercap:
+		water_full_response()
+		transaction_fail_response()
+	else:
+		var bulk_water_price = vs.water_price * 9
+		var bulk_water_quant = vs.water_quant * 9
+		var temp_water_val = vs.water + bulk_water_quant
+		if temp_water_val >= vs.watercap:
+			vs.water = vs.watercap
+			vs.coins -= bulk_water_price
+			water_full_response()
+			transaction_success_response()
+		else:
+			vs.water = temp_water_val
+			vs.coins -= bulk_water_price
+			transaction_success_response()
+
 func _on_10x_water_button_pressed() -> void:
 	if vs.coins >= vs.water_price:
-		vs.coins -= vs.water_price
-		vs.water += vs.water_quant
+		water_cap_check()
 		update_inventory()
-		transaction_success_response()
 	else:
 		transaction_fail_response()
 
 func _on_30x_water_button_pressed() -> void:
-	# ADD WATER CAP CHECK
-	var bulk_water_price = vs.water_price * 3
-	var bulk_water_quant = vs.water_quant * 3
+	var bulk_water_price = (vs.water_price * 3)
 	if vs.coins >= bulk_water_price:
-		vs.coins -= bulk_water_price
-		vs.water += bulk_water_quant
+		water_cap_check_bulk3()
+		update_inventory()
+	else:
+		transaction_fail_response()
+
+func _on_90x_water_button_pressed() -> void:
+	var bulk_water_price = (vs.water_price * 9)
+	if vs.coins >= bulk_water_price:
+		water_cap_check_bulk9()
+		update_inventory()
+	else:
+		transaction_fail_response()
+
+# Crop Sales Function Group
+
+func _on_1x_crop_button_pressed() -> void:
+	if vs.crops > 0:
+		vs.crops -= vs.crop_quant
+		vs.coins += vs.crop_price
+		update_inventory()
+		transaction_success_response()
+	else:
+		transaction_fail_response()
+	
+func _on_3x_crop_button_pressed() -> void:
+	var bulk_crop_quant = vs.crop_quant * 3
+	var bulk_crop_price = vs.crop_price * 3
+	if vs.crops > bulk_crop_quant:
+		vs.crops -= bulk_crop_quant
+		vs.coins += bulk_crop_price
 		update_inventory()
 		transaction_success_response()
 	else:
 		transaction_fail_response()
 
-func _on_90x_water_button_pressed() -> void:
-	# ADD WATER CAP CHECK
-	var bulk_water_price = vs.water_price * 9
-	var bulk_water_quant = vs.water_quant * 9
-	if vs.coins >= bulk_water_price:
-		vs.coins -= bulk_water_price
-		vs.water += bulk_water_quant
+func _on_9x_crop_button_pressed() -> void:
+	var bulk_crop_quant = vs.crop_quant * 9
+	var bulk_crop_price = vs.crop_price * 9
+	if vs.crops > bulk_crop_quant:
+		vs.crops -= bulk_crop_quant
+		vs.coins += bulk_crop_price
 		update_inventory()
 		transaction_success_response()
 	else:
 		transaction_fail_response()
-		
+
+# Plot Purchasing Function Group
+
+func _on_plot_buy_button_pressed():
+	if vs.coins >= plot_price:
+		fld_handler.add_plot()
+		vs.coins -= plot_price
+		plot_price = calculate_next_plot_price()
+		update_inventory()
+		update_plot_buy_button()
+		transaction_success_response()
+	else:
+		transaction_fail_response()
+
+func calculate_next_plot_price() -> int:
+	var plot_count = fld_handler.get_child_count()
+	print(str(plot_count))
+	return int(vs.base_plot_price * vs.plot_price_increase_factor)
+
+func update_plot_buy_button():
+	if not plot_buy_button:
+		return
+	if fld_handler.get_child_count() >= fld_handler.max_plots:
+		plot_buy_button.disabled = true
+		return
+	plot_price = calculate_next_plot_price()
+	plot_buy_button.text = str(plot_price) + " coins"
+	plot_buy_button.disabled = vs.coins < plot_price
+	
 
 # -------- UI Function Stack ------- #
 
