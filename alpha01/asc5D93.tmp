@@ -1,7 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://dnr1l5nnh06g3"]
+[gd_scene load_steps=19 format=3 uid="uid://dnr1l5nnh06g3"]
 
 [ext_resource type="Script" path="res://variable_storage.gd" id="1_aatbe"]
-[ext_resource type="Script" path="res://milestone_data.gd" id="2_u2k8v"]
 [ext_resource type="Script" path="res://primary.gd" id="2_wpe2r"]
 [ext_resource type="FontFile" uid="uid://u668ht40xtlg" path="res://DotGothic16/DotGothic16-Regular.ttf" id="3_ryr05"]
 [ext_resource type="Texture2D" uid="uid://cgrhcb8t7lcbw" path="res://jukeLTDlogo1.png" id="3_xcgy7"]
@@ -61,47 +60,26 @@ bg_color = Color(1, 1, 1, 1)
 [node name="VariableStorage" type="Node" parent="."]
 script = ExtResource("1_aatbe")
 
-[node name="MilestoneData" type="Node" parent="."]
-script = ExtResource("2_u2k8v")
-
 [node name="Primary" type="Control" parent="."]
-unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_wpe2r")
 
 [node name="StartWindow" type="Control" parent="Primary"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -300.0
-offset_right = -200.0
-offset_bottom = -300.0
-grow_horizontal = 2
-grow_vertical = 2
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Background" type="PanelContainer" parent="Primary/StartWindow"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+layout_mode = 0
 offset_right = 400.0
 offset_bottom = 600.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wno1f")
 
 [node name="StartContentStack" type="VBoxContainer" parent="Primary/StartWindow/Background"]
@@ -226,30 +204,12 @@ Game"
 
 [node name="GameWindow" type="Control" parent="Primary"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -300.0
-offset_right = -200.0
-offset_bottom = -300.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 
 [node name="Background" type="PanelContainer" parent="Primary/GameWindow"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+layout_mode = 0
 offset_right = 400.0
 offset_bottom = 600.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wno1f")
 
 [node name="GameWindowContentStack" type="VBoxContainer" parent="Primary/GameWindow/Background"]
@@ -340,6 +300,7 @@ vertical_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="Primary/GameWindow/Background/GameWindowContentStack"]
 layout_mode = 2
 size_flags_vertical = 3
+scroll_vertical = 100
 
 [node name="GameContentStack" type="VBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer"]
 layout_mode = 2
@@ -1088,7 +1049,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2ctfw")
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_qu4rf")
-text = "--"
+text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1679,7 +1640,6 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ryr05")
-disabled = true
 text = "Buy Upgrade"
 
 [node name="BuyBulkSeedUpgradeButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer/StoreUpgradeContainer/VBoxContainer/HBoxContainer"]
@@ -1687,7 +1647,6 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ryr05")
-disabled = true
 text = "Buy Upgrade"
 
 [node name="SellBulkCropsUogradeButton" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer/StoreUpgradeContainer/VBoxContainer/HBoxContainer"]
@@ -1695,7 +1654,6 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ryr05")
-disabled = true
 text = "Buy Upgrade"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades"]
@@ -1732,7 +1690,6 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ryr05")
-disabled = true
 text = "Mk. 1"
 
 [node name="BuyMk2Button" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer2/ClickUpgradeContainer/VBoxContainer/HBoxContainer"]
@@ -1740,7 +1697,6 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ryr05")
-disabled = true
 text = "Mk. 2"
 
 [node name="BuyMk3Button" type="Button" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer2/ClickUpgradeContainer/VBoxContainer/HBoxContainer"]
@@ -1748,7 +1704,6 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ryr05")
-disabled = true
 text = "Mk. 3"
 
 [node name="Field" type="MarginContainer" parent="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack"]
@@ -1990,6 +1945,12 @@ theme_override_constants/v_separation = 25
 columns = 3
 script = ExtResource("7_b6mhr")
 
+[node name="WinWindow" type="Control" parent="Primary"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="text_changed" from="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer/MarginContainer2/PlayerNameInput" to="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer/MarginContainer2/PlayerNameInput" method="_on_text_changed"]
 [connection signal="text_submitted" from="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/VBoxContainer/MarginContainer2/PlayerNameInput" to="Primary" method="_on_player_name_input_text_submitted"]
 [connection signal="pressed" from="Primary/StartWindow/Background/StartContentStack/PlayerInput/InputWindow/HBoxContainer/MarginContainer/StartButton" to="Primary" method="_on_start_button_pressed"]
@@ -2013,10 +1974,4 @@ script = ExtResource("7_b6mhr")
 [connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer/3xCropButton" to="Primary" method="_on_3x_crop_button_pressed"]
 [connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/SellCropContainer/VBoxContainer/HBoxContainer/9xCropButton" to="Primary" method="_on_9x_crop_button_pressed"]
 [connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Market/HBoxContainer/BuyPlotContainer/VBoxContainer/HBoxContainer/PlotBuyButton" to="Primary" method="_on_plot_buy_button_pressed"]
-[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer/StoreUpgradeContainer/VBoxContainer/HBoxContainer/BuyBulkWaterUpgradeButton" to="Primary" method="_on_buy_bulk_water_upgrade_button_pressed"]
-[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer/StoreUpgradeContainer/VBoxContainer/HBoxContainer/BuyBulkSeedUpgradeButton" to="Primary" method="_on_buy_bulk_seed_upgrade_button_pressed"]
-[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer/StoreUpgradeContainer/VBoxContainer/HBoxContainer/SellBulkCropsUogradeButton" to="Primary" method="_on_sell_bulk_crops_uograde_button_pressed"]
-[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer2/ClickUpgradeContainer/VBoxContainer/HBoxContainer/BuyMk1Button" to="Primary" method="_on_buy_mk_1_button_pressed"]
-[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer2/ClickUpgradeContainer/VBoxContainer/HBoxContainer/BuyMk2Button" to="Primary" method="_on_buy_mk_2_button_pressed"]
-[connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Store/Background/VBoxContainer/StrWindowContent/Upgrades/HBoxContainer2/ClickUpgradeContainer/VBoxContainer/HBoxContainer/BuyMk3Button" to="Primary" method="_on_buy_mk_3_button_pressed"]
 [connection signal="pressed" from="Primary/GameWindow/Background/GameWindowContentStack/ScrollContainer/GameContentStack/Field/Background/VBoxContainer/FldTopBar/MarginContainer/HBoxContainer/TopBarButton/FldMinButton" to="Primary" method="_on_fld_min_button_pressed"]

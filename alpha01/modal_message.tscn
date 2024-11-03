@@ -1,0 +1,306 @@
+[gd_scene load_steps=8 format=3 uid="uid://bf6gru7q67lvq"]
+
+[ext_resource type="FontFile" uid="uid://u668ht40xtlg" path="res://DotGothic16/DotGothic16-Regular.ttf" id="1_3ak74"]
+[ext_resource type="Script" path="res://modal_message.gd" id="1_xqkqf"]
+[ext_resource type="Texture2D" uid="uid://cgrhcb8t7lcbw" path="res://jukeLTDlogo1.png" id="2_b8sc8"]
+[ext_resource type="Theme" uid="uid://wp1ne0nrmnnh" path="res://main_window_theme.tres" id="3_nbvlm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yli1q"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xho5i"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxns1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[node name="ModalMessage" type="Control"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_xqkqf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yli1q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xho5i")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopBarBars1" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars1"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars1/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TopBarButton" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ModalCloseButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarButton"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(17, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_fonts/font = ExtResource("1_3ak74")
+theme_override_font_sizes/font_size = 6
+text = "X"
+clip_text = true
+
+[node name="TopBarBars2" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TopBarTitle" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_right = 1
+
+[node name="ModalTitleLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarTitle"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3ak74")
+theme_override_font_sizes/font_size = 16
+text = "Modal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TopBarBars3" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars3"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_b8sc8")
+stretch_mode = 2
+
+[node name="TopBarBars4" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars4"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TopBarBars4/VBoxContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ModalTextContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ModalTextBackground" type="PanelContainer" parent="MarginContainer/PanelContainer/VBoxContainer/ModalTextContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dxns1")
+
+[node name="ModalTextLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/ModalTextContainer/ModalTextBackground"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("3_nbvlm")
+text = "$Sample Modal Text
+Lorem Ipsum much?"
+horizontal_alignment = 1
+vertical_alignment = 1

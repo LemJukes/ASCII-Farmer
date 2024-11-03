@@ -10,7 +10,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 0
 script = ExtResource("1_pwe3p")
 
-[node name="Button" type="Button" parent="."]
+[node name="PlotButton" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 offset_left = 5.0
