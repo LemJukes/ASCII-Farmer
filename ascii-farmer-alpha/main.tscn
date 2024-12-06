@@ -68,21 +68,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Quit"
 
-[node name="SystemVSeparator2" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer"]
-layout_mode = 2
-
-[node name="GameTimerLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Game Timer:"
-horizontal_alignment = 2
-
-[node name="GameTimerValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "$GameTime"
-
 [node name="HSeparator" type="HSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer"]
 layout_mode = 2
 
@@ -598,4 +583,5 @@ text = "Buy Bulk Crop Upgrade"
 layout_mode = 2
 
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

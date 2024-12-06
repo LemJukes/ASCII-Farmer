@@ -3,7 +3,7 @@
 extends Node
 
 # System Variables
-var game_time_elapsed: float = 0.000
+var start_time: float = 0.0
 
 # Primary Inventory Variables
 var coins: int = 0
