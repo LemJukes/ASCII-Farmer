@@ -41,7 +41,7 @@ layout_mode = 2
 [node name="BuildLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Build: Alpha 0.1"
+text = "Build: Alpha 0.2"
 horizontal_alignment = 1
 
 [node name="VSeparator2" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
