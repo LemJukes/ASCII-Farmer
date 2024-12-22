@@ -3,8 +3,8 @@ extends Node
 
 signal save_completed
 signal load_completed
-signal save_error(error_message: String)
-signal load_error(error_message: String)
+signal save_error(save_error_message: String)
+signal load_error(load_error_message: String)
 
 const SAVE_FILE_PATH = "user://savegame.json"
 
@@ -57,3 +57,4 @@ func delete_save() -> void:
 	if FileAccess.file_exists(SAVE_FILE_PATH):
 		DirAccess.remove_absolute(SAVE_FILE_PATH)
 		print("Save Deleted")
+        

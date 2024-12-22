@@ -44,6 +44,21 @@ size_flags_horizontal = 3
 text = "Build: Alpha 0.1"
 horizontal_alignment = 1
 
+[node name="VSeparator2" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
+layout_mode = 2
+
+[node name="GameTimerLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game Timer:"
+horizontal_alignment = 2
+
+[node name="GameTimerValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$HH:MM:SS.MMM"
+
 [node name="SystemHBoxContainer" type="HBoxContainer" parent="AspectRatioContainer/PrimaryVBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -221,6 +236,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="CurrentToolValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$CurrentTool"
 horizontal_alignment = 1
@@ -229,16 +245,19 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="PlowButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Plow"
 
 [node name="WateringCanButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Watering Can"
 
 [node name="ScytheButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Scythe"
@@ -334,6 +353,7 @@ text = "Buy Seeds:"
 horizontal_alignment = 1
 
 [node name="SeedPriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$SeedPrice
 "
@@ -343,17 +363,20 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="BuyOneButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+[node name="BuyOneSeedButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "1x"
 
-[node name="BuyThreeButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+[node name="BuyThreeSeedButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "3x"
 
-[node name="BuyNineButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+[node name="BuyNineSeedButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "9x"
@@ -371,6 +394,7 @@ text = "Buy Water:"
 horizontal_alignment = 1
 
 [node name="WaterPriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$WaterPrice"
 horizontal_alignment = 1
@@ -379,17 +403,20 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="BuyTenButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+[node name="BuyTenWaterButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "10x"
 
-[node name="BuyThirtyButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+[node name="BuyThirtyWaterButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "30x"
 
-[node name="BuyNineButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+[node name="BuyNinetyWaterButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "90x"
@@ -407,6 +434,7 @@ text = "Sell Crops:"
 horizontal_alignment = 1
 
 [node name="CropPriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$CropPrice
 "
@@ -416,17 +444,20 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="BuyOneButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+[node name="SellOneCropButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "1x"
 
-[node name="BuyThreeButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+[node name="SellThreeCropButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "3x"
 
-[node name="BuyNineButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+[node name="SellNineCropButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "9x"
@@ -443,16 +474,18 @@ layout_mode = 2
 text = "Buy Plot:"
 horizontal_alignment = 1
 
-[node name="CropPriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyPlotVBoxContainer"]
+[node name="PlotPriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyPlotVBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$PlotPrice"
 horizontal_alignment = 1
 
-[node name="SellCropButtonsHBoxContainer" type="HBoxContainer" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyPlotVBoxContainer"]
+[node name="BuyPlotButtonsHBoxContainer" type="HBoxContainer" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyPlotVBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="BuyOneButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyPlotVBoxContainer/SellCropButtonsHBoxContainer"]
+[node name="BuyPlotButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyPlotVBoxContainer/BuyPlotButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
@@ -483,7 +516,8 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="ClickUpgradeMkValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/HBoxContainer"]
+[node name="ClickUpgradeMkLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$ClickUpgradeMk
 "
@@ -492,7 +526,8 @@ horizontal_alignment = 1
 [node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="ClickUpgradePriceValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/HBoxContainer"]
+[node name="ClickUpgradePriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$ClickUpgradeCost
 "
@@ -523,7 +558,21 @@ layout_mode = 2
 text = "Bulk Seed Upgrades:"
 horizontal_alignment = 1
 
-[node name="BulkSeedUpgradePriceValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkSeedUpgradesVBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkSeedUpgradesVBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="BulkSeedUpgradeMkLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkSeedUpgradesVBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$BulkSeedUpgradeMk"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkSeedUpgradesVBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="BulkSeedUpgradePriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkSeedUpgradesVBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$BulkSeedUpgradeCost"
 horizontal_alignment = 1
@@ -545,10 +594,23 @@ layout_mode = 2
 text = "Bulk Water Upgrades:"
 horizontal_alignment = 1
 
-[node name="BulkWaterUpgradePriceValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkWaterUpgradesVBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkWaterUpgradesVBoxContainer"]
 layout_mode = 2
-text = "$BulkWaterUpgradeCost
-"
+alignment = 1
+
+[node name="BulkWaterUpgradeMkLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkWaterUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$BulkWaterUpgradeMk"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkWaterUpgradesVBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="BulkWaterUpgradePriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkWaterUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$BulkWaterUpgradeCost"
 horizontal_alignment = 1
 
 [node name="BuyBulkSeedUpgradeButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkWaterUpgradesVBoxContainer"]
@@ -568,10 +630,23 @@ layout_mode = 2
 text = "Bulk Crop Upgrades:"
 horizontal_alignment = 1
 
-[node name="BulkCropUpgradePriceValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkCropUpgradesVBoxContainer4"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkCropUpgradesVBoxContainer4"]
 layout_mode = 2
-text = "$BulkCropUpgradeCost
-"
+alignment = 1
+
+[node name="BulkCropUpgradeMkLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkCropUpgradesVBoxContainer4/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$BulkCropUpgradeMk"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkCropUpgradesVBoxContainer4/HBoxContainer"]
+layout_mode = 2
+
+[node name="BulkCropUpgradePriceLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkCropUpgradesVBoxContainer4/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$BulkCropUpgradeCost"
 horizontal_alignment = 1
 
 [node name="BuyBulkCropUpgradeButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/UpgradesHBoxContainer/BuyBulkCropUpgradesVBoxContainer4"]
@@ -581,6 +656,25 @@ text = "Buy Bulk Crop Upgrade"
 
 [node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer"]
 layout_mode = 2
+
+[node name="FieldVBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FieldLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/FieldVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "The Field"
+horizontal_alignment = 1
+
+[node name="FieldGridContainer" type="GridContainer" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/FieldVBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="FieldButton1" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/FieldVBoxContainer/FieldGridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "~"
 
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
