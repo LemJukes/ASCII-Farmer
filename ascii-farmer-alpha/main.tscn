@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://djwtqhqis7bn3"]
+[gd_scene load_steps=3 format=3 uid="uid://djwtqhqis7bn3"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_8ggr0"]
+[ext_resource type="Script" path="res://fld_handler.gd" id="2_pe2g6"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -43,21 +44,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Build: Alpha 0.2"
 horizontal_alignment = 1
-
-[node name="VSeparator2" type="VSeparator" parent="AspectRatioContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
-layout_mode = 2
-
-[node name="GameTimerLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Game Timer:"
-horizontal_alignment = 2
-
-[node name="GameTimerValueLabel" type="Label" parent="AspectRatioContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "$HH:MM:SS.MMM"
 
 [node name="SystemHBoxContainer" type="HBoxContainer" parent="AspectRatioContainer/PrimaryVBoxContainer"]
 layout_mode = 2
@@ -668,14 +654,18 @@ text = "The Field"
 horizontal_alignment = 1
 
 [node name="FieldGridContainer" type="GridContainer" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/FieldVBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 3
-
-[node name="FieldButton1" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/FieldVBoxContainer/FieldGridContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-text = "~"
+script = ExtResource("2_pe2g6")
 
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/SystemHBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer/PlowButton" to="." method="_on_plow_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer/WateringCanButton" to="." method="_on_watering_can_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer/ScytheButton" to="." method="_on_scythe_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer/BuyOneSeedButton" to="." method="_on_buy_one_seed_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer/BuyTenWaterButton" to="." method="_on_buy_ten_water_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer/SellOneCropButton" to="." method="_on_sell_one_crop_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyPlotVBoxContainer/BuyPlotButtonsHBoxContainer/BuyPlotButton" to="." method="_on_buy_plot_button_pressed"]

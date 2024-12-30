@@ -7,22 +7,8 @@ func _ready() -> void:
 	_connect_to_save_manager_signals()
 	_initialize_game_labels()
 	load_game()
-	print("Game Application Opened at: ", _format_unix_time(Time.get_unix_time_from_system()))
-	print("Game started at: ", _format_unix_time(VariableStorage.start_time))
-	print("Game last resumed at: ", _format_unix_time(VariableStorage.resume_time))
-	if FileAccess.file_exists(SaveManager.SAVE_FILE_PATH):
-		VariableStorage.resume_time = Time.get_unix_time_from_system()
-	print("Game last quit at: ", _format_unix_time(VariableStorage.quit_time))
-
-func _process(_delta: float) -> void:
-	if VariableStorage.start_time > 0.0:
-		VariableStorage.elapsed_time = Time.get_unix_time_from_system() - VariableStorage.start_time
-		_update_timer_display()
 
 # ----------------------------------------  LABEL UI ELEMENT DECLARATIONS  ----------------------------------------  #
-
-# System Label
-@onready var game_timer_value_label: Label = %GameTimerValueLabel
 
 # Inventory Labels
 @onready var coins_label: Label = %CoinsValueLabel
@@ -56,20 +42,17 @@ func _process(_delta: float) -> void:
 @onready var bulk_crop_mk_label: Label = %BulkCropUpgradeMkLabel
 @onready var bulk_crop_price_label: Label = %BulkCropUpgradePriceLabel
 
+# Field Labels
+@onready var field_grid: GridContainer = %FieldGridContainer
+
+
 # ----------------------------------------  Label UI Element Functions  ----------------------------------------  #
 
-# Update Game Timer
-func _update_timer_display() -> void:
-	var hours := int(VariableStorage.elapsed_time / 3600)
-	var minutes := int(VariableStorage.elapsed_time / 60) % 60
-	var seconds := int(VariableStorage.elapsed_time) % 60
-	var milliseconds := int(VariableStorage.elapsed_time * 1000) % 1000
-	game_timer_value_label.text = "%02d:%02d:%02d.%03d" % [hours, minutes, seconds, milliseconds]
-
-func update_game_labels() -> void:
+func _update_game_labels() -> void:
 	_update_inventory_labels()
 	_update_tool_labels()
 	_update_store_labels()
+	save_game()
 
 func _update_inventory_labels() -> void:
 	coins_label.text = str(VariableStorage.coins)
@@ -85,6 +68,7 @@ func _update_store_labels() -> void:
 	seed_price_label.text = str(VariableStorage.seed_price)
 	water_price_label.text = str(VariableStorage.water_price)
 	crop_price_label.text = str(VariableStorage.crop_price)
+	plot_price_label.text = str(VariableStorage.plot_price)
 
 # ----------------------------------------  Button UI Element Declarations  ----------------------------------------  #
 
@@ -93,10 +77,30 @@ func _update_store_labels() -> void:
 @onready var quit_button: Button = %QuitButton
 @onready var reset_button: Button = %ResetButton
 
+# Tool Buttons
+@onready var plow_button: Button = %PlowButton
+@onready var watering_can_button: Button = %WateringCanButton
+@onready var scythe_button: Button = %ScytheButton
+
+# Store Buttons
+# Supplies Buttons
+# Seed Buttons
+@onready var buy_one_seed_button: Button = %BuyOneSeedButton
+@onready var buy_three_seed_button: Button = %BuyThreeSeedButton
+@onready var buy_nine_seed_button: Button = %BuyNineSeedButton
+# Water Buttons
+@onready var buy_ten_water_button: Button = %BuyTenWaterButton
+@onready var buy_thirty_water_button: Button = %BuyThirtyWaterButton
+@onready var buy_ninety_water_button: Button = %BuyNinetyWaterButton
+# Crop Buttons
+@onready var sell_one_crop_button: Button = %SellOneCropButton
+@onready var sell_three_crop_button: Button = %SellThreeCropButton
+@onready var sell_nine_crop_button: Button = %SellNineCropButton
+# Buy Plot Button
+@onready var buy_plot_button: Button = %BuyPlotButton
+
 # ----------------------------------------  Game Initialization  ----------------------------------------  #
 
-func _initialize_system_label() -> void:
-	game_timer_value_label.text = "00:00:00.000"
 
 func _initialize_game_labels() -> void:
 	# Initialize the Inventory Labels
@@ -107,7 +111,7 @@ func _initialize_game_labels() -> void:
 	water_cap_label.text = "0"
 
 	# Initialize the Tool Labels
-	current_tool_label.text = "--"
+	current_tool_label.text = VariableStorage.current_tool
 
 	# Initialize the Store Prices
 	# Supplies Prices
@@ -135,10 +139,6 @@ func _initialize_game_labels() -> void:
 
 func save_game() -> void:
 	var save_dict = {
-		# Time Data
-		"start_time": VariableStorage.start_time,
-		"quit_time": VariableStorage.quit_time,
-		"resume_time": VariableStorage.resume_time,
 
 		# Inventory Data
 		"coins": VariableStorage.coins,
@@ -154,6 +154,10 @@ func save_game() -> void:
 		"seed_price": VariableStorage.seed_price,
 		"water_price": VariableStorage.water_price,
 		"crop_price": VariableStorage.crop_price,
+		"plot_price": VariableStorage.plot_price,
+
+		# Field Data
+		"plot_count": field_grid.get_child_count(),
 
 		# Inventory Counters
 		"coins_earned": VariableStorage.coins_earned,
@@ -179,21 +183,14 @@ func save_game() -> void:
 		"plots_harvested": VariableStorage.plots_harvested
 
 	}
+
 	SaveManager.save_game_data(save_dict)
 
 func load_game() -> void:
 	var save_data = SaveManager.load_game_data()
 	if !save_data.is_empty():
+		print("Loading Save Data:", save_data)
 		
-		# This disables the start button and enables the reset button on a successful load
-		start_button.disabled = true
-		reset_button.disabled = false
-		
-		# Time Data
-		VariableStorage.start_time = save_data["start_time"]
-		VariableStorage.quit_time = save_data["quit_time"]
-		VariableStorage.resume_time = save_data["resume_time"]
-
 		# Inventory Data
 		VariableStorage.coins = save_data["coins"]
 		VariableStorage.seeds = save_data["seeds"]
@@ -208,10 +205,14 @@ func load_game() -> void:
 		VariableStorage.seed_price = save_data["seed_price"]
 		VariableStorage.water_price = save_data["water_price"]
 		VariableStorage.crop_price = save_data["crop_price"]
+		VariableStorage.plot_price = save_data["plot_price"]
+
+		# Field Data
+		
 
 		# Inventory Counters
 		VariableStorage.coins_earned = save_data["coins_earned"]
-		VariableStorage.seeds_collected = save_data["seeds_collected"]
+		VariableStorage.seeds_collected = save_data["seeds_collected"] 
 		VariableStorage.crops_harvested = save_data["crops_harvested"]
 		VariableStorage.water_used = save_data["water_used"]
 		
@@ -231,8 +232,10 @@ func load_game() -> void:
 		VariableStorage.plots_planted = save_data["plots_planted"]
 		VariableStorage.plots_watered = save_data["plots_watered"]
 		VariableStorage.plots_harvested = save_data["plots_harvested"]
-		
-		print(" save_data: ", save_data)
+	
+
+		_unlock_starting_buttons()
+		_update_game_labels()
 
 # Signal connector for SaveManager
 func _connect_to_save_manager_signals() -> void:
@@ -256,32 +259,37 @@ func _on_load_error(load_error_message: String) -> void:
 
 # ----------------------------------------  Helper & Other Background Functions  ----------------------------------------  #
 
-func _format_unix_time(unix_time: float) -> String:
-	var date_time = Time.get_datetime_dict_from_unix_time(int(unix_time))
-	return "%d-%02d-%02d %02d:%02d:%02d (UTC)" % [
-		date_time["year"],
-		date_time["month"],
-		date_time["day"],
-		date_time["hour"],
-		date_time["minute"],
-		date_time["second"]
-	]
+func _unlock_starting_buttons() -> void:
+	# Handle system button state changes
+	start_button.disabled = true
+	reset_button.disabled = false
+
+	# handle tool button state changes
+	plow_button.disabled = false
+	watering_can_button.disabled = false
+	scythe_button.disabled = false
+
+	# handle store button state changes
+	buy_one_seed_button.disabled = false
+	buy_ten_water_button.disabled = false
+	sell_one_crop_button.disabled = false
+	buy_plot_button.disabled = false
 
 # ----------------------------------------  System Buttons  ----------------------------------------  #.
 
 func _on_start_button_pressed() -> void:
-	# Hnadle button state changes
-	start_button.disabled = true
-	reset_button.disabled = false
+	print("Start button pressed")
 	
-	# Set game start time
-	VariableStorage.start_time = Time.get_unix_time_from_system()
-	print("Game started at: ", _format_unix_time(VariableStorage.start_time))
+	_unlock_starting_buttons()
+	_update_game_labels()
+	field_grid._add_first_plot()
 
 	# Save game data
 	save_game()
 
 func _on_reset_button_pressed() -> void:
+	print("Reset button pressed")
+
 	SaveManager.delete_save()
 
 	VariableStorage.reset_game_data()
@@ -291,12 +299,99 @@ func _on_reset_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func _on_quit_button_pressed() -> void:
-	VariableStorage.quit_time = Time.get_unix_time_from_system()
-	print("Game quit at: ", _format_unix_time(VariableStorage.quit_time))
-	
+	# adding this print statement is what makes the if statment below work properly, i do not understand why but it works so im leaving it for now.
+	print("Quit button pressed")
 	# If a save file exists, save the game data
 	if FileAccess.file_exists(SaveManager.SAVE_FILE_PATH):
 		save_game()
-	
-	# Quit the game
-	get_tree().quit()
+		get_tree().call_deferred("quit")
+	else:
+		print("No save file found. Quitting without saving.")
+		get_tree().call_deferred("quit")
+
+# ----------------------------------------  Tool Buttons  ----------------------------------------  #
+
+func _on_plow_button_pressed() -> void:
+	print("Plow button pressed")
+	VariableStorage.current_tool = VariableStorage.TOOL_PLOW	
+	_update_game_labels()
+
+func _on_watering_can_button_pressed() -> void:
+	print("Watering Can button pressed")
+	VariableStorage.current_tool = VariableStorage.TOOL_WATERING_CAN
+	_update_game_labels()
+
+func _on_scythe_button_pressed() -> void:
+	print("Scythe button pressed")
+	VariableStorage.current_tool = VariableStorage.TOOL_SCYTHE
+	_update_game_labels()
+
+# ----------------------------------------  Store Buttons  ----------------------------------------  #
+
+# Supplies Buttons
+# Seed Buttons
+
+func _on_buy_one_seed_button_pressed() -> void:
+	print("Buy One Seed button pressed")
+	if VariableStorage.coins >= VariableStorage.seed_price:
+		VariableStorage.coins -= VariableStorage.seed_price
+		VariableStorage.seeds += 1
+		VariableStorage.seeds_purchased += 1
+		_update_game_labels()
+	else:
+		print("Not enough coins to purchase seeds")
+
+# Water Buttons
+
+func _on_buy_ten_water_button_pressed() -> void:
+	print("Buy Ten Water button pressed")
+	if VariableStorage.water >= VariableStorage.water_cap:
+		print("Water storage is at capacity!")
+		return
+		
+	if VariableStorage.coins >= VariableStorage.water_price:
+		var space_remaining = VariableStorage.water_cap - VariableStorage.water
+		var water_to_add = min(10, space_remaining)
+		
+		if water_to_add == 0:
+			print("Cannot add more water - at capacity!")
+			return
+			
+		VariableStorage.coins -= VariableStorage.water_price
+		VariableStorage.water += water_to_add
+		VariableStorage.water_purchased += water_to_add
+		_update_game_labels()
+		
+		if water_to_add < 10:
+			print("Only added " + str(water_to_add) + " water due to capacity limits")
+	else:
+		print("Not enough coins to purchase water")
+
+# Crop Buttons
+
+func _on_sell_one_crop_button_pressed() -> void:
+	print("Sell One Crop button pressed")
+	if VariableStorage.crops > 0:
+		VariableStorage.crops -= 1
+		VariableStorage.coins += VariableStorage.crop_price
+		VariableStorage.crops_sold += 1
+		_update_game_labels()
+	else:
+		print("Not enough crops to sell")
+
+# Buy Plot Button
+func _on_buy_plot_button_pressed() -> void:
+	print("Buy Plot button pressed")
+	if VariableStorage.coins >= VariableStorage.plot_price:
+		var field_handler = field_grid # The field_grid already has fld_handler.gd attached
+		if field_handler.check_plot_count():
+			VariableStorage.coins -= VariableStorage.plot_price
+			VariableStorage.plots_purchased += 1
+			field_handler.add_plot()
+			_update_game_labels()
+			
+			# Increase price for next plot
+			VariableStorage.plot_price *= 2
+			plot_price_label.text = str(VariableStorage.plot_price)
+	else:
+		print("Not enough coins to purchase plot")
