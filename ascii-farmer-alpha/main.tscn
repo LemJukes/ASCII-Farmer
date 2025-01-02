@@ -524,6 +524,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="BuyClickUpgradeButton" type="Button" parent="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/BuyClickUpgradeButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Buy Upgrade"
@@ -666,6 +667,12 @@ script = ExtResource("2_pe2g6")
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer/WateringCanButton" to="." method="_on_watering_can_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsAndUpgradeControlHBoxContainer/ToolsVBoxContainer/HBoxContainer/ScytheButton" to="." method="_on_scythe_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer/BuyOneSeedButton" to="." method="_on_buy_one_seed_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer/BuyThreeSeedButton" to="." method="_on_buy_three_seed_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer/BuyNineSeedButton" to="." method="_on_buy_nine_seed_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer/BuyTenWaterButton" to="." method="_on_buy_ten_water_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer/BuyThirtyWaterButton" to="." method="_on_buy_thirty_water_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer/BuyNinetyWaterButton" to="." method="_on_buy_ninety_water_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer/SellOneCropButton" to="." method="_on_sell_one_crop_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer/SellThreeCropButton" to="." method="_on_sell_three_crop_button_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer/SellNineCropButton" to="." method="_on_sell_nine_crop_button_pressed"]
 [connection signal="pressed" from="AspectRatioContainer/PrimaryVBoxContainer/GameHBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyPlotVBoxContainer/BuyPlotButtonsHBoxContainer/BuyPlotButton" to="." method="_on_buy_plot_button_pressed"]

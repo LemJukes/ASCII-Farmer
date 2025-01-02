@@ -33,12 +33,14 @@ var current_state = PlotState.UNTILLED
 func _ready():
 	button.pressed.connect(_on_button_pressed)
 	button.text = STATE_CHARS[current_state]
-	# Seeds Used Connections
+	#  Used Connections
 	var main = get_node("/root/Control")
 	game_update.connect(main._update_game_labels)
 
+
 # Primary Plot Sequence
 func _on_button_pressed():
+	VariableStorage.plots_clicked += 1
 	match current_state:
 		PlotState.UNTILLED:
 			if VariableStorage.current_tool == VariableStorage.TOOL_PLOW:
@@ -92,7 +94,17 @@ func _on_button_pressed():
 				print("Need Watering Can tool selected!")
 				return
 		PlotState.GROWING3:
-			current_state = PlotState.GROWN
+			if VariableStorage.current_tool == VariableStorage.TOOL_WATERING_CAN:
+				if VariableStorage.water > 0:
+					VariableStorage.water -= 1
+					game_update.emit()
+					current_state = PlotState.GROWN
+				else:
+					print("Not enough water!")
+					return
+			else:
+				print("Need Watering Can tool selected!")
+				return
 		PlotState.GROWN:
 			if VariableStorage.current_tool == VariableStorage.TOOL_SCYTHE:
 				VariableStorage.crops += 1
@@ -102,4 +114,3 @@ func _on_button_pressed():
 				print("Need scythe tool selected!")
 				return
 	button.text = STATE_CHARS[current_state]
-

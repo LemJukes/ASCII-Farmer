@@ -29,20 +29,19 @@ func reset_game_data() -> void:
 	# Plot Variables
 	plot_price = PLOT_BASE_PRICE
 	
-	# Upgrade Variables
-	click_mk = 0
-	bulk_seed_mk = 0
-	bulk_water_mk = 0
-	bulk_crop_mk = 0
-	
+	# Upgrade Pricing Variables
+	click_upgrade_price_modifier = 1.0
+	bulk_seed_upgrade_price_modifier = 1.0
+	bulk_water_upgrade_price_modifier = 1.0
+	bulk_crop_upgrade_price_modifier = 1.0
+
 	click_upgrade_price = CLICK_UPGRADE_BASE_PRICE
 	bulk_seed_upgrade_price = BULK_SEED_UPGRADE_BASE_PRICE
 	bulk_water_upgrade_price = BULK_WATER_UPGRADE_BASE_PRICE
 	bulk_crop_upgrade_price = BULK_CROP_UPGRADE_BASE_PRICE
 	
 	# Field Variables
-
-	# Plot Variables
+	plot_count = 0
 
 	# Unlock Counter Variables
 	# Inventory Counters
@@ -63,15 +62,16 @@ func reset_game_data() -> void:
 	
 	# Field Counters
 	plots_purchased = 0
+	plots_clicked = 0
 	plots_tilled = 0
 	plots_planted = 0
 	plots_watered = 0
 	plots_harvested = 0
 
 # Inventory Variables
-const START_COINS: float = 1000
-const START_SEEDS = 10
-const START_CROPS = 10
+const START_COINS: float = 10000
+const START_SEEDS = 1
+const START_CROPS = 1
 const START_WATER = 10
 const START_WATER_CAP = 10
 
@@ -104,26 +104,21 @@ var seed_price: float = SEED_BASE_PRICE * seed_price_modifier
 var water_price: float = WATER_BASE_PRICE * water_price_modifier
 var crop_price: float = CROP_BASE_PRICE * crop_price_modifier
 
-# Plot Variables
+# Plot Pricing Variables
 const PLOT_BASE_PRICE = 10
 const PLOT_PRICE_MODIFIER = 1.0
 var plot_price: float = PLOT_BASE_PRICE
 
-# Upgrade Variables
-var click_mk: int = 0
-var bulk_seed_mk: int = 0
-var bulk_water_mk: int = 0
-var bulk_crop_mk: int = 0
-
+# Upgrade Pricing Variables
 const CLICK_UPGRADE_BASE_PRICE = 10
 const BULK_SEED_UPGRADE_BASE_PRICE = 10
 const BULK_WATER_UPGRADE_BASE_PRICE = 10
 const BULK_CROP_UPGRADE_BASE_PRICE = 10
 
-const CLICK_UPGRADE_PRICE_MODIFIER = 1.0
-const BULK_SEED_UPGRADE_PRICE_MODIFIER = 1.0
-const BULK_WATER_UPGRADE_PRICE_MODIFIER = 1.0
-const BULK_CROP_UPGRADE_PRICE_MODIFIER = 1.0
+var click_upgrade_price_modifier: float = 1.0
+var bulk_seed_upgrade_price_modifier: float = 1.0
+var bulk_water_upgrade_price_modifier: float = 1.0
+var bulk_crop_upgrade_price_modifier: float = 1.0
 
 var click_upgrade_price: float = CLICK_UPGRADE_BASE_PRICE
 var bulk_seed_upgrade_price: float = BULK_SEED_UPGRADE_BASE_PRICE
@@ -131,6 +126,7 @@ var bulk_water_upgrade_price: float = BULK_WATER_UPGRADE_BASE_PRICE
 var bulk_crop_upgrade_price: float = BULK_CROP_UPGRADE_BASE_PRICE
 
 # Field Variables
+var plot_count: int = 0
 
 # Plot Variables
 
@@ -153,7 +149,9 @@ var crops_sold: int = 0
 
 # Field Counters
 var plots_purchased: int = 0
+var plots_clicked: int = 0
 var plots_tilled: int = 0
 var plots_planted: int = 0
 var plots_watered: int = 0
 var plots_harvested: int = 0
+
