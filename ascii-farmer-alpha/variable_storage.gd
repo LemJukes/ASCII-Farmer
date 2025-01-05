@@ -31,14 +31,8 @@ func reset_game_data() -> void:
 	
 	# Upgrade Pricing Variables
 	click_upgrade_price_modifier = 1.0
-	bulk_seed_upgrade_price_modifier = 1.0
-	bulk_water_upgrade_price_modifier = 1.0
-	bulk_crop_upgrade_price_modifier = 1.0
 
 	click_upgrade_price = CLICK_UPGRADE_BASE_PRICE
-	bulk_seed_upgrade_price = BULK_SEED_UPGRADE_BASE_PRICE
-	bulk_water_upgrade_price = BULK_WATER_UPGRADE_BASE_PRICE
-	bulk_crop_upgrade_price = BULK_CROP_UPGRADE_BASE_PRICE
 	
 	# Field Variables
 	plot_count = 0
@@ -63,10 +57,13 @@ func reset_game_data() -> void:
 	# Field Counters
 	plots_purchased = 0
 	plots_clicked = 0
-	plots_tilled = 0
-	plots_planted = 0
-	plots_watered = 0
-	plots_harvested = 0
+
+	# Upgrade Counters
+	click_upgrade_mk = 0
+
+	mkOne_toggle_ON = false
+	mkTwo_toggle_ON = false
+	mkThree_toggle_ON = false
 
 # Inventory Variables
 const START_COINS: float = 10000
@@ -110,20 +107,12 @@ const PLOT_PRICE_MODIFIER = 1.0
 var plot_price: float = PLOT_BASE_PRICE
 
 # Upgrade Pricing Variables
-const CLICK_UPGRADE_BASE_PRICE = 10
-const BULK_SEED_UPGRADE_BASE_PRICE = 10
-const BULK_WATER_UPGRADE_BASE_PRICE = 10
-const BULK_CROP_UPGRADE_BASE_PRICE = 10
+const CLICK_UPGRADE_BASE_PRICE = 100
 
 var click_upgrade_price_modifier: float = 1.0
-var bulk_seed_upgrade_price_modifier: float = 1.0
-var bulk_water_upgrade_price_modifier: float = 1.0
-var bulk_crop_upgrade_price_modifier: float = 1.0
 
 var click_upgrade_price: float = CLICK_UPGRADE_BASE_PRICE
-var bulk_seed_upgrade_price: float = BULK_SEED_UPGRADE_BASE_PRICE
-var bulk_water_upgrade_price: float = BULK_WATER_UPGRADE_BASE_PRICE
-var bulk_crop_upgrade_price: float = BULK_CROP_UPGRADE_BASE_PRICE
+
 
 # Field Variables
 var plot_count: int = 0
@@ -149,9 +138,11 @@ var crops_sold: int = 0
 
 # Field Counters
 var plots_purchased: int = 0
-var plots_clicked: int = 0
-var plots_tilled: int = 0
-var plots_planted: int = 0
-var plots_watered: int = 0
-var plots_harvested: int = 0
+var plots_clicked: int = 99
 
+# Upgrade Counters
+var click_upgrade_mk: int = 0
+
+var mkOne_toggle_ON: bool = false
+var mkTwo_toggle_ON: bool = false
+var mkThree_toggle_ON: bool = false

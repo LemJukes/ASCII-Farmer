@@ -5,6 +5,7 @@ extends Control
 # Runs when the application is opened
 func _ready() -> void:
 	_connect_to_save_manager_signals()
+	_connect_button_signals()
 	_initialize_game_labels()
 	load_game()
 
@@ -30,17 +31,9 @@ func _ready() -> void:
 @onready var plot_price_label: Label = %PlotPriceLabel
 
 # Upgrade Labels
+@onready var UpgradesStoreContainer = %UpgradesVBoxContainer
 @onready var click_mk_label: Label = %ClickUpgradeMkLabel
 @onready var click_price_label: Label = %ClickUpgradePriceLabel
-
-@onready var bulk_seed_mk_label: Label = %BulkSeedUpgradeMkLabel
-@onready var bulk_seed_price_label: Label = %BulkSeedUpgradePriceLabel
-
-@onready var bulk_water_mk_label: Label = %BulkWaterUpgradeMkLabel
-@onready var bulk_water_price_label: Label = %BulkWaterUpgradePriceLabel
-
-@onready var bulk_crop_mk_label: Label = %BulkCropUpgradeMkLabel
-@onready var bulk_crop_price_label: Label = %BulkCropUpgradePriceLabel
 
 # Field Labels
 @onready var field_grid: GridContainer = %FieldGridContainer
@@ -53,6 +46,8 @@ func _update_game_labels() -> void:
 	_update_inventory_labels()
 	_update_tool_labels()
 	_update_store_labels()
+	_update_upgrade_labels()
+	_update_upgrade_toggles()
 	save_game()
 
 func _update_inventory_labels() -> void:
@@ -71,6 +66,15 @@ func _update_store_labels() -> void:
 	crop_price_label.text = str(VariableStorage.crop_price)
 	plot_price_label.text = str(VariableStorage.plot_price)
 
+func _update_upgrade_labels() -> void:
+	click_mk_label.text = str(VariableStorage.click_upgrade_mk + 1)
+	click_price_label.text = str(VariableStorage.click_upgrade_price)	
+
+func _update_upgrade_toggles() -> void:
+	mkOne_toggle.button_pressed = VariableStorage.mkOne_toggle_ON
+	mkTwo_toggle.button_pressed = VariableStorage.mkTwo_toggle_ON
+	mkThree_toggle.button_pressed = VariableStorage.mkThree_toggle_ON
+
 # ----------------------------------------  Button UI Element Declarations  ----------------------------------------  #
 
 # System Buttons
@@ -83,31 +87,40 @@ func _update_store_labels() -> void:
 @onready var watering_can_button: Button = %WateringCanButton
 @onready var scythe_button: Button = %ScytheButton
 
+# Upgrade Toggles
+@onready var mkOne_toggle: CheckButton = %MkOneControlToggle
+@onready var mkTwo_toggle: CheckButton = %MkTwoControlToggle
+@onready var mkThree_toggle: CheckButton = %MkThreeControlToggle
+
 # Store Buttons
-# Supplies Buttons
-# Seed Buttons
 @onready var buy_one_seed_button: Button = %BuyOneSeedButton
 @onready var buy_three_seed_button: Button = %BuyThreeSeedButton
 @onready var buy_nine_seed_button: Button = %BuyNineSeedButton
-# Water Buttons
+
 @onready var buy_ten_water_button: Button = %BuyTenWaterButton
 @onready var buy_thirty_water_button: Button = %BuyThirtyWaterButton
 @onready var buy_ninety_water_button: Button = %BuyNinetyWaterButton
-# Crop Buttons
+
 @onready var sell_one_crop_button: Button = %SellOneCropButton
 @onready var sell_three_crop_button: Button = %SellThreeCropButton
 @onready var sell_nine_crop_button: Button = %SellNineCropButton
-# Buy Plot Button
+
 @onready var buy_plot_button: Button = %BuyPlotButton
 
+@onready var buy_click_upgrade_button: Button = %BuyClickUpgradeButton
+
+# Keboard Binding Actions Dictionary
+
 var input_actions = {
-    "tool_plow": "_on_plow_button_pressed",
-    "tool_water": "_on_watering_can_button_pressed", 
-    "tool_scythe": "_on_scythe_button_pressed",
-    "buy_seed": "_on_buy_one_seed_button_pressed",
-    "sell_crop": "_on_sell_one_crop_button_pressed",
-    "buy_plot": "_on_buy_plot_button_pressed"
+	"tool_plow": "_on_plow_button_pressed",
+	"tool_water": "_on_watering_can_button_pressed", 
+	"tool_scythe": "_on_scythe_button_pressed",
+	"buy_seed": "_on_buy_one_seed_button_pressed",
+	"sell_crop": "_on_sell_one_crop_button_pressed",
+	"buy_plot": "_on_buy_plot_button_pressed"
 }
+
+
 
 # ----------------------------------------  Button UI Element Functions  ----------------------------------------  #
 
@@ -120,17 +133,55 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			return
 
-
 func _setup_input_actions() -> void:
-    # Tool shortcuts
+	# Tool shortcuts
 	_add_input_action("tool_plow", KEY_A)
 	_add_input_action("tool_water", KEY_S) 
 	_add_input_action("tool_scythe", KEY_D)
-    
-    # Store shortcuts
+	
+	# Store shortcuts
 	_add_input_action("buy_seed", KEY_Q)
 	_add_input_action("sell_crop", KEY_W)
 	_add_input_action("buy_plot", KEY_E)
+
+func _connect_button_signals() -> void:
+	_connect_system_button_signals()
+	_connect_tool_button_signals()
+	_connect_store_button_signals()
+	_connect_upgrade_button_signals()
+
+func _connect_system_button_signals() -> void:
+	start_button.pressed.connect(_on_start_button_pressed)
+	quit_button.pressed.connect(_on_quit_button_pressed)
+	reset_button.pressed.connect(_on_reset_button_pressed)
+
+func _connect_tool_button_signals() -> void:
+	plow_button.pressed.connect(_on_plow_button_pressed)
+	watering_can_button.pressed.connect(_on_watering_can_button_pressed)
+	scythe_button.pressed.connect(_on_scythe_button_pressed)
+
+func _connect_store_button_signals() -> void:
+	buy_one_seed_button.pressed.connect(_on_buy_one_seed_button_pressed)
+	buy_three_seed_button.pressed.connect(_on_buy_three_seed_button_pressed)
+	buy_nine_seed_button.pressed.connect(_on_buy_nine_seed_button_pressed)
+
+	buy_ten_water_button.pressed.connect(_on_buy_ten_water_button_pressed)
+	buy_thirty_water_button.pressed.connect(_on_buy_thirty_water_button_pressed)
+	buy_ninety_water_button.pressed.connect(_on_buy_ninety_water_button_pressed)
+
+	sell_one_crop_button.pressed.connect(_on_sell_one_crop_button_pressed)
+	sell_three_crop_button.pressed.connect(_on_sell_three_crop_button_pressed)
+	sell_nine_crop_button.pressed.connect(_on_sell_nine_crop_button_pressed)
+
+	buy_plot_button.pressed.connect(_on_buy_plot_button_pressed)
+
+	buy_click_upgrade_button.pressed.connect(_on_buy_click_upgrade_button_pressed)
+
+
+func _connect_upgrade_button_signals() -> void:
+	mkOne_toggle.toggled.connect(_on_mkOne_toggle_toggled)
+	mkTwo_toggle.toggled.connect(_on_mkTwo_toggle_toggled)
+	mkThree_toggle.toggled.connect(_on_mkThree_toggle_toggled)
 
 # ----------------------------------------  Game Initialization  ----------------------------------------  #
 
@@ -158,15 +209,7 @@ func _initialize_game_labels() -> void:
 	# Upgrade Prices
 	click_mk_label.text = "0"
 	click_price_label.text = "0"
-	
-	bulk_seed_mk_label.text = "0"
-	bulk_seed_price_label.text = "0"
 
-	bulk_water_mk_label.text = "0"
-	bulk_water_price_label.text = "0"
-
-	bulk_crop_mk_label.text = "0"
-	bulk_crop_price_label.text = "0"
 
 # ----------------------------------------  Save Manager  ---------------------------------------- #
 
@@ -216,10 +259,14 @@ func save_game() -> void:
 
 		# Field Counters
 		"plots_purchased": VariableStorage.plots_purchased,
-		"plots_tilled": VariableStorage.plots_tilled,
-		"plots_planted": VariableStorage.plots_planted,
-		"plots_watered": VariableStorage.plots_watered,
-		"plots_harvested": VariableStorage.plots_harvested,
+		"plots_clicked": VariableStorage.plots_clicked,
+
+		# Upgrade Counters
+		"click_upgrade_mk": VariableStorage.click_upgrade_mk,
+
+		"mkOne_toggle_ON": VariableStorage.mkOne_toggle_ON,
+		"mkTwo_toggle_ON": VariableStorage.mkTwo_toggle_ON,
+		"mkThree_toggle_ON": VariableStorage.mkThree_toggle_ON
 
 	}
 	
@@ -306,10 +353,14 @@ func load_game() -> void:
 
 		# Field Counters
 		VariableStorage.plots_purchased = save_data["plots_purchased"]
-		VariableStorage.plots_tilled = save_data["plots_tilled"]
-		VariableStorage.plots_planted = save_data["plots_planted"]
-		VariableStorage.plots_watered = save_data["plots_watered"]
-		VariableStorage.plots_harvested = save_data["plots_harvested"]
+		VariableStorage.plots_clicked = save_data["plots_clicked"]
+		
+		# Upgrade Counters
+		VariableStorage.click_upgrade_mk = save_data["click_upgrade_mk"]
+		VariableStorage.mkOne_toggle_ON = save_data["mkOne_toggle_ON"]
+		VariableStorage.mkTwo_toggle_ON = save_data["mkTwo_toggle_ON"]
+		VariableStorage.mkThree_toggle_ON = save_data["mkThree_toggle_ON"]
+		
 
 		_set_sys_buttons_gameON()
 		_unlock_starting_buttons()
@@ -332,11 +383,10 @@ func _on_load_completed() -> void:
 
 func _on_save_error(save_error_message: String) -> void:
 	print("Save error: ",save_error_message)
+		# Handle mk1 toggle
 
 func _on_load_error(load_error_message: String) -> void:
 	print("Load error: ",load_error_message)
-
-# ----------------------------------------  Helper & Other Background Functions  ----------------------------------------  #
 
 func _unlock_starting_buttons() -> void:
 	# Handle system button state changes
@@ -420,6 +470,22 @@ func _on_scythe_button_pressed() -> void:
 	print("Scythe button pressed")
 	VariableStorage.current_tool = VariableStorage.TOOL_SCYTHE
 	_update_game_labels()
+
+# ----------------------------------------  Upgrade Toggles  ----------------------------------------  #
+
+func _on_mkOne_toggle_toggled(_button_presed: bool) -> void:
+	VariableStorage.mkOne_toggle_ON = _button_presed
+	print("Mk. 1 toggle pressed" + str(VariableStorage.mkOne_toggle_ON))
+	_update_game_labels()
+
+func _on_mkTwo_toggle_toggled() -> void:
+    # Handle mk2 toggl
+	pass
+
+func _on_mkThree_toggle_toggled() -> void:
+    # Handle mk3 toggle
+	pass
+
 
 # ----------------------------------------  Store Buttons  ----------------------------------------  #
 
@@ -548,6 +614,22 @@ func _on_buy_plot_button_pressed() -> void:
 	else:
 		print("Not enough coins to purchase plot")
 
+
+# Buy Click Upgrade Button
+
+func _on_buy_click_upgrade_button_pressed() -> void:
+	if VariableStorage.coins >= VariableStorage.click_upgrade_price:
+		VariableStorage.coins -= VariableStorage.click_upgrade_price
+		VariableStorage.click_upgrade_mk += 1
+		VariableStorage.click_upgrade_price *= 2
+		mkOne_toggle.disabled = false
+		_check_plots_clicked_counter()
+		_update_game_labels()
+	else:
+		print("Not enough coins to purchase click upgrade")
+	pass # Replace with function body.
+
+
 # ----------------------------------------  Upgrade Unlock Checks ----------------------------------------  #
 
 func _check_all_unlock_counters() -> void:
@@ -576,4 +658,24 @@ func _check_bulk_crop_unlock_counter() -> void:
 
 func _check_plots_clicked_counter() -> void:
 	if VariableStorage.plots_clicked >= 100:
+		UpgradesStoreContainer.visible = true
+		if VariableStorage.click_upgrade_mk == 0:
+			click_mk_label.text = "Mk. " + str(VariableStorage.click_upgrade_mk + 1)
+			buy_click_upgrade_button.disabled = false
+		elif VariableStorage.click_upgrade_mk == 1:
+			mkOne_toggle.disabled = false
+			click_mk_label.text = "Mk. " + str(VariableStorage.click_upgrade_mk + 1)
+			buy_click_upgrade_button.disabled = false
+		elif VariableStorage.click_upgrade_mk == 2:
+			mkTwo_toggle.disabled = false
+			click_mk_label.text = "Mk. " + str(VariableStorage.click_upgrade_mk + 1)
+			buy_click_upgrade_button.disabled = false
+		else:
+			print("All click upgrades purchased")
+			UpgradesStoreContainer.visible = false
+			mkOne_toggle.disabled = false
+			mkTwo_toggle.disabled = false
+			mkThree_toggle.disabled = false
 		pass # Replace with function body.
+
+
