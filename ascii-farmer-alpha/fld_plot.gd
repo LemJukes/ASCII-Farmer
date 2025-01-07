@@ -42,12 +42,14 @@ func _ready():
 
 # Primary Plot Sequence
 func _on_button_pressed():
+	print ("Plot " + str(get_index()) + " clicked")
 	var original_state = current_state
 	match current_state:
 		PlotState.UNTILLED:
 			if VariableStorage.current_tool == VariableStorage.TOOL_PLOW:
 				current_state = PlotState.TILLED
 				VariableStorage.plots_clicked += 1
+				VariableStorage.plow_used += 1
 			else:
 				print("Need Plow selected!")
 				return
@@ -65,6 +67,7 @@ func _on_button_pressed():
 					VariableStorage.water -= 1
 					current_state = PlotState.GROWING1
 					VariableStorage.plots_clicked += 1
+					VariableStorage.water_used += 1
 				else:
 					print("Not enough water!")
 					return
@@ -77,6 +80,7 @@ func _on_button_pressed():
 					VariableStorage.water -= 1
 					current_state = PlotState.GROWING2
 					VariableStorage.plots_clicked += 1
+					VariableStorage.water_used += 1
 				else:
 					print("Not enough water!")
 					return
@@ -89,6 +93,7 @@ func _on_button_pressed():
 					VariableStorage.water -= 1
 					current_state = PlotState.GROWING3
 					VariableStorage.plots_clicked += 1
+					VariableStorage.water_used += 1
 				else:
 					print("Not enough water!")
 					return
@@ -101,6 +106,7 @@ func _on_button_pressed():
 					VariableStorage.water -= 1
 					current_state = PlotState.GROWN
 					VariableStorage.plots_clicked += 1
+					VariableStorage.water_used += 1
 				else:
 					print("Not enough water!")
 					return
@@ -112,14 +118,28 @@ func _on_button_pressed():
 				VariableStorage.crops += 1
 				current_state = PlotState.UNTILLED
 				VariableStorage.plots_clicked += 1
+				VariableStorage.crops_harvested += 1
+				if randf() <= 0.15:
+					VariableStorage.seeds += 1
+					print("Seed Drop!")
 			else:
 				print("Need scythe tool selected!")
 				return
 	if VariableStorage.mkOne_toggle_ON:
-		var adjacent_plots = get_adjacent_plots()
-		for plot in adjacent_plots:
-			if plot.current_state == original_state:
-				try_update_plot_state(plot)
+		var adjacent_plots_mk_one = get_adjacent_plots_mk_one()
+		for mkOne_plot in adjacent_plots_mk_one:
+			if mkOne_plot.current_state == original_state:
+				try_upgraded_click(mkOne_plot)
+				if VariableStorage.mkTwo_toggle_ON:
+					var adjacent_plots_mk_two = get_adjacent_plots_mk_two()
+					for mkTwo_plot in adjacent_plots_mk_two:
+						if mkTwo_plot.current_state == original_state:
+							try_upgraded_click(mkTwo_plot)
+							if VariableStorage.mkThree_toggle_ON:
+								var adjacent_plots_mk_three = get_adjacent_plots_mk_three()
+								for mkThree_plot in adjacent_plots_mk_three:
+									if mkThree_plot.current_state == original_state:
+										try_upgraded_click(mkThree_plot)
 
 	button.text = STATE_CHARS[current_state]
 	game_update.emit()
@@ -127,7 +147,7 @@ func _on_button_pressed():
 
 
 # Adjacent Plot Check
-func get_adjacent_plots() -> Array:
+func get_adjacent_plots_mk_one() -> Array:
 	var parent = get_parent()
 	var my_index = get_index()
 	var adjacent = []
@@ -142,12 +162,54 @@ func get_adjacent_plots() -> Array:
         
 	return adjacent
 
-func try_update_plot_state(plot) -> void:
-	match current_state:
+# Adjacent Plot Check - MK2 (Vertical)
+func get_adjacent_plots_mk_two() -> Array:
+	var parent = get_parent()
+	var my_index = get_index()
+	var adjacent = []
+	
+	# Check plot above (3 positions back)
+	if my_index >= 3:
+		adjacent.append(parent.get_child(my_index - 3))
+	
+	# Check plot below (3 positions forward)
+	if my_index < parent.get_child_count() - 3:
+		adjacent.append(parent.get_child(my_index + 3))
+		
+	return adjacent
+
+func get_adjacent_plots_mk_three() -> Array:
+	var parent = get_parent()
+	var my_index = get_index()
+	var adjacent = []
+	
+	# Check far left plot (-4)
+	if my_index >= 4:
+		adjacent.append(parent.get_child(my_index - 4))
+	
+	# Check near left plot (-2)
+	if my_index >= 2:
+		adjacent.append(parent.get_child(my_index - 2))
+	
+	# Check near right plot (+2)
+	if my_index < parent.get_child_count() - 2:
+		adjacent.append(parent.get_child(my_index + 2))
+	
+	# Check far right plot (+4)
+	if my_index < parent.get_child_count() - 4:
+		adjacent.append(parent.get_child(my_index + 4))
+		
+	return adjacent
+
+
+func try_upgraded_click(plot) -> void:
+	print ("Adjacent Plot " + str(plot.get_index()) + " clicked via Upgrade")
+	match plot.current_state:
 		PlotState.UNTILLED:
 			if VariableStorage.current_tool == VariableStorage.TOOL_PLOW:
 				plot.current_state = PlotState.TILLED
 				VariableStorage.plots_clicked += 1
+				VariableStorage.plow_used += 1
 			else:
 				print("Need Plow selected!")
 				return

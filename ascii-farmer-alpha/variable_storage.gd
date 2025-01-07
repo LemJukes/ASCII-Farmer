@@ -6,18 +6,17 @@ extends Node
 
 func reset_game_data() -> void:
 
-	# Inventory Variables
+	# Inventory
 	coins = START_COINS
 	seeds = START_SEEDS
 	crops = START_CROPS
 	water = START_WATER
 	water_cap = START_WATER_CAP
 	
-	# Tool Variables
+	# Tools
 	current_tool = TOOL_NONE
 	
-	# Store Variables
-	# Supplies Variables
+	# Store
 	seed_price_modifier = BASE_PRICE_MODIFIER
 	water_price_modifier = BASE_PRICE_MODIFIER
 	crop_price_modifier = BASE_PRICE_MODIFIER
@@ -26,41 +25,30 @@ func reset_game_data() -> void:
 	water_price = WATER_BASE_PRICE * water_price_modifier
 	crop_price = CROP_BASE_PRICE * crop_price_modifier
 	
-	# Plot Variables
-	plot_price = PLOT_BASE_PRICE
-	
-	# Upgrade Pricing Variables
+	click_upgrade_price = CLICK_UPGRADE_BASE_PRICE
 	click_upgrade_price_modifier = 1.0
 
-	click_upgrade_price = CLICK_UPGRADE_BASE_PRICE
+	plot_price = PLOT_BASE_PRICE
 	
-	# Field Variables
+	# Field
 	plot_count = 0
 
-	# Unlock Counter Variables
-	# Inventory Counters
+	# Unlock Counters
 	coins_earned = 0
-	seeds_collected = 0
 	crops_harvested = 0
-	water_used = 0
-	
-	# Tool Counters
 	plow_used = 0
-	watering_can_used = 0
-	scythe_used = 0
-	
-	# Store Counters
+	water_used = 0
 	seeds_purchased = 0
 	water_purchased = 0
 	crops_sold = 0
-	
-	# Field Counters
 	plots_purchased = 0
 	plots_clicked = 0
 
-	# Upgrade Counters
+	# Upgrade
 	click_upgrade_mk = 0
-
+	mkOne_purchased = false
+	mkTwo_purchased = false
+	mkThree_purchased = false
 	mkOne_toggle_ON = false
 	mkTwo_toggle_ON = false
 	mkThree_toggle_ON = false
@@ -107,12 +95,14 @@ const PLOT_PRICE_MODIFIER = 1.0
 var plot_price: float = PLOT_BASE_PRICE
 
 # Upgrade Pricing Variables
+const WATER_CAP_UPGRADE_BASE_PRICE = 10
 const CLICK_UPGRADE_BASE_PRICE = 100
 
 var click_upgrade_price_modifier: float = 1.0
+var water_cap_upgrade_price_modifier: float = 1.0
 
 var click_upgrade_price: float = CLICK_UPGRADE_BASE_PRICE
-
+var water_cap_upgrade_price: float = WATER_CAP_UPGRADE_BASE_PRICE
 
 # Field Variables
 var plot_count: int = 0
@@ -122,14 +112,11 @@ var plot_count: int = 0
 # Unlock Counter Variables
 # Inventory Counters
 var coins_earned: float = 0
-var seeds_collected: int = 0
 var crops_harvested: int = 0
-var water_used: int = 0
 
 # Tool Counters
 var plow_used: int = 0
-var watering_can_used: int = 0
-var scythe_used: int = 0
+var water_used: int = 0
 
 # Store Counters
 var seeds_purchased: int = 0
@@ -138,10 +125,17 @@ var crops_sold: int = 0
 
 # Field Counters
 var plots_purchased: int = 0
-var plots_clicked: int = 99
+var plots_clicked: int = 0
 
 # Upgrade Counters
+var water_cap_mk_unlocked: int = 0
+var water_cap_mk_purchased: int = 0
+
 var click_upgrade_mk: int = 0
+
+var mkOne_purchased: bool = false
+var mkTwo_purchased: bool = false
+var mkThree_purchased: bool = false
 
 var mkOne_toggle_ON: bool = false
 var mkTwo_toggle_ON: bool = false

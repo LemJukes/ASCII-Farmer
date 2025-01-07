@@ -6,6 +6,7 @@ extends Control
 func _ready() -> void:
 	_connect_to_save_manager_signals()
 	_connect_button_signals()
+	_setup_input_actions()
 	_initialize_game_labels()
 	load_game()
 
@@ -32,6 +33,12 @@ func _ready() -> void:
 
 # Upgrade Labels
 @onready var UpgradesStoreContainer = %UpgradesVBoxContainer
+
+@onready var BuyWaterUpgradesContainer = %BuyWaterUpgradesVBoxContainer
+@onready var water_cap_mk_label: Label = %WaterUpgradeMkLabel
+@onready var water_cap_price_label: Label = %WaterUpgradePriceLabel
+
+@onready var BuyClickUpgradeContainer = %BuyClickUpgradesVBoxContainer
 @onready var click_mk_label: Label = %ClickUpgradeMkLabel
 @onready var click_price_label: Label = %ClickUpgradePriceLabel
 
@@ -42,7 +49,7 @@ func _ready() -> void:
 # ----------------------------------------  Label UI Element Functions  ----------------------------------------  #
 
 func _update_game_labels() -> void:
-	_setup_input_actions()
+	_check_all_unlock_counters()
 	_update_inventory_labels()
 	_update_tool_labels()
 	_update_store_labels()
@@ -115,9 +122,6 @@ var input_actions = {
 	"tool_plow": "_on_plow_button_pressed",
 	"tool_water": "_on_watering_can_button_pressed", 
 	"tool_scythe": "_on_scythe_button_pressed",
-	"buy_seed": "_on_buy_one_seed_button_pressed",
-	"sell_crop": "_on_sell_one_crop_button_pressed",
-	"buy_plot": "_on_buy_plot_button_pressed"
 }
 
 
@@ -139,10 +143,6 @@ func _setup_input_actions() -> void:
 	_add_input_action("tool_water", KEY_S) 
 	_add_input_action("tool_scythe", KEY_D)
 	
-	# Store shortcuts
-	_add_input_action("buy_seed", KEY_Q)
-	_add_input_action("sell_crop", KEY_W)
-	_add_input_action("buy_plot", KEY_E)
 
 func _connect_button_signals() -> void:
 	_connect_system_button_signals()
@@ -243,14 +243,10 @@ func save_game() -> void:
 
 		# Inventory Counters
 		"coins_earned": VariableStorage.coins_earned,
-		"seeds_collected": VariableStorage.seeds_collected,
 		"crops_harvested": VariableStorage.crops_harvested,
-		"water_used": VariableStorage.water_used,
 
 		# Tool Counters
 		"plow_used": VariableStorage.plow_used,
-		"watering_can_used": VariableStorage.watering_can_used,
-		"scythe_used": VariableStorage.scythe_used,
 
 		# Store Transaction Counters
 		"seeds_purchased": VariableStorage.seeds_purchased,
@@ -263,6 +259,10 @@ func save_game() -> void:
 
 		# Upgrade Counters
 		"click_upgrade_mk": VariableStorage.click_upgrade_mk,
+
+		"mkOne_purchased": VariableStorage.mkOne_purchased,
+		"mkTwo_purchased": VariableStorage.mkTwo_purchased,
+		"mkThree_purchased": VariableStorage.mkThree_purchased,
 
 		"mkOne_toggle_ON": VariableStorage.mkOne_toggle_ON,
 		"mkTwo_toggle_ON": VariableStorage.mkTwo_toggle_ON,
@@ -337,14 +337,10 @@ func load_game() -> void:
 
 		# Inventory Counters
 		VariableStorage.coins_earned = save_data["coins_earned"]
-		VariableStorage.seeds_collected = save_data["seeds_collected"] 
 		VariableStorage.crops_harvested = save_data["crops_harvested"]
-		VariableStorage.water_used = save_data["water_used"]
-		
+
 		# Tool Counters
 		VariableStorage.plow_used = save_data["plow_used"]
-		VariableStorage.watering_can_used = save_data["watering_can_used"]
-		VariableStorage.scythe_used = save_data["scythe_used"]
 
 		# Store Transaction Counters
 		VariableStorage.seeds_purchased = save_data["seeds_purchased"]
@@ -357,6 +353,9 @@ func load_game() -> void:
 		
 		# Upgrade Counters
 		VariableStorage.click_upgrade_mk = save_data["click_upgrade_mk"]
+		VariableStorage.mkOne_purchased = save_data["mkOne_purchased"]
+		VariableStorage.mkTwo_purchased = save_data["mkTwo_purchased"]
+		VariableStorage.mkThree_purchased = save_data["mkThree_purchased"]
 		VariableStorage.mkOne_toggle_ON = save_data["mkOne_toggle_ON"]
 		VariableStorage.mkTwo_toggle_ON = save_data["mkTwo_toggle_ON"]
 		VariableStorage.mkThree_toggle_ON = save_data["mkThree_toggle_ON"]
@@ -418,6 +417,7 @@ func _on_start_button_pressed() -> void:
 	print("Start button pressed")
 	
 	_unlock_starting_buttons()
+	_check_all_unlock_counters()
 	_update_game_labels()
 	field_grid._add_first_plot()
 
@@ -478,13 +478,15 @@ func _on_mkOne_toggle_toggled(_button_presed: bool) -> void:
 	print("Mk. 1 toggle pressed" + str(VariableStorage.mkOne_toggle_ON))
 	_update_game_labels()
 
-func _on_mkTwo_toggle_toggled() -> void:
-    # Handle mk2 toggl
-	pass
+func _on_mkTwo_toggle_toggled(_button_pressed: bool) -> void:
+	VariableStorage.mkTwo_toggle_ON = _button_pressed
+	print("Mk. 2 toggle pressed" + str(VariableStorage.mkTwo_toggle_ON))
+	_update_game_labels()
 
 func _on_mkThree_toggle_toggled() -> void:
-    # Handle mk3 toggle
-	pass
+	VariableStorage.mkThree_toggle_ON = true
+	print("Mk. 3 toggle pressed" + str(VariableStorage.mkThree_toggle_ON))
+	_update_game_labels()
 
 
 # ----------------------------------------  Store Buttons  ----------------------------------------  #
@@ -498,7 +500,6 @@ func _on_buy_one_seed_button_pressed() -> void:
 		VariableStorage.coins -= VariableStorage.seed_price
 		VariableStorage.seeds += 1
 		VariableStorage.seeds_purchased += 1
-		_check_bulk_seed_unlock_counter()
 		_update_game_labels()
 		
 	else:
@@ -510,7 +511,6 @@ func _on_buy_three_seed_button_pressed() -> void:
 		VariableStorage.coins -= VariableStorage.seed_price
 		VariableStorage.seeds += 3
 		VariableStorage.seeds_purchased += 3
-		_check_bulk_seed_unlock_counter()
 		_update_game_labels()
 		
 	else:
@@ -521,7 +521,6 @@ func _on_buy_nine_seed_button_pressed() -> void:
 		VariableStorage.coins -= VariableStorage.seed_price
 		VariableStorage.seeds += 9
 		VariableStorage.seeds_purchased += 9
-		_check_bulk_seed_unlock_counter()
 		_update_game_labels()
 		
 	else:
@@ -555,10 +554,53 @@ func _on_buy_ten_water_button_pressed() -> void:
 		print("Not enough coins to purchase water")
 
 func _on_buy_thirty_water_button_pressed() -> void:
-	pass # Replace with function body.
+	print("Buy Thirty Water button pressed")
+	if VariableStorage.water >= VariableStorage.water_cap:
+		print("Water storage is at capacity!")
+		return
+
+	if VariableStorage.coins >= VariableStorage.water_price:
+		var space_remaining = VariableStorage.water_cap - VariableStorage.water
+		var water_to_add = min(30, space_remaining)
+		
+		if water_to_add == 0:
+			print("Cannot add more water - at capacity!")
+			return
+			
+		VariableStorage.coins -= VariableStorage.water_price
+		VariableStorage.water += water_to_add
+		VariableStorage.water_purchased += water_to_add
+		_update_game_labels()
+		
+		if water_to_add < 30:
+			print("Only added " + str(water_to_add) + " water due to capacity limits")
+	else:
+		print("Not enough coins to purchase water")
 
 func _on_buy_ninety_water_button_pressed() -> void:
-	pass # Replace with function body.
+	print("Buy Ninety Water button pressed")
+	if VariableStorage.water >= VariableStorage.water_cap:
+		print("Water storage is at capacity!")
+		return
+
+	if VariableStorage.coins >= VariableStorage.water_price:
+		var space_remaining = VariableStorage.water_cap - VariableStorage.water
+		var water_to_add = min(90, space_remaining)
+		
+		if water_to_add == 0:
+			print("Cannot add more water - at capacity!")
+			return
+			
+		VariableStorage.coins -= VariableStorage.water_price
+		VariableStorage.water += water_to_add
+		VariableStorage.water_purchased += water_to_add
+		_check_bulk_water_unlock_counter()
+		_update_game_labels()
+		
+		if water_to_add < 90:
+			print("Only added " + str(water_to_add) + " water due to capacity limits")
+	else:
+		print("Not enough coins to purchase water")
 
 
 # Crop Buttons
@@ -569,7 +611,7 @@ func _on_sell_one_crop_button_pressed() -> void:
 		VariableStorage.crops -= 1
 		VariableStorage.coins += VariableStorage.crop_price
 		VariableStorage.crops_sold += 1
-		_check_bulk_crop_unlock_counter()
+		VariableStorage.coins_earned += VariableStorage.crop_price
 		_update_game_labels()
 	else:
 		print("Not enough crops to sell")
@@ -580,7 +622,7 @@ func _on_sell_three_crop_button_pressed() -> void:
 		VariableStorage.crops -= 3
 		VariableStorage.coins += VariableStorage.crop_price * 3
 		VariableStorage.crops_sold += 3
-		_check_bulk_crop_unlock_counter()
+		VariableStorage.coins_earned += VariableStorage.crop_price * 3
 		_update_game_labels()
 	else:
 		print("Not enough crops to sell")
@@ -591,7 +633,7 @@ func _on_sell_nine_crop_button_pressed() -> void:
 		VariableStorage.crops -= 9
 		VariableStorage.coins += VariableStorage.crop_price * 9
 		VariableStorage.crops_sold += 9
-		_check_bulk_crop_unlock_counter()
+		VariableStorage.coins_earned += VariableStorage.crop_price * 9
 		_update_game_labels()
 	else:
 		print("Not enough crops to sell")
@@ -618,16 +660,37 @@ func _on_buy_plot_button_pressed() -> void:
 # Buy Click Upgrade Button
 
 func _on_buy_click_upgrade_button_pressed() -> void:
-	if VariableStorage.coins >= VariableStorage.click_upgrade_price:
-		VariableStorage.coins -= VariableStorage.click_upgrade_price
-		VariableStorage.click_upgrade_mk += 1
-		VariableStorage.click_upgrade_price *= 2
-		mkOne_toggle.disabled = false
-		_check_plots_clicked_counter()
-		_update_game_labels()
-	else:
-		print("Not enough coins to purchase click upgrade")
-	pass # Replace with function body.
+	match VariableStorage.click_upgrade_mk:
+		0:  # Buying Mk 1
+			if VariableStorage.coins >= VariableStorage.click_upgrade_price:
+				VariableStorage.coins -= VariableStorage.click_upgrade_price
+				VariableStorage.click_upgrade_mk = 1
+				VariableStorage.mkOne_purchased = true
+				buy_click_upgrade_button.disabled = true
+				mkOne_toggle.disabled = false
+				VariableStorage.click_upgrade_price_modifier += 4
+				VariableStorage.click_upgrade_price = VariableStorage.click_upgrade_price * VariableStorage.click_upgrade_price_modifier
+				_update_game_labels()
+		1:  # Buying Mk 2
+			if VariableStorage.coins >= VariableStorage.click_upgrade_price:
+				VariableStorage.coins -= VariableStorage.click_upgrade_price
+				VariableStorage.click_upgrade_mk = 2
+				VariableStorage.mkTwo_purchased = true
+				buy_click_upgrade_button.disabled = true
+				mkTwo_toggle.disabled = false
+				VariableStorage.click_upgrade_price_modifier += 5
+				VariableStorage.click_upgrade_price = VariableStorage.click_upgrade_price * VariableStorage.click_upgrade_price_modifier
+				_update_game_labels()
+		2:  # Buying Mk 3
+			if VariableStorage.coins >= VariableStorage.click_upgrade_price:
+				VariableStorage.coins -= VariableStorage.click_upgrade_price
+				VariableStorage.click_upgrade_mk = 3
+				VariableStorage.mkThree_purchased = true
+				buy_click_upgrade_button.disabled = true
+				mkThree_toggle.disabled = false
+				click_mk_label.text = "MAX"
+				click_price_label.text = "N/A"
+				_update_game_labels()
 
 
 # ----------------------------------------  Upgrade Unlock Checks ----------------------------------------  #
@@ -637,45 +700,54 @@ func _check_all_unlock_counters() -> void:
 	_check_bulk_water_unlock_counter()
 	_check_bulk_crop_unlock_counter()
 	_check_plots_clicked_counter()
+	_check_click_upgrades_purchased()
+	_check_water_used_counter()
+
 
 func _check_bulk_seed_unlock_counter() -> void:
-	if VariableStorage.seeds_purchased >= 100:
+	if VariableStorage.seeds_purchased >= 50:
 		buy_three_seed_button.disabled = false
-	elif VariableStorage.seeds_purchased >= 300:
-		buy_nine_seed_button.disabled = false
+		if VariableStorage.seeds_purchased >= 150:
+			buy_nine_seed_button.disabled = false
 
 func _check_bulk_water_unlock_counter() -> void:
 	if VariableStorage.water_purchased >= 100:
 		buy_thirty_water_button.disabled = false
-	elif VariableStorage.water_purchased >= 1000:
-		buy_ninety_water_button.disabled = false
+		if VariableStorage.water_purchased >= 300:
+			buy_ninety_water_button.disabled = false
 
 func _check_bulk_crop_unlock_counter() -> void:
-	if VariableStorage.crops_sold >= 100:
+	if VariableStorage.crops_sold >= 50:
 		sell_three_crop_button.disabled = false
-	elif VariableStorage.crops_sold >= 300:
-		sell_nine_crop_button.disabled = false
+		if VariableStorage.crops_sold >= 150:
+			sell_nine_crop_button.disabled = false
 
 func _check_plots_clicked_counter() -> void:
 	if VariableStorage.plots_clicked >= 100:
 		UpgradesStoreContainer.visible = true
-		if VariableStorage.click_upgrade_mk == 0:
-			click_mk_label.text = "Mk. " + str(VariableStorage.click_upgrade_mk + 1)
+		if !VariableStorage.mkOne_purchased:
 			buy_click_upgrade_button.disabled = false
-		elif VariableStorage.click_upgrade_mk == 1:
-			mkOne_toggle.disabled = false
-			click_mk_label.text = "Mk. " + str(VariableStorage.click_upgrade_mk + 1)
+			VariableStorage.click_upgrade_price = VariableStorage.CLICK_UPGRADE_BASE_PRICE
+			click_price_label.text = str(VariableStorage.click_upgrade_price)
+		elif VariableStorage.plots_clicked >= 500 && !VariableStorage.mkTwo_purchased:
 			buy_click_upgrade_button.disabled = false
-		elif VariableStorage.click_upgrade_mk == 2:
-			mkTwo_toggle.disabled = false
-			click_mk_label.text = "Mk. " + str(VariableStorage.click_upgrade_mk + 1)
+			VariableStorage.click_upgrade_price = VariableStorage.CLICK_UPGRADE_BASE_PRICE * 5
+			click_price_label.text = str(VariableStorage.click_upgrade_price)
+		elif VariableStorage.plots_clicked >= 1000 && !VariableStorage.mkThree_purchased:
 			buy_click_upgrade_button.disabled = false
-		else:
-			print("All click upgrades purchased")
-			UpgradesStoreContainer.visible = false
-			mkOne_toggle.disabled = false
-			mkTwo_toggle.disabled = false
-			mkThree_toggle.disabled = false
-		pass # Replace with function body.
+			VariableStorage.click_upgrade_price = VariableStorage.CLICK_UPGRADE_BASE_PRICE * 10
+			click_price_label.text = str(VariableStorage.click_upgrade_price)	
 
+func _check_click_upgrades_purchased() -> void:
+	if VariableStorage.mkOne_purchased:
+		mkOne_toggle.disabled = false
+	if VariableStorage.mkTwo_purchased:
+		mkTwo_toggle.disabled = false
+	if VariableStorage.mkThree_purchased:
+		mkThree_toggle.disabled = false
 
+func _check_water_used_counter() -> void:
+	pass
+
+func _check_water_cap_upgrades_purchased() -> void:
+	pass
