@@ -22,11 +22,12 @@ SaveManager="*res://save_manager.gd"
 
 [display]
 
-window/size/viewport_width=750
-window/size/viewport_height=900
+window/size/viewport_width=400
+window/size/viewport_height=600
 window/handheld/orientation=1
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

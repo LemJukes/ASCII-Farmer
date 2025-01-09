@@ -40,7 +40,7 @@ func reset_game_data() -> void:
 	coins_earned = 0
 	crops_harvested = 0
 	plow_used = 0
-	water_used = 699
+	water_used = 0
 	seeds_purchased = 0
 	water_purchased = 0
 	crops_sold = 0
@@ -61,7 +61,7 @@ func reset_game_data() -> void:
 
 
 # Inventory Variables
-const START_COINS: float = 10000
+const START_COINS: float = 10
 const START_SEEDS = 1
 const START_CROPS = 1
 const START_WATER = 10
@@ -119,7 +119,7 @@ var coins_earned: float = 0
 var crops_harvested: int = 0
 
 var plow_used: int = 0
-var water_used: int = 699
+var water_used: int = 0
 
 var seeds_purchased: int = 0
 var water_purchased: int = 0

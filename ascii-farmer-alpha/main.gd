@@ -803,6 +803,7 @@ func _check_bulk_crop_unlock_counter() -> void:
 func _check_plots_clicked_counter() -> void:
 	if VariableStorage.plots_clicked >= 100:
 		UpgradesStoreContainer.visible = true
+		BuyClickUpgradeContainer.visible = true
 		if !VariableStorage.mkOne_purchased:
 			buy_click_upgrade_button.disabled = false
 			VariableStorage.click_upgrade_price = VariableStorage.CLICK_UPGRADE_BASE_PRICE
