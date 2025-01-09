@@ -34,9 +34,9 @@ func _ready() -> void:
 # Upgrade Labels
 @onready var UpgradesStoreContainer = %UpgradesVBoxContainer
 
-@onready var BuyWaterUpgradesContainer = %BuyWaterUpgradesVBoxContainer
-@onready var water_cap_mk_label: Label = %WaterUpgradeMkLabel
-@onready var water_cap_price_label: Label = %WaterUpgradePriceLabel
+@onready var BuyWaterUpgradesContainer = %BuyWaterCapUpgradesVBoxContainer
+@onready var water_cap_mk_label: Label = %WaterCapUpgradeMkLabel
+@onready var water_cap_price_label: Label = %WaterCapUpgradePriceLabel
 
 @onready var BuyClickUpgradeContainer = %BuyClickUpgradesVBoxContainer
 @onready var click_mk_label: Label = %ClickUpgradeMkLabel
@@ -74,8 +74,11 @@ func _update_store_labels() -> void:
 	plot_price_label.text = str(VariableStorage.plot_price)
 
 func _update_upgrade_labels() -> void:
+	water_cap_mk_label.text = str(VariableStorage.water_cap_upgrade_mk)
+	water_cap_price_label.text = str(VariableStorage.water_cap_upgrade_price)
+
 	click_mk_label.text = str(VariableStorage.click_upgrade_mk + 1)
-	click_price_label.text = str(VariableStorage.click_upgrade_price)	
+	click_price_label.text = str(VariableStorage.click_upgrade_price)
 
 func _update_upgrade_toggles() -> void:
 	mkOne_toggle.button_pressed = VariableStorage.mkOne_toggle_ON
@@ -115,6 +118,7 @@ func _update_upgrade_toggles() -> void:
 @onready var buy_plot_button: Button = %BuyPlotButton
 
 @onready var buy_click_upgrade_button: Button = %BuyClickUpgradeButton
+@onready var buy_water_cap_upgrade_button: Button = %BuyWaterCapUpgradeButton
 
 # Keboard Binding Actions Dictionary
 
@@ -122,6 +126,16 @@ var input_actions = {
 	"tool_plow": "_on_plow_button_pressed",
 	"tool_water": "_on_watering_can_button_pressed", 
 	"tool_scythe": "_on_scythe_button_pressed",
+	"plot_1": "_on_plot_1_pressed",
+    "plot_2": "_on_plot_2_pressed",
+    "plot_3": "_on_plot_3_pressed",
+    "plot_4": "_on_plot_4_pressed",
+    "plot_5": "_on_plot_5_pressed",
+    "plot_6": "_on_plot_6_pressed",
+    "plot_7": "_on_plot_7_pressed",
+    "plot_8": "_on_plot_8_pressed",
+    "plot_9": "_on_plot_9_pressed"
+	
 }
 
 
@@ -142,7 +156,49 @@ func _setup_input_actions() -> void:
 	_add_input_action("tool_plow", KEY_A)
 	_add_input_action("tool_water", KEY_S) 
 	_add_input_action("tool_scythe", KEY_D)
+
+	# Plot shortcuts
+	_add_input_action("plot_7", KEY_KP_7)
+	_add_input_action("plot_8", KEY_KP_8)
+	_add_input_action("plot_9", KEY_KP_9)
+	_add_input_action("plot_4", KEY_KP_4)
+	_add_input_action("plot_5", KEY_KP_5)
+	_add_input_action("plot_6", KEY_KP_6)
+	_add_input_action("plot_1", KEY_KP_1)
+	_add_input_action("plot_2", KEY_KP_2)
+	_add_input_action("plot_3", KEY_KP_3)
 	
+func _click_plot(plot_index: int) -> void:
+	if field_grid.get_child_count() > plot_index:
+		var plot = field_grid.get_child(plot_index)
+		plot.button.emit_signal("pressed")
+
+func _on_plot_1_pressed() -> void:
+	_click_plot(6)  # Index 6 corresponds to position 1 on keypad
+
+func _on_plot_2_pressed() -> void:
+	_click_plot(7)  # Index 7 corresponds to position 2 on keypad
+
+func _on_plot_3_pressed() -> void:
+	_click_plot(8)  # Index 8 corresponds to position 3 on keypad
+
+func _on_plot_4_pressed() -> void:
+	_click_plot(3)  # Index 3 corresponds to position 4 on keypad
+
+func _on_plot_5_pressed() -> void:
+	_click_plot(4)  # Index 4 corresponds to position 5 on keypad
+
+func _on_plot_6_pressed() -> void:
+	_click_plot(5)  # Index 5 corresponds to position 6 on keypad
+
+func _on_plot_7_pressed() -> void:
+	_click_plot(0)  # Index 0 corresponds to position 7 on keypad
+
+func _on_plot_8_pressed() -> void:
+	_click_plot(1)  # Index 1 corresponds to position 8 on keypad
+
+func _on_plot_9_pressed() -> void:
+	_click_plot(2)  # Index 2 corresponds to position 9 on keypad
 
 func _connect_button_signals() -> void:
 	_connect_system_button_signals()
@@ -176,6 +232,7 @@ func _connect_store_button_signals() -> void:
 	buy_plot_button.pressed.connect(_on_buy_plot_button_pressed)
 
 	buy_click_upgrade_button.pressed.connect(_on_buy_click_upgrade_button_pressed)
+	buy_water_cap_upgrade_button.pressed.connect(_on_buy_water_cap_upgrade_button_pressed)
 
 
 func _connect_upgrade_button_signals() -> void:
@@ -247,6 +304,7 @@ func save_game() -> void:
 
 		# Tool Counters
 		"plow_used": VariableStorage.plow_used,
+		"water_used": VariableStorage.water_used,
 
 		# Store Transaction Counters
 		"seeds_purchased": VariableStorage.seeds_purchased,
@@ -256,6 +314,10 @@ func save_game() -> void:
 		# Field Counters
 		"plots_purchased": VariableStorage.plots_purchased,
 		"plots_clicked": VariableStorage.plots_clicked,
+
+		"water_cap_upgrade_mk": VariableStorage.water_cap_upgrade_mk,
+		"water_cap_mk_unlocked": VariableStorage.water_cap_mk_unlocked,
+		"water_cap_mk_purchased": VariableStorage.water_cap_mk_purchased,
 
 		# Upgrade Counters
 		"click_upgrade_mk": VariableStorage.click_upgrade_mk,
@@ -341,6 +403,7 @@ func load_game() -> void:
 
 		# Tool Counters
 		VariableStorage.plow_used = save_data["plow_used"]
+		VariableStorage.water_used = save_data["water_used"]
 
 		# Store Transaction Counters
 		VariableStorage.seeds_purchased = save_data["seeds_purchased"]
@@ -352,6 +415,9 @@ func load_game() -> void:
 		VariableStorage.plots_clicked = save_data["plots_clicked"]
 		
 		# Upgrade Counters
+		VariableStorage.water_cap_upgrade_mk = save_data["water_cap_upgrade_mk"]
+		VariableStorage.water_cap_mk_unlocked = save_data["water_cap_mk_unlocked"]
+		VariableStorage.water_cap_mk_purchased = save_data["water_cap_mk_purchased"]
 		VariableStorage.click_upgrade_mk = save_data["click_upgrade_mk"]
 		VariableStorage.mkOne_purchased = save_data["mkOne_purchased"]
 		VariableStorage.mkTwo_purchased = save_data["mkTwo_purchased"]
@@ -692,6 +758,18 @@ func _on_buy_click_upgrade_button_pressed() -> void:
 				click_price_label.text = "N/A"
 				_update_game_labels()
 
+func _on_buy_water_cap_upgrade_button_pressed() -> void:
+	if VariableStorage.coins >= VariableStorage.water_cap_upgrade_price:
+		VariableStorage.coins -= VariableStorage.water_cap_upgrade_price
+		VariableStorage.water_cap_mk_purchased += 1
+		VariableStorage.water_cap_upgrade_mk += 1
+		VariableStorage.water_cap_upgrade_price_modifier += 0.1
+		VariableStorage.water_cap += 10
+		VariableStorage.water_cap_upgrade_price = VariableStorage.WATER_CAP_UPGRADE_BASE_PRICE * VariableStorage.water_cap_upgrade_price_modifier
+		buy_click_upgrade_button.disabled = true
+		_update_game_labels()
+	else:
+		print("Not enough coins to purchase water cap upgrade")
 
 # ----------------------------------------  Upgrade Unlock Checks ----------------------------------------  #
 
@@ -711,9 +789,9 @@ func _check_bulk_seed_unlock_counter() -> void:
 			buy_nine_seed_button.disabled = false
 
 func _check_bulk_water_unlock_counter() -> void:
-	if VariableStorage.water_purchased >= 100:
+	if VariableStorage.water_purchased >= 1000:
 		buy_thirty_water_button.disabled = false
-		if VariableStorage.water_purchased >= 300:
+		if VariableStorage.water_purchased >= 3000:
 			buy_ninety_water_button.disabled = false
 
 func _check_bulk_crop_unlock_counter() -> void:
@@ -747,7 +825,16 @@ func _check_click_upgrades_purchased() -> void:
 		mkThree_toggle.disabled = false
 
 func _check_water_used_counter() -> void:
-	pass
+	if VariableStorage.water_used >= 100:
+		UpgradesStoreContainer.visible = true
+		BuyWaterUpgradesContainer.visible = true
 
-func _check_water_cap_upgrades_purchased() -> void:
-	pass
+		@warning_ignore("integer_division")
+		var current_water_tier: int = int(VariableStorage.water_used / 100)
+
+		if current_water_tier >= VariableStorage.water_cap_upgrade_mk:
+			buy_water_cap_upgrade_button.disabled = false
+			VariableStorage.water_cap_mk_unlocked = current_water_tier
+		else:
+			buy_water_cap_upgrade_button.disabled = true
+

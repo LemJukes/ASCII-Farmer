@@ -20,6 +20,12 @@ config/icon="res://icon.svg"
 VariableStorage="*res://variable_storage.gd"
 SaveManager="*res://save_manager.gd"
 
+[display]
+
+window/size/viewport_width=750
+window/size/viewport_height=900
+window/handheld/orientation=1
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

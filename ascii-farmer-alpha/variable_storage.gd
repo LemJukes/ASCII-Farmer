@@ -28,6 +28,9 @@ func reset_game_data() -> void:
 	click_upgrade_price = CLICK_UPGRADE_BASE_PRICE
 	click_upgrade_price_modifier = 1.0
 
+	water_cap_upgrade_price = WATER_CAP_UPGRADE_BASE_PRICE
+	water_cap_upgrade_price_modifier = 1.1
+
 	plot_price = PLOT_BASE_PRICE
 	
 	# Field
@@ -37,7 +40,7 @@ func reset_game_data() -> void:
 	coins_earned = 0
 	crops_harvested = 0
 	plow_used = 0
-	water_used = 0
+	water_used = 699
 	seeds_purchased = 0
 	water_purchased = 0
 	crops_sold = 0
@@ -52,6 +55,10 @@ func reset_game_data() -> void:
 	mkOne_toggle_ON = false
 	mkTwo_toggle_ON = false
 	mkThree_toggle_ON = false
+	water_cap_upgrade_mk = 1
+	water_cap_mk_unlocked = 0
+	water_cap_mk_purchased = 0
+
 
 # Inventory Variables
 const START_COINS: float = 10000
@@ -99,7 +106,7 @@ const WATER_CAP_UPGRADE_BASE_PRICE = 10
 const CLICK_UPGRADE_BASE_PRICE = 100
 
 var click_upgrade_price_modifier: float = 1.0
-var water_cap_upgrade_price_modifier: float = 1.0
+var water_cap_upgrade_price_modifier: float = 1.1
 
 var click_upgrade_price: float = CLICK_UPGRADE_BASE_PRICE
 var water_cap_upgrade_price: float = WATER_CAP_UPGRADE_BASE_PRICE
@@ -107,27 +114,21 @@ var water_cap_upgrade_price: float = WATER_CAP_UPGRADE_BASE_PRICE
 # Field Variables
 var plot_count: int = 0
 
-# Plot Variables
-
 # Unlock Counter Variables
-# Inventory Counters
 var coins_earned: float = 0
 var crops_harvested: int = 0
 
-# Tool Counters
 var plow_used: int = 0
-var water_used: int = 0
+var water_used: int = 699
 
-# Store Counters
 var seeds_purchased: int = 0
 var water_purchased: int = 0
 var crops_sold: int = 0
 
-# Field Counters
 var plots_purchased: int = 0
 var plots_clicked: int = 0
 
-# Upgrade Counters
+var water_cap_upgrade_mk: int = 1
 var water_cap_mk_unlocked: int = 0
 var water_cap_mk_purchased: int = 0
 
