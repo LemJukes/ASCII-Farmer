@@ -1,0 +1,612 @@
+[gd_scene load_steps=3 format=3 uid="uid://djwtqhqis7bn3"]
+
+[ext_resource type="Script" path="res://src/main.gd" id="1_8ggr0"]
+[ext_resource type="Script" path="res://src/fld_handler.gd" id="2_pe2g6"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(400, 1000)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_8ggr0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.5
+offset_right = 180.5
+offset_bottom = 599.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PrimaryVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="TitlesHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ASCII FARMER"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
+layout_mode = 2
+
+[node name="BuildLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/TitlesHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Build: Alpha 0.2"
+horizontal_alignment = 1
+
+[node name="SystemHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="StartButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/SystemHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="ResetButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/SystemHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Reset"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/SystemHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer"]
+layout_mode = 2
+
+[node name="GameVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="PlayerVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="InventoryVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="InventoryLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="InventoryHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinsLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/CoinsVBoxContainer"]
+layout_mode = 2
+text = "Coins:"
+horizontal_alignment = 1
+
+[node name="CoinsValueLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/CoinsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$Coins"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+
+[node name="SeedsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SeedsLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/SeedsVBoxContainer"]
+layout_mode = 2
+text = "Seeds:"
+horizontal_alignment = 1
+
+[node name="SeedsValueLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/SeedsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$Seeds"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+
+[node name="WaterVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaterLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/WaterVBoxContainer"]
+layout_mode = 2
+text = "Water"
+horizontal_alignment = 1
+
+[node name="WaterValueLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/WaterVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$Water"
+horizontal_alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+
+[node name="WaterCapVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+
+[node name="WaterCapLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/WaterCapVBoxContainer"]
+layout_mode = 2
+text = "WaterCap"
+horizontal_alignment = 1
+
+[node name="WaterCapValueLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/WaterCapVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$WaterCap"
+horizontal_alignment = 1
+
+[node name="VSeparator4" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+
+[node name="CropsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CropsLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/CropsVBoxContainer"]
+layout_mode = 2
+text = "Crops:"
+horizontal_alignment = 1
+
+[node name="CropsValueLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/InventoryVBoxContainer/InventoryHBoxContainer/CropsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$Crops"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer"]
+layout_mode = 2
+
+[node name="ToolsAndUpgradeControlVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ToolsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ToolsLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer"]
+layout_mode = 2
+text = "Tools"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentToolLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Current Tool:"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentToolValueLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$CurrentTool"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PlowButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Plow"
+
+[node name="WateringCanButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Watering Can"
+
+[node name="ScytheButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/ToolsVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Scythe"
+
+[node name="UpgradeControlsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="UpgradeControlsLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer"]
+layout_mode = 2
+text = "Upgrade Controls"
+horizontal_alignment = 1
+
+[node name="UpgradeControlsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MkOneControlHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer"]
+layout_mode = 2
+
+[node name="MkOneControlLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer/MkOneControlHBoxContainer"]
+layout_mode = 2
+text = "Mk 1: "
+horizontal_alignment = 1
+
+[node name="MkOneControlToggle" type="CheckButton" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer/MkOneControlHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer"]
+layout_mode = 2
+
+[node name="MkTwoControlHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer"]
+layout_mode = 2
+
+[node name="MkTwoControlLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer/MkTwoControlHBoxContainer"]
+layout_mode = 2
+text = "Mk 2: "
+horizontal_alignment = 1
+
+[node name="MkTwoControlToggle" type="CheckButton" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer/MkTwoControlHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer"]
+layout_mode = 2
+
+[node name="MkOneControlHBoxContainer3" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer"]
+layout_mode = 2
+
+[node name="MkThreeControlLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer/MkOneControlHBoxContainer3"]
+layout_mode = 2
+text = "Mk 3: "
+horizontal_alignment = 1
+
+[node name="MkThreeControlToggle" type="CheckButton" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradeControlsVBoxContainer/UpgradeControlsHBoxContainer/MkOneControlHBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+
+[node name="StoreVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StoreLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
+layout_mode = 2
+text = "Store"
+horizontal_alignment = 1
+
+[node name="SuppliesVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SuppliesLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer"]
+layout_mode = 2
+text = "Supplies"
+horizontal_alignment = 1
+
+[node name="SuppliesHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuySeedsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuySeedsLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer"]
+layout_mode = 2
+text = "Buy Seeds:"
+horizontal_alignment = 1
+
+[node name="SeedPriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$SeedPrice
+"
+horizontal_alignment = 1
+
+[node name="BuySeedButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyOneSeedButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "1x"
+
+[node name="BuyThreeSeedButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "3x"
+
+[node name="BuyNineSeedButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuySeedsVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "9x"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer"]
+layout_mode = 2
+
+[node name="BuyWaterVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyWaterLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer"]
+layout_mode = 2
+text = "Buy Water:"
+horizontal_alignment = 1
+
+[node name="WaterPriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$WaterPrice"
+horizontal_alignment = 1
+
+[node name="BuySeedButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyTenWaterButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "10x"
+
+[node name="BuyThirtyWaterButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "30x"
+
+[node name="BuyNinetyWaterButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/BuyWaterVBoxContainer/BuySeedButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "90x"
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer"]
+layout_mode = 2
+
+[node name="SellCropsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SellCropsLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer"]
+layout_mode = 2
+text = "Sell Crops:"
+horizontal_alignment = 1
+
+[node name="CropPriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$CropPrice
+"
+horizontal_alignment = 1
+
+[node name="SellCropButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SellOneCropButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "1x"
+
+[node name="SellThreeCropButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "3x"
+
+[node name="SellNineCropButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/SuppliesVBoxContainer/SuppliesHBoxContainer/SellCropsVBoxContainer/SellCropButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "9x"
+
+[node name="HSeparator1" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
+layout_mode = 2
+
+[node name="BuyPlotVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyPlotLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/BuyPlotVBoxContainer"]
+layout_mode = 2
+text = "Buy Plot:"
+horizontal_alignment = 1
+
+[node name="PlotPriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/BuyPlotVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$PlotPrice"
+horizontal_alignment = 1
+
+[node name="BuyPlotButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/BuyPlotVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyPlotButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/BuyPlotVBoxContainer/BuyPlotButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "1x"
+
+[node name="UpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="UpgradesLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer"]
+layout_mode = 2
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="BuyWaterCapUpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="BuyWaterCapUpgradesLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer"]
+layout_mode = 2
+text = "Buy Water Cap Upgrades:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaterCapUpgradeMkLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$WaterCapUpgradeMk
+"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="WaterCapUpgradePriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$WaterCapUpgradeCost
+"
+horizontal_alignment = 1
+
+[node name="BuyWaterCapUpgradeButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyWaterCapUpgradeButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer/BuyWaterCapUpgradeButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Buy Upgrade"
+
+[node name="BuyClickUpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="BuyClickUpgradesLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer"]
+layout_mode = 2
+text = "Buy Expanded Click Upgrades:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ClickUpgradeMkLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$ClickUpgradeMk
+"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ClickUpgradePriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$ClickUpgradeCost
+"
+horizontal_alignment = 1
+
+[node name="BuyClickUpgradeButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyClickUpgradeButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/UpgradesVBoxContainer/BuyClickUpgradesVBoxContainer/BuyClickUpgradeButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Buy Upgrade"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FieldVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="FieldLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2/FieldVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "The Field"
+horizontal_alignment = 1
+
+[node name="FieldGridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2/FieldVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+script = ExtResource("2_pe2g6")

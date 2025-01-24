@@ -17,13 +17,15 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-VariableStorage="*res://variable_storage.gd"
-SaveManager="*res://save_manager.gd"
+NotificationManager="*res://src/notification_manager.gd"
+SaveManager="*res://src/save_manager.gd"
+VariableStorage="*res://src/variable_storage.gd"
 
 [display]
 
 window/size/viewport_width=400
 window/size/viewport_height=600
+window/stretch/mode="viewport"
 window/handheld/orientation=1
 
 [rendering]
