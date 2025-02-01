@@ -42,6 +42,7 @@ func _ready():
 
 # Primary Plot Sequence
 func _on_button_pressed():
+	if _game_paused_check(): return
 	print ("Plot " + str(get_index()) + " clicked")
 	var original_state = current_state
 	match current_state:
@@ -52,6 +53,7 @@ func _on_button_pressed():
 				VariableStorage.plow_used += 1
 			else:
 				print("Need Plow selected!")
+				NotificationManager.show_notification("Wrong Tool","Need Plow selected!")
 				return
 		PlotState.TILLED:
 			if VariableStorage.seeds > 0:
@@ -60,6 +62,7 @@ func _on_button_pressed():
 				VariableStorage.plots_clicked += 1
 			else:
 				print("Not enough seeds!")
+				NotificationManager.show_notification("Insufficient Resources","Not enough seeds!")
 				return
 		PlotState.PLANTED:
 			if VariableStorage.current_tool == VariableStorage.TOOL_WATERING_CAN:
@@ -70,9 +73,11 @@ func _on_button_pressed():
 					VariableStorage.water_used += 1
 				else:
 					print("Not enough water!")
+					NotificationManager.show_notification("Insufficient Resources","Not enough water!")
 					return
 			else:
 				print("Need Watering Can tool selected!")
+				NotificationManager.show_notification("Wrong Tool","Need Watering Can tool selected!")
 				return
 		PlotState.GROWING1:
 			if VariableStorage.current_tool == VariableStorage.TOOL_WATERING_CAN:
@@ -83,9 +88,11 @@ func _on_button_pressed():
 					VariableStorage.water_used += 1
 				else:
 					print("Not enough water!")
+					NotificationManager.show_notification("Insufficient Resources","Not enough water!")
 					return
 			else:
 				print("Need Watering Can tool selected!")
+				NotificationManager.show_notification("Wrong Tool","Need Watering Can tool selected!")
 				return
 		PlotState.GROWING2:
 			if VariableStorage.current_tool == VariableStorage.TOOL_WATERING_CAN:
@@ -96,9 +103,11 @@ func _on_button_pressed():
 					VariableStorage.water_used += 1
 				else:
 					print("Not enough water!")
+					NotificationManager.show_notification("Insufficient Resources","Not enough water!")
 					return
 			else:
 				print("Need Watering Can tool selected!")
+				NotificationManager.show_notification("Wrong Tool","Need Watering Can tool selected!")
 				return
 		PlotState.GROWING3:
 			if VariableStorage.current_tool == VariableStorage.TOOL_WATERING_CAN:
@@ -109,9 +118,11 @@ func _on_button_pressed():
 					VariableStorage.water_used += 1
 				else:
 					print("Not enough water!")
+					NotificationManager.show_notification("Insufficient Resources","Not enough water!")
 					return
 			else:
 				print("Need Watering Can tool selected!")
+				NotificationManager.show_notification("Wrong Tool","Need Watering Can tool selected!")
 				return
 		PlotState.GROWN:
 			if VariableStorage.current_tool == VariableStorage.TOOL_SCYTHE:
@@ -122,8 +133,10 @@ func _on_button_pressed():
 				if randf() <= 0.15:
 					VariableStorage.seeds += 1
 					print("Seed Drop!")
+					NotificationManager.show_notification("Seed Drop!","A seed has dropped!")
 			else:
 				print("Need scythe tool selected!")
+				NotificationManager.show_notification("Wrong Tool","Need scythe tool selected!")
 				return
 	if VariableStorage.mkOne_toggle_ON:
 		var adjacent_plots_mk_one = get_adjacent_plots_mk_one()
@@ -280,3 +293,12 @@ func try_upgraded_click(plot) -> void:
 	plot.button.text = STATE_CHARS[plot.current_state]
 	game_update.emit()
 	check_unlocks.emit()
+
+# ------------------- Helper Functions ------------------- #
+
+func _game_paused_check() -> bool:
+	if VariableStorage.is_game_paused:
+		print("Game is paused")
+		NotificationManager.show_notification("Paused", "The game is paused.")
+		return true
+	return false

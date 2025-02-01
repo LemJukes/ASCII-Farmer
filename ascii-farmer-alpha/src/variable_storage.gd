@@ -6,6 +6,10 @@ extends Node
 
 func reset_game_data() -> void:
 
+	# System
+	time_elapsed_game = 0
+	is_game_paused = false
+
 	# Inventory
 	coins = START_COINS
 	seeds = START_SEEDS
@@ -59,6 +63,11 @@ func reset_game_data() -> void:
 	water_cap_mk_unlocked = 0
 	water_cap_mk_purchased = 0
 
+# System Variables
+var time_elapsed_app: float = 0
+var time_game_started: float = 0
+var time_elapsed_game: float = 0
+var is_game_paused: bool = false
 
 # Inventory Variables
 const START_COINS: float = 10

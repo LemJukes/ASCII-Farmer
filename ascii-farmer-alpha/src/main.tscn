@@ -4,26 +4,26 @@
 [ext_resource type="Script" path="res://src/fld_handler.gd" id="2_pe2g6"]
 
 [node name="Control" type="Control"]
-custom_minimum_size = Vector2(400, 1000)
+custom_minimum_size = Vector2(400, 600)
 layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_8ggr0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(400, 600)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -180.5
-offset_right = 180.5
-offset_bottom = 599.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -37,7 +37,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 5
-alignment = 1
 
 [node name="TitlesHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer"]
 layout_mode = 2
@@ -79,11 +78,33 @@ size_flags_horizontal = 3
 disabled = true
 text = "Reset"
 
+[node name="PauseButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/SystemHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Pause"
+
 [node name="QuitButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/SystemHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Quit"
+
+[node name="TimerHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/TimerHBoxContainer"]
+layout_mode = 2
+text = "Game Timer: "
+
+[node name="TimerDisplay" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/TimerHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00:00:00.00"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer"]
 layout_mode = 2
@@ -93,6 +114,34 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FieldVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="FieldLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2/FieldVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "The Field"
+horizontal_alignment = 1
+
+[node name="FieldGridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2/FieldVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+script = ExtResource("2_pe2g6")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer"]
+layout_mode = 2
 
 [node name="PlayerVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer"]
 layout_mode = 2
@@ -582,31 +631,3 @@ unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Buy Upgrade"
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer"]
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="FieldVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2"]
-layout_mode = 2
-alignment = 1
-
-[node name="FieldLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2/FieldVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "The Field"
-horizontal_alignment = 1
-
-[node name="FieldGridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/MarginContainer2/FieldVBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-columns = 3
-script = ExtResource("2_pe2g6")

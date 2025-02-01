@@ -11,21 +11,22 @@ config_version=5
 [application]
 
 config/name="ASCII Farmer Alpha"
-run/main_scene="res://main.tscn"
+run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-NotificationManager="*res://src/notification_manager.gd"
 SaveManager="*res://src/save_manager.gd"
 VariableStorage="*res://src/variable_storage.gd"
+NotificationManager="*res://src/notification_manager.gd"
 
 [display]
 
 window/size/viewport_width=400
 window/size/viewport_height=600
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [rendering]

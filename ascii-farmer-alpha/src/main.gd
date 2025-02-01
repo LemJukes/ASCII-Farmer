@@ -9,8 +9,21 @@ func _ready() -> void:
 	_setup_input_actions()
 	_initialize_game_labels()
 	load_game()
+	if !VariableStorage.is_game_paused:
+		if VariableStorage.time_elapsed_game > 0:
+			_set_start_time_from_save()
+
+func _process(delta: float) -> void:
+	_process_time_elapsed_app(delta)
+	if VariableStorage.time_elapsed_game > 0:
+		_process_time_elapsed_game()
+		_update_timer_display()
+	
 
 # ----------------------------------------  LABEL UI ELEMENT DECLARATIONS  ----------------------------------------  #
+
+# System Labels
+@onready var timer_display: Label = %TimerDisplay
 
 # Inventory Labels
 @onready var coins_label: Label = %CoinsValueLabel
@@ -55,6 +68,7 @@ func _update_game_labels() -> void:
 	_update_store_labels()
 	_update_upgrade_labels()
 	_update_upgrade_toggles()
+	_timestamp_printout()
 	save_game()
 
 func _update_inventory_labels() -> void:
@@ -85,12 +99,35 @@ func _update_upgrade_toggles() -> void:
 	mkTwo_toggle.button_pressed = VariableStorage.mkTwo_toggle_ON
 	mkThree_toggle.button_pressed = VariableStorage.mkThree_toggle_ON
 
+func _timestamp_printout() -> void:
+	print("This action occured at msec: " + str(VariableStorage.time_elapsed_app))
+
+func _update_timer_display() -> void:
+	var time = VariableStorage.time_elapsed_game
+
+	# Get whole seconds and milliseconds
+	var total_seconds = int(time)
+	var milliseconds = int((time - total_seconds) * 10000)
+
+	# Calculate hours, minutes, seconds
+	@warning_ignore("integer_division")
+	var hours = total_seconds / 3600
+	@warning_ignore("integer_division")
+	var minutes = (total_seconds % 3600) / 60
+	var seconds = total_seconds % 60
+
+	# Format with leading zeros
+	var time_string = "%02d:%02d:%02d.%04d" % [hours, minutes, seconds, milliseconds]
+
+	timer_display.text = time_string
+
 # ----------------------------------------  Button UI Element Declarations  ----------------------------------------  #
 
 # System Buttons
 @onready var start_button: Button = %StartButton
 @onready var quit_button: Button = %QuitButton
 @onready var reset_button: Button = %ResetButton
+@onready var pause_button: Button = %PauseButton
 
 # Tool Buttons
 @onready var plow_button: Button = %PlowButton
@@ -127,14 +164,14 @@ var input_actions = {
 	"tool_water": "_on_watering_can_button_pressed", 
 	"tool_scythe": "_on_scythe_button_pressed",
 	"plot_1": "_on_plot_1_pressed",
-    "plot_2": "_on_plot_2_pressed",
-    "plot_3": "_on_plot_3_pressed",
-    "plot_4": "_on_plot_4_pressed",
-    "plot_5": "_on_plot_5_pressed",
-    "plot_6": "_on_plot_6_pressed",
-    "plot_7": "_on_plot_7_pressed",
-    "plot_8": "_on_plot_8_pressed",
-    "plot_9": "_on_plot_9_pressed"
+	"plot_2": "_on_plot_2_pressed",
+	"plot_3": "_on_plot_3_pressed",
+	"plot_4": "_on_plot_4_pressed",
+	"plot_5": "_on_plot_5_pressed",
+	"plot_6": "_on_plot_6_pressed",
+	"plot_7": "_on_plot_7_pressed",
+	"plot_8": "_on_plot_8_pressed",
+	"plot_9": "_on_plot_9_pressed",
 	
 }
 
@@ -210,6 +247,7 @@ func _connect_system_button_signals() -> void:
 	start_button.pressed.connect(_on_start_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
 	reset_button.pressed.connect(_on_reset_button_pressed)
+	pause_button.pressed.connect(_on_pause_button_pressed)
 
 func _connect_tool_button_signals() -> void:
 	plow_button.pressed.connect(_on_plow_button_pressed)
@@ -277,6 +315,10 @@ func save_game() -> void:
 		plot_states.append(plot.current_state)
 	
 	var save_dict = {
+
+		# System Data
+		"time_elapsed_game": VariableStorage.time_elapsed_game,
+		"is_game_paused": VariableStorage.is_game_paused,
 
 		# Inventory Data
 		"coins": VariableStorage.coins,
@@ -377,6 +419,10 @@ func load_game() -> void:
 	# Load the rest of the game data
 	if !save_data.is_empty():
 		print("Loading Save Data:", save_data)
+
+		# System Data
+		VariableStorage.time_elapsed_game = save_data["time_elapsed_game"]
+		VariableStorage.is_game_paused = save_data["is_game_paused"]
 		
 		# Inventory Data
 		VariableStorage.coins = save_data["coins"]
@@ -455,8 +501,14 @@ func _on_load_error(load_error_message: String) -> void:
 
 func _unlock_starting_buttons() -> void:
 	# Handle system button state changes
-	start_button.disabled = true
-	reset_button.disabled = false
+	if !VariableStorage.is_game_paused:
+		start_button.disabled = true
+		reset_button.disabled = false
+		pause_button.disabled = false
+	else:
+		start_button.disabled = false
+		reset_button.disabled = false
+		pause_button.disabled = true
 
 	# handle tool button state changes
 	plow_button.disabled = false
@@ -481,58 +533,64 @@ func _add_input_action(action_name: String, keycode: int) -> void:
 
 func _on_start_button_pressed() -> void:
 	print("Start button pressed")
-	
+	if VariableStorage.time_elapsed_game > 0:
+		_set_start_time_from_save()
+		VariableStorage.is_game_paused = false
+	else:
+		_set_start_time()
+		VariableStorage.time_elapsed_game =+ 0.0000000001
 	_unlock_starting_buttons()
 	_check_all_unlock_counters()
 	_update_game_labels()
-	field_grid._add_first_plot()
-
-	# Save game data
+	if field_grid.get_child_count() == 0:
+		field_grid._add_first_plot()
 	save_game()
+	
 
 func _on_reset_button_pressed() -> void:
 	print("Reset button pressed")
-
 	SaveManager.delete_save()
-
 	VariableStorage.reset_game_data()
-
 	_initialize_game_labels()
-
 	get_tree().reload_current_scene()
 
 func _on_quit_button_pressed() -> void:
-	# adding this print statement is what makes the if statment below work properly, i do not understand why but it works so im leaving it for now.
-	print("Quit button pressed")
-	# If a save file exists, save the game data
-	if FileAccess.file_exists(SaveManager.SAVE_FILE_PATH):
-		save_game()
-		get_tree().call_deferred("quit")
-	else:
-		print("No save file found. Quitting without saving.")
-		get_tree().call_deferred("quit")
+	_handle_quit()
+
+func _on_pause_button_pressed() -> void:
+	save_game()
+	pause_button.disabled = true
+	start_button.disabled = false
+	if !VariableStorage.is_game_paused:
+		VariableStorage.is_game_paused = !VariableStorage.is_game_paused
 
 func _set_sys_buttons_gameON() -> void:
 	start_button.disabled = true
 	reset_button.disabled = false
+	pause_button.disabled = false
 
 func _set_sys_buttons_gameOFF() -> void:
 	start_button.disabled = false
 	reset_button.disabled = true
+	pause_button.disabled = true
+
 
 # ----------------------------------------  Tool Buttons  ----------------------------------------  #
 
 func _on_plow_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Plow button pressed")
 	VariableStorage.current_tool = VariableStorage.TOOL_PLOW	
 	_update_game_labels()
 
 func _on_watering_can_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Watering Can button pressed")
 	VariableStorage.current_tool = VariableStorage.TOOL_WATERING_CAN
 	_update_game_labels()
 
 func _on_scythe_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Scythe button pressed")
 	VariableStorage.current_tool = VariableStorage.TOOL_SCYTHE
 	_update_game_labels()
@@ -540,16 +598,19 @@ func _on_scythe_button_pressed() -> void:
 # ----------------------------------------  Upgrade Toggles  ----------------------------------------  #
 
 func _on_mkOne_toggle_toggled(_button_presed: bool) -> void:
+	if _game_paused_check(): return
 	VariableStorage.mkOne_toggle_ON = _button_presed
 	print("Mk. 1 toggle pressed" + str(VariableStorage.mkOne_toggle_ON))
 	_update_game_labels()
 
 func _on_mkTwo_toggle_toggled(_button_pressed: bool) -> void:
+	if _game_paused_check(): return
 	VariableStorage.mkTwo_toggle_ON = _button_pressed
 	print("Mk. 2 toggle pressed" + str(VariableStorage.mkTwo_toggle_ON))
 	_update_game_labels()
 
 func _on_mkThree_toggle_toggled() -> void:
+	if _game_paused_check(): return
 	VariableStorage.mkThree_toggle_ON = true
 	print("Mk. 3 toggle pressed" + str(VariableStorage.mkThree_toggle_ON))
 	_update_game_labels()
@@ -561,6 +622,7 @@ func _on_mkThree_toggle_toggled() -> void:
 # Seed Buttons
 
 func _on_buy_one_seed_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Buy One Seed button pressed")
 	if VariableStorage.coins >= VariableStorage.seed_price:
 		VariableStorage.coins -= VariableStorage.seed_price
@@ -572,6 +634,7 @@ func _on_buy_one_seed_button_pressed() -> void:
 		print("Not enough coins to purchase seeds")
 
 func _on_buy_three_seed_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Buy Three Seed button pressed")
 	if VariableStorage.coins >= VariableStorage.seed_price:
 		VariableStorage.coins -= VariableStorage.seed_price
@@ -583,6 +646,7 @@ func _on_buy_three_seed_button_pressed() -> void:
 		print("Not enough coins to purchase seeds")
 
 func _on_buy_nine_seed_button_pressed() -> void:
+	if _game_paused_check(): return
 	if VariableStorage.coins >= VariableStorage.seed_price:
 		VariableStorage.coins -= VariableStorage.seed_price
 		VariableStorage.seeds += 9
@@ -596,6 +660,7 @@ func _on_buy_nine_seed_button_pressed() -> void:
 # Water Buttons
 
 func _on_buy_ten_water_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Buy Ten Water button pressed")
 	if VariableStorage.water >= VariableStorage.water_cap:
 		print("Water storage is at capacity!")
@@ -620,6 +685,7 @@ func _on_buy_ten_water_button_pressed() -> void:
 		print("Not enough coins to purchase water")
 
 func _on_buy_thirty_water_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Buy Thirty Water button pressed")
 	if VariableStorage.water >= VariableStorage.water_cap:
 		print("Water storage is at capacity!")
@@ -644,6 +710,7 @@ func _on_buy_thirty_water_button_pressed() -> void:
 		print("Not enough coins to purchase water")
 
 func _on_buy_ninety_water_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Buy Ninety Water button pressed")
 	if VariableStorage.water >= VariableStorage.water_cap:
 		print("Water storage is at capacity!")
@@ -672,6 +739,7 @@ func _on_buy_ninety_water_button_pressed() -> void:
 # Crop Buttons
 
 func _on_sell_one_crop_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Sell One Crop button pressed")
 	if VariableStorage.crops > 0:
 		VariableStorage.crops -= 1
@@ -683,6 +751,7 @@ func _on_sell_one_crop_button_pressed() -> void:
 		print("Not enough crops to sell")
 
 func _on_sell_three_crop_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Sell Three Crop button pressed")
 	if VariableStorage.crops >= 3:
 		VariableStorage.crops -= 3
@@ -694,6 +763,7 @@ func _on_sell_three_crop_button_pressed() -> void:
 		print("Not enough crops to sell")
 
 func _on_sell_nine_crop_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Sell Nine Crop button pressed")
 	if VariableStorage.crops >= 9:
 		VariableStorage.crops -= 9
@@ -707,6 +777,7 @@ func _on_sell_nine_crop_button_pressed() -> void:
 # Buy Plot Button
 
 func _on_buy_plot_button_pressed() -> void:
+	if _game_paused_check(): return
 	print("Buy Plot button pressed")
 	if VariableStorage.coins >= VariableStorage.plot_price:
 		var field_handler = field_grid # The field_grid already has fld_handler.gd attached
@@ -726,6 +797,7 @@ func _on_buy_plot_button_pressed() -> void:
 # Buy Click Upgrade Button
 
 func _on_buy_click_upgrade_button_pressed() -> void:
+	if _game_paused_check(): return
 	match VariableStorage.click_upgrade_mk:
 		0:  # Buying Mk 1
 			if VariableStorage.coins >= VariableStorage.click_upgrade_price:
@@ -759,6 +831,7 @@ func _on_buy_click_upgrade_button_pressed() -> void:
 				_update_game_labels()
 
 func _on_buy_water_cap_upgrade_button_pressed() -> void:
+	if _game_paused_check(): return
 	if VariableStorage.coins >= VariableStorage.water_cap_upgrade_price:
 		VariableStorage.coins -= VariableStorage.water_cap_upgrade_price
 		VariableStorage.water_cap_mk_purchased += 1
@@ -839,3 +912,50 @@ func _check_water_used_counter() -> void:
 		else:
 			buy_water_cap_upgrade_button.disabled = true
 
+# ----------------------------------------  Helper Functions ----------------------------------------  #
+
+func _handle_quit() -> void:
+	print("Quit button pressed - starting quit sequence")  # Verify function is called
+	
+	# If a save file exists, save the game data
+	if FileAccess.file_exists(SaveManager.SAVE_FILE_PATH):
+		print("Save file found. Saving game data before quitting.")
+		save_game()
+		# Add delay before quitting
+		await get_tree().create_timer(0.1).timeout
+		get_tree().quit()
+	else:
+		print("No save file found. Quitting without saving.")
+		# Add delay before quitting
+		await get_tree().create_timer(0.1).timeout
+		get_tree().quit()
+
+func _on_game_window_closed(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_handle_quit()
+
+
+# ----------------------------------------  Timer Handling  ----------------------------------------  #
+
+func _set_start_time() -> void:
+	VariableStorage.time_game_started = VariableStorage.time_elapsed_app
+	print("Game started at msec: " + str(VariableStorage.time_game_started))
+
+func _process_time_elapsed_app(delta: float) -> void:
+	VariableStorage.time_elapsed_app += delta
+
+func _process_time_elapsed_game() -> void:
+	if !VariableStorage.is_game_paused:
+		VariableStorage.time_elapsed_game = VariableStorage.time_elapsed_app - VariableStorage.time_game_started
+	
+func _set_start_time_from_save() -> void:
+	# Calculate what the start time should have been to get our saved elapsed time
+	VariableStorage.time_game_started = VariableStorage.time_elapsed_app - VariableStorage.time_elapsed_game
+	print("Game time restored from save - started at: " + str(VariableStorage.time_game_started))
+
+func _game_paused_check() -> bool:
+	if VariableStorage.is_game_paused:
+		print("Game is paused")
+		NotificationManager.show_notification("Paused", "The game is paused.")
+		return true
+	return false

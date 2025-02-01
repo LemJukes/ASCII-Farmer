@@ -1,12 +1,26 @@
 extends Node
 
-var notification_scene = preload("res://src/notification_popup.tscn")
-var current_notification = null
+# Scene reference
+const NotificationScene = preload("res://src/notification.tscn")
 
-func show_notification(text: String):
-    if current_notification != null:
-        current_notification.queue_free()
+# Show a notification with given title and message
+func show_notification(title: String, message: String) -> void:
+    # Instance the notification
+    var notif = NotificationScene.instantiate()
     
-    current_notification = notification_scene.instantiate()
-    get_tree().root.add_child(current_notification)
-    current_notification.show_message(text)
+    # Create canvas layer
+    var canvas = CanvasLayer.new()
+    canvas.layer = 100
+    
+    # Add to tree
+    add_child(canvas)
+    canvas.add_child(notif)
+    
+    # Setup notification
+    notif.setup(title, message)
+    
+    # Cleanup when closed
+    notif.closed.connect(
+        func(): canvas.queue_free(),
+        CONNECT_ONE_SHOT
+    )
