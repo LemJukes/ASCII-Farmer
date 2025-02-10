@@ -10,6 +10,11 @@ func reset_game_data() -> void:
 	time_elapsed_game = 0
 	is_game_paused = false
 
+	# Notification
+	mkOne_notification_shown = false
+	mkTwo_notification_shown = false
+	mkThree_notification_shown = false
+
 	# Inventory
 	coins = START_COINS
 	seeds = START_SEEDS
@@ -68,6 +73,11 @@ var time_elapsed_app: float = 0
 var time_game_started: float = 0
 var time_elapsed_game: float = 0
 var is_game_paused: bool = false
+
+# Notification Variables
+var mkOne_notification_shown: bool = false
+var mkTwo_notification_shown: bool = false
+var mkThree_notification_shown: bool = false
 
 # Inventory Variables
 const START_COINS: float = 10

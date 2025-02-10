@@ -12,7 +12,8 @@ enum PlotState {
 	GROWING1,
 	GROWING2,
 	GROWING3,
-	GROWN
+	GROWN,
+	WITHERED
 }
 
 # Mapping States to their respective Characters
@@ -23,11 +24,15 @@ const STATE_CHARS = {
 	PlotState.GROWING1: "\\",
 	PlotState.GROWING2: "|",
 	PlotState.GROWING3: "/",
-	PlotState.GROWN: "¥"
+	PlotState.GROWN: "¥",
+	PlotState.WITHERED: "ᕦ"
 }
 
 # Current state of the plot
 var current_state = PlotState.UNTILLED
+var wither_timer: Timer
+var harvest_counter = 0
+var fallow_timer: Timer
 
 @onready var button = $PlotButton
 
@@ -38,7 +43,32 @@ func _ready():
 	var main = get_node("/root/Control")
 	game_update.connect(main._update_game_labels)
 	check_unlocks.connect(main._check_all_unlock_counters)
+	wither_timer = Timer.new()
+	wither_timer.wait_time = 5.0
+	wither_timer.one_shot = true
+	wither_timer.timeout.connect(_on_wither_timer_timeout)
+	add_child(wither_timer)
+	fallow_timer = Timer.new()
+	fallow_timer.wait_time = 3.0
+	fallow_timer.one_shot = true
+	fallow_timer.timeout.connect(_on_fallow_timer_timeout)
+	add_child(fallow_timer)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):  # Space bar
+		if button.is_hovered():
+			button.emit_signal("pressed")
+			get_viewport().set_input_as_handled()
+
+func _on_wither_timer_timeout():
+	if current_state == PlotState.GROWN:
+		current_state = PlotState.WITHERED
+		button.text = STATE_CHARS[current_state]
+		game_update.emit()
+
+func _on_fallow_timer_timeout():
+	button.disabled = false
+	button.modulate = Color(1, 1, 1, 1)
 
 # Primary Plot Sequence
 func _on_button_pressed():
@@ -116,6 +146,7 @@ func _on_button_pressed():
 					current_state = PlotState.GROWN
 					VariableStorage.plots_clicked += 1
 					VariableStorage.water_used += 1
+					wither_timer.start()
 				else:
 					print("Not enough water!")
 					NotificationManager.show_notification("Insufficient Resources","Not enough water!")
@@ -130,6 +161,15 @@ func _on_button_pressed():
 				current_state = PlotState.UNTILLED
 				VariableStorage.plots_clicked += 1
 				VariableStorage.crops_harvested += 1
+				wither_timer.stop()
+
+				harvest_counter += 1
+				if harvest_counter >= 3:
+					harvest_counter = 0
+					button.disabled = true
+					button.modulate = Color(1, 1, 1, 0.5)  # Dim the button
+					fallow_timer.start()
+                
 				if randf() <= 0.15:
 					VariableStorage.seeds += 1
 					print("Seed Drop!")
@@ -137,6 +177,22 @@ func _on_button_pressed():
 			else:
 				print("Need scythe tool selected!")
 				NotificationManager.show_notification("Wrong Tool","Need scythe tool selected!")
+				return
+		PlotState.WITHERED:  
+			if VariableStorage.current_tool == VariableStorage.TOOL_SCYTHE:
+				current_state = PlotState.UNTILLED
+				VariableStorage.plots_clicked += 1
+				if randf() <= 0.25:  
+					VariableStorage.seeds += 1
+					print("Seed Drop from withered plant!")
+					NotificationManager.show_notification("Seed Drop!","A seed has dropped from the withered plant!")
+			elif VariableStorage.current_tool == VariableStorage.TOOL_PLOW:
+				current_state = PlotState.TILLED
+				VariableStorage.plots_clicked += 1
+				VariableStorage.plow_used += 1
+			else:
+				print("Need scythe or plow tool selected!")
+				NotificationManager.show_notification("Wrong Tool","Need scythe or plow tool selected!")
 				return
 	if VariableStorage.mkOne_toggle_ON:
 		var adjacent_plots_mk_one = get_adjacent_plots_mk_one()
@@ -276,6 +332,7 @@ func try_upgraded_click(plot) -> void:
 					VariableStorage.water -= 1
 					plot.current_state = PlotState.GROWN
 					VariableStorage.plots_clicked += 1
+					wither_timer.start()
 				else:
 					print("Not enough water!")
 					return
@@ -287,8 +344,29 @@ func try_upgraded_click(plot) -> void:
 				VariableStorage.crops += 1
 				plot.current_state = PlotState.UNTILLED
 				VariableStorage.plots_clicked += 1
+				wither_timer.stop()
+
+				# Handle harvest counter for upgraded clicks
+				plot.harvest_counter += 1
+				if plot.harvest_counter >= 3:
+					plot.harvest_counter = 0
+					plot.button.disabled = true
+					plot.button.modulate = Color(1, 1, 1, 0.5)
+					plot.fallow_timer.start()
 			else:
 				print("Need scythe tool selected!")
+				return
+		PlotState.WITHERED:
+			if VariableStorage.current_tool == VariableStorage.TOOL_SCYTHE:
+				plot.current_state = PlotState.UNTILLED
+				VariableStorage.plots_clicked += 1
+				_reset_harvest_counter()
+			elif VariableStorage.current_tool == VariableStorage.TOOL_PLOW:
+				plot.current_state = PlotState.TILLED
+				VariableStorage.plots_clicked += 1
+				_reset_harvest_counter()
+			else:
+				print("Need scythe or plow tool selected!")
 				return
 	plot.button.text = STATE_CHARS[plot.current_state]
 	game_update.emit()
@@ -302,3 +380,6 @@ func _game_paused_check() -> bool:
 		NotificationManager.show_notification("Paused", "The game is paused.")
 		return true
 	return false
+
+func _reset_harvest_counter():
+	harvest_counter = 0

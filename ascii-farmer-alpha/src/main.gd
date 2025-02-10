@@ -1,5 +1,9 @@
 extends Control
 
+#  ----------------------------------------  AI AGENT PLAYTESTER CODE  ----------------------------------------  #
+
+
+
 #  ----------------------------------------  DEFAULT GODOT FUCNTIONS  ---------------------------------------- #
 
 # Runs when the application is opened
@@ -8,17 +12,24 @@ func _ready() -> void:
 	_connect_button_signals()
 	_setup_input_actions()
 	_initialize_game_labels()
-	load_game()
-	if !VariableStorage.is_game_paused:
-		if VariableStorage.time_elapsed_game > 0:
-			_set_start_time_from_save()
+	_set_sys_buttons_gameOFF()
+    
+	if FileAccess.file_exists(SaveManager.SAVE_FILE_PATH):
+		load_game()
+		if !VariableStorage.is_game_paused:
+			if VariableStorage.time_elapsed_game > 0:
+				_set_start_time_from_save()
+				_set_sys_buttons_gameON()
+				_unlock_starting_buttons()
+	else:
+		_start_up_message()
+
 
 func _process(delta: float) -> void:
 	_process_time_elapsed_app(delta)
 	if VariableStorage.time_elapsed_game > 0:
 		_process_time_elapsed_game()
 		_update_timer_display()
-	
 
 # ----------------------------------------  LABEL UI ELEMENT DECLARATIONS  ----------------------------------------  #
 
@@ -305,7 +316,20 @@ func _initialize_game_labels() -> void:
 	click_mk_label.text = "0"
 	click_price_label.text = "0"
 
-
+func _start_up_message() -> void:
+	NotificationManager.show_notification(
+        "Welcome to ASCII Farmer!",
+        "🌱 Plant and grow crops to earn coins!\n\n" +
+        "How to Play:\n" +
+        "1. Choose the right tool for the right task!\n" +
+        "2. Click plots or use the numpad to interact with them\n" +
+        "3. Wait for crops to grow and then harvest before they wither!\n" +
+        "4. Sell mature crops for coins\n\n" +
+        "Tips:\n" +
+        "• Unlock upgrades by playing\n" +
+        "• Watch for notifications about new features\n" +
+        "• Use your coins to expand and upgrade"
+    )
 # ----------------------------------------  Save Manager  ---------------------------------------- #
 
 # Step 1: Basic save with plot states
@@ -319,6 +343,11 @@ func save_game() -> void:
 		# System Data
 		"time_elapsed_game": VariableStorage.time_elapsed_game,
 		"is_game_paused": VariableStorage.is_game_paused,
+
+		# Notification Data
+		"mkOne_notification_shown": VariableStorage.mkOne_notification_shown,
+		"mkTwo_notification_shown": VariableStorage.mkTwo_notification_shown,
+		"mkThree_notification_shown": VariableStorage.mkThree_notification_shown,
 
 		# Inventory Data
 		"coins": VariableStorage.coins,
@@ -423,6 +452,11 @@ func load_game() -> void:
 		# System Data
 		VariableStorage.time_elapsed_game = save_data["time_elapsed_game"]
 		VariableStorage.is_game_paused = save_data["is_game_paused"]
+
+		# Notification Data
+		VariableStorage.mkOne_notification_shown = save_data["mkOne_notification_shown"]
+		VariableStorage.mkTwo_notification_shown = save_data["mkTwo_notification_shown"]
+		VariableStorage.mkThree_notification_shown = save_data["mkThree_notification_shown"]
 		
 		# Inventory Data
 		VariableStorage.coins = save_data["coins"]
@@ -632,6 +666,7 @@ func _on_buy_one_seed_button_pressed() -> void:
 		
 	else:
 		print("Not enough coins to purchase seeds")
+		NotificationManager.show_notification("Not enough coins", "You need " + str(VariableStorage.seed_price) + " coins to purchase seeds")
 
 func _on_buy_three_seed_button_pressed() -> void:
 	if _game_paused_check(): return
@@ -644,6 +679,7 @@ func _on_buy_three_seed_button_pressed() -> void:
 		
 	else:
 		print("Not enough coins to purchase seeds")
+		NotificationManager.show_notification("Not enough coins", "You need " + str(VariableStorage.seed_price * 3) + " coins to purchase seeds")
 
 func _on_buy_nine_seed_button_pressed() -> void:
 	if _game_paused_check(): return
@@ -655,6 +691,7 @@ func _on_buy_nine_seed_button_pressed() -> void:
 		
 	else:
 		print("Not enough coins to purchase seeds")
+		NotificationManager.show_notification("Not enough coins", "You need " + str(VariableStorage.seed_price * 9) + " coins to purchase seeds")
 
 
 # Water Buttons
@@ -664,6 +701,7 @@ func _on_buy_ten_water_button_pressed() -> void:
 	print("Buy Ten Water button pressed")
 	if VariableStorage.water >= VariableStorage.water_cap:
 		print("Water storage is at capacity!")
+		NotificationManager.show_notification("Water Storage Full", "Water storage is at capacity!")
 		return
 		
 	if VariableStorage.coins >= VariableStorage.water_price:
@@ -672,6 +710,7 @@ func _on_buy_ten_water_button_pressed() -> void:
 		
 		if water_to_add == 0:
 			print("Cannot add more water - at capacity!")
+			NotificationManager.show_notification("Water Storage Full", "Cannot add more water, storage is at capacity!")
 			return
 			
 		VariableStorage.coins -= VariableStorage.water_price
@@ -681,14 +720,17 @@ func _on_buy_ten_water_button_pressed() -> void:
 		
 		if water_to_add < 10:
 			print("Only added " + str(water_to_add) + " water due to capacity limits")
+			NotificationManager.show_notification("Water Storage Full", "Only added " + str(water_to_add) + " water due to capacity limits")
 	else:
 		print("Not enough coins to purchase water")
+		NotificationManager.show_notification("Not enough coins", "You need " + str(VariableStorage.water_price) + " coins to purchase water")
 
 func _on_buy_thirty_water_button_pressed() -> void:
 	if _game_paused_check(): return
 	print("Buy Thirty Water button pressed")
 	if VariableStorage.water >= VariableStorage.water_cap:
 		print("Water storage is at capacity!")
+		NotificationManager.show_notification("Water Storage Full", "Water storage is at capacity!")
 		return
 
 	if VariableStorage.coins >= VariableStorage.water_price:
@@ -697,6 +739,7 @@ func _on_buy_thirty_water_button_pressed() -> void:
 		
 		if water_to_add == 0:
 			print("Cannot add more water - at capacity!")
+			NotificationManager.show_notification("Water Storage Full", "Cannot add more water, storage is at capacity!")
 			return
 			
 		VariableStorage.coins -= VariableStorage.water_price
@@ -708,12 +751,14 @@ func _on_buy_thirty_water_button_pressed() -> void:
 			print("Only added " + str(water_to_add) + " water due to capacity limits")
 	else:
 		print("Not enough coins to purchase water")
+		NotificationManager.show_notification("Not enough coins", "You need " + str(VariableStorage.water_price) + " coins to purchase water")
 
 func _on_buy_ninety_water_button_pressed() -> void:
 	if _game_paused_check(): return
 	print("Buy Ninety Water button pressed")
 	if VariableStorage.water >= VariableStorage.water_cap:
 		print("Water storage is at capacity!")
+		NotificationManager.show_notification("Water Storage Full", "Water storage is at capacity!")
 		return
 
 	if VariableStorage.coins >= VariableStorage.water_price:
@@ -722,6 +767,7 @@ func _on_buy_ninety_water_button_pressed() -> void:
 		
 		if water_to_add == 0:
 			print("Cannot add more water - at capacity!")
+			NotificationManager.show_notification("Water Storage Full", "Cannot add more water, storage is at capacity!")
 			return
 			
 		VariableStorage.coins -= VariableStorage.water_price
@@ -732,8 +778,10 @@ func _on_buy_ninety_water_button_pressed() -> void:
 		
 		if water_to_add < 90:
 			print("Only added " + str(water_to_add) + " water due to capacity limits")
+			NotificationManager.show_notification("Water Storage Full", "Only added " + str(water_to_add) + " water due to capacity limits")
 	else:
 		print("Not enough coins to purchase water")
+		NotificationManager.show_notification("Not enough coins", "You need " + str(VariableStorage.water_price) + " coins to purchase water")
 
 
 # Crop Buttons
@@ -749,6 +797,7 @@ func _on_sell_one_crop_button_pressed() -> void:
 		_update_game_labels()
 	else:
 		print("Not enough crops to sell")
+		NotificationManager.show_notification("Not enough crops", "You need at least 1 crop to sell")
 
 func _on_sell_three_crop_button_pressed() -> void:
 	if _game_paused_check(): return
@@ -761,6 +810,7 @@ func _on_sell_three_crop_button_pressed() -> void:
 		_update_game_labels()
 	else:
 		print("Not enough crops to sell")
+		NotificationManager.show_notification("Not enough crops", "You need at least 3 crops to sell")
 
 func _on_sell_nine_crop_button_pressed() -> void:
 	if _game_paused_check(): return
@@ -773,6 +823,7 @@ func _on_sell_nine_crop_button_pressed() -> void:
 		_update_game_labels()
 	else:
 		print("Not enough crops to sell")
+		NotificationManager.show_notification("Not enough crops", "You need at least 9 crops to sell")
 
 # Buy Plot Button
 
@@ -792,6 +843,7 @@ func _on_buy_plot_button_pressed() -> void:
 			plot_price_label.text = str(VariableStorage.plot_price)
 	else:
 		print("Not enough coins to purchase plot")
+		NotificationManager.show_notification("Not enough coins", "You need " + str(VariableStorage.plot_price) + " coins to purchase a plot")
 
 
 # Buy Click Upgrade Button
@@ -806,9 +858,13 @@ func _on_buy_click_upgrade_button_pressed() -> void:
 				VariableStorage.mkOne_purchased = true
 				buy_click_upgrade_button.disabled = true
 				mkOne_toggle.disabled = false
+				NotificationManager.show_notification("Click Upgrade Purchased", "You can now use the Mk. 1 Click Upgrade!")
 				VariableStorage.click_upgrade_price_modifier += 4
 				VariableStorage.click_upgrade_price = VariableStorage.click_upgrade_price * VariableStorage.click_upgrade_price_modifier
 				_update_game_labels()
+			else:
+				NotificationManager.show_notification("Insufficient Coins", 
+					"You need " + str(VariableStorage.click_upgrade_price) + " coins to purchase Mk. 1 Click Upgrade!")
 		1:  # Buying Mk 2
 			if VariableStorage.coins >= VariableStorage.click_upgrade_price:
 				VariableStorage.coins -= VariableStorage.click_upgrade_price
@@ -816,9 +872,13 @@ func _on_buy_click_upgrade_button_pressed() -> void:
 				VariableStorage.mkTwo_purchased = true
 				buy_click_upgrade_button.disabled = true
 				mkTwo_toggle.disabled = false
+				NotificationManager.show_notification("Click Upgrade Purchased", "You can now use the Mk. 2 Click Upgrade!")
 				VariableStorage.click_upgrade_price_modifier += 5
 				VariableStorage.click_upgrade_price = VariableStorage.click_upgrade_price * VariableStorage.click_upgrade_price_modifier
 				_update_game_labels()
+			else:
+				NotificationManager.show_notification("Insufficient Coins", 
+					"You need " + str(VariableStorage.click_upgrade_price) + " coins to purchase Mk. 2 Click Upgrade!")
 		2:  # Buying Mk 3
 			if VariableStorage.coins >= VariableStorage.click_upgrade_price:
 				VariableStorage.coins -= VariableStorage.click_upgrade_price
@@ -826,9 +886,13 @@ func _on_buy_click_upgrade_button_pressed() -> void:
 				VariableStorage.mkThree_purchased = true
 				buy_click_upgrade_button.disabled = true
 				mkThree_toggle.disabled = false
+				NotificationManager.show_notification("Click Upgrade Purchased", "You can now use the Mk. 3 Click Upgrade!")
 				click_mk_label.text = "MAX"
 				click_price_label.text = "N/A"
 				_update_game_labels()
+			else:
+				NotificationManager.show_notification("Insufficient Coins", 
+					"You need " + str(VariableStorage.click_upgrade_price) + " coins to purchase Mk. 3 Click Upgrade!")
 
 func _on_buy_water_cap_upgrade_button_pressed() -> void:
 	if _game_paused_check(): return
@@ -840,9 +904,11 @@ func _on_buy_water_cap_upgrade_button_pressed() -> void:
 		VariableStorage.water_cap += 10
 		VariableStorage.water_cap_upgrade_price = VariableStorage.WATER_CAP_UPGRADE_BASE_PRICE * VariableStorage.water_cap_upgrade_price_modifier
 		buy_click_upgrade_button.disabled = true
+		NotificationManager.show_notification("Water Cap Upgrade Purchased", "Water Cap increased by 10!")
 		_update_game_labels()
 	else:
 		print("Not enough coins to purchase water cap upgrade")
+		NotificationManager.show_notification("Not enough coins", "You need " + str(VariableStorage.water_cap_upgrade_price) + " coins to purchase a water cap upgrade")
 
 # ----------------------------------------  Upgrade Unlock Checks ----------------------------------------  #
 
@@ -858,37 +924,49 @@ func _check_all_unlock_counters() -> void:
 func _check_bulk_seed_unlock_counter() -> void:
 	if VariableStorage.seeds_purchased >= 50:
 		buy_three_seed_button.disabled = false
+		NotificationManager.show_notification("Bulk Seed Purchase Unlocked", "You can now buy 3 seeds at a time!")
 		if VariableStorage.seeds_purchased >= 150:
 			buy_nine_seed_button.disabled = false
+			NotificationManager.show_notification("Bulk Seed Purchase Unlocked", "You can now buy 9 seeds at a time!")
 
 func _check_bulk_water_unlock_counter() -> void:
 	if VariableStorage.water_purchased >= 1000:
 		buy_thirty_water_button.disabled = false
+		NotificationManager.show_notification("Bulk Water Purchase Unlocked", "You can now buy 30 water at a time!")
 		if VariableStorage.water_purchased >= 3000:
 			buy_ninety_water_button.disabled = false
+			NotificationManager.show_notification("Bulk Water Purchase Unlocked", "You can now buy 90 water at a time!")
 
 func _check_bulk_crop_unlock_counter() -> void:
 	if VariableStorage.crops_sold >= 50:
 		sell_three_crop_button.disabled = false
+		NotificationManager.show_notification("Bulk Crop Sale Unlocked", "You can now sell 3 crops at a time!")
 		if VariableStorage.crops_sold >= 150:
 			sell_nine_crop_button.disabled = false
+			NotificationManager.show_notification("Bulk Crop Sale Unlocked", "You can now sell 9 crops at a time!")
 
 func _check_plots_clicked_counter() -> void:
 	if VariableStorage.plots_clicked >= 100:
 		UpgradesStoreContainer.visible = true
 		BuyClickUpgradeContainer.visible = true
-		if !VariableStorage.mkOne_purchased:
+		if !VariableStorage.mkOne_purchased && !VariableStorage.mkOne_notification_shown:
 			buy_click_upgrade_button.disabled = false
+			NotificationManager.show_notification("Click Upgrade Unlocked", "You can now purchase Mk. 1 Click Upgrade!")
 			VariableStorage.click_upgrade_price = VariableStorage.CLICK_UPGRADE_BASE_PRICE
 			click_price_label.text = str(VariableStorage.click_upgrade_price)
-		elif VariableStorage.plots_clicked >= 500 && !VariableStorage.mkTwo_purchased:
+			VariableStorage.mkOne_notification_shown = true
+		elif VariableStorage.plots_clicked >= 500 && !VariableStorage.mkTwo_purchased && !VariableStorage.mkTwo_notification_shown:
 			buy_click_upgrade_button.disabled = false
+			NotificationManager.show_notification("Click Upgrade Unlocked", "You can now purchase Mk. 2 Click Upgrade!")
 			VariableStorage.click_upgrade_price = VariableStorage.CLICK_UPGRADE_BASE_PRICE * 5
 			click_price_label.text = str(VariableStorage.click_upgrade_price)
-		elif VariableStorage.plots_clicked >= 1000 && !VariableStorage.mkThree_purchased:
+			VariableStorage.mkTwo_notification_shown = true
+		elif VariableStorage.plots_clicked >= 1000 && !VariableStorage.mkThree_purchased && !VariableStorage.mkThree_notification_shown:
 			buy_click_upgrade_button.disabled = false
+			NotificationManager.show_notification("Click Upgrade Unlocked", "You can now purchase Mk. 3 Click Upgrade!")
 			VariableStorage.click_upgrade_price = VariableStorage.CLICK_UPGRADE_BASE_PRICE * 10
-			click_price_label.text = str(VariableStorage.click_upgrade_price)	
+			click_price_label.text = str(VariableStorage.click_upgrade_price)
+			VariableStorage.mkThree_notification_shown = true	
 
 func _check_click_upgrades_purchased() -> void:
 	if VariableStorage.mkOne_purchased:
@@ -900,6 +978,7 @@ func _check_click_upgrades_purchased() -> void:
 
 func _check_water_used_counter() -> void:
 	if VariableStorage.water_used >= 100:
+		NotificationManager.show_notification("Water Cap Upgrade Unlocked", "You can now purchase Water Cap Upgrades!")	
 		UpgradesStoreContainer.visible = true
 		BuyWaterUpgradesContainer.visible = true
 
