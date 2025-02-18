@@ -4,6 +4,35 @@ extends Node
 
 # ----------------------------------------  System Functions  ---------------------------------------- #
 
+func add_coins(amount: float) -> void:
+	coins += amount
+	coins_earned += amount
+	
+	# Check for win condition
+	if coins_earned >= 10000:
+		is_game_paused = true
+		var time = time_elapsed_game
+		
+		# Calculate time components for formatting
+		var total_seconds = int(time)
+		var milliseconds = int((time - total_seconds) * 10000)
+		@warning_ignore("integer_division")
+		var hours = total_seconds / 3600
+		@warning_ignore("integer_division")
+		var minutes = (total_seconds % 3600) / 60
+		var seconds = total_seconds % 60
+		
+		# Format the time string
+		var time_string = "%02d:%02d:%02d.%04d" % [hours, minutes, seconds, milliseconds]
+		
+		NotificationManager.show_notification(
+			"Congratulations! You've Won!", 
+			"You've reached 10,000 coins earned!\n\n" +
+			"Final Time: " + time_string + "\n\n" +
+			"Take a screenshot to share with your friends!\n\n" +
+			"You can press Start to continue playing or Reset to start over."
+		)
+
 func reset_game_data() -> void:
 
 	# System
@@ -38,7 +67,7 @@ func reset_game_data() -> void:
 	click_upgrade_price_modifier = 1.0
 
 	water_cap_upgrade_price = WATER_CAP_UPGRADE_BASE_PRICE
-	water_cap_upgrade_price_modifier = 1.1
+	water_cap_upgrade_price_modifier = 1
 
 	plot_price = PLOT_BASE_PRICE
 	
@@ -64,7 +93,7 @@ func reset_game_data() -> void:
 	mkOne_toggle_ON = false
 	mkTwo_toggle_ON = false
 	mkThree_toggle_ON = false
-	water_cap_upgrade_mk = 1
+	water_cap_upgrade_mk = 0
 	water_cap_mk_unlocked = 0
 	water_cap_mk_purchased = 0
 
@@ -147,7 +176,7 @@ var crops_sold: int = 0
 var plots_purchased: int = 0
 var plots_clicked: int = 0
 
-var water_cap_upgrade_mk: int = 1
+var water_cap_upgrade_mk: int = 0
 var water_cap_mk_unlocked: int = 0
 var water_cap_mk_purchased: int = 0
 

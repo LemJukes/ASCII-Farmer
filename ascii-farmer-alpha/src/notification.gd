@@ -30,19 +30,10 @@ func setup(title: String, message: String) -> void:
         var required_height = $VBoxContainer.get_minimum_size().y
         custom_minimum_size.y = required_height
         size.y = required_height
-
-        # Position notification based on existing notifications
-        var notifications = get_tree().get_nodes_in_group("notifications")
-        var vertical_offset = 0
         
-        # Calculate offset based on existing notifications
-        for n in notifications:
-            if n != self:
-                vertical_offset += n.size.y + 10  # 10 pixel spacing between notifications
-        
-        # Center horizontally and stack vertically
+        # Initial position (will be adjusted by NotificationManager)
         position.x = (get_viewport_rect().size.x - size.x) / 2
-        position.y = 50 + vertical_offset  # Start 50 pixels from top
+        position.y = 50
     else:
         print("Error: Labels not found in notification")
 

@@ -44,7 +44,7 @@ func _ready():
 	game_update.connect(main._update_game_labels)
 	check_unlocks.connect(main._check_all_unlock_counters)
 	wither_timer = Timer.new()
-	wither_timer.wait_time = 5.0
+	wither_timer.wait_time = 10.0
 	wither_timer.one_shot = true
 	wither_timer.timeout.connect(_on_wither_timer_timeout)
 	add_child(wither_timer)
@@ -81,6 +81,10 @@ func _on_button_pressed():
 				current_state = PlotState.TILLED
 				VariableStorage.plots_clicked += 1
 				VariableStorage.plow_used += 1
+				if randf() <= 0.01:  # 1% chance
+					VariableStorage.add_coins(1)
+					print("Found a coin while plowing!")
+					NotificationManager.show_notification("Lucky!", "Found a coin while plowing!")
 			else:
 				print("Need Plow selected!")
 				NotificationManager.show_notification("Wrong Tool","Need Plow selected!")
@@ -279,6 +283,10 @@ func try_upgraded_click(plot) -> void:
 				plot.current_state = PlotState.TILLED
 				VariableStorage.plots_clicked += 1
 				VariableStorage.plow_used += 1
+				if randf() <= 0.01:  # 1% chance
+					VariableStorage.add_coins(1)
+					print("Found a coin while plowing!")
+					NotificationManager.show_notification("Lucky!", "Found a coin while plowing!")
 			else:
 				print("Need Plow selected!")
 				return
