@@ -75,6 +75,22 @@ func _on_button_pressed():
 	if _game_paused_check(): return
 	print ("Plot " + str(get_index()) + " clicked")
 	var original_state = current_state
+
+	if VariableStorage.tc_toggle_ON && VariableStorage.tc_charge > 0:
+		match current_state:
+			PlotState.UNTILLED:
+				if VariableStorage.current_tool != VariableStorage.TOOL_PLOW:
+					VariableStorage.current_tool = VariableStorage.TOOL_PLOW
+					VariableStorage.tc_charge -= 1
+			PlotState.PLANTED, PlotState.GROWING1, PlotState.GROWING2, PlotState.GROWING3:
+				if VariableStorage.current_tool != VariableStorage.TOOL_WATERING_CAN:
+					VariableStorage.current_tool = VariableStorage.TOOL_WATERING_CAN
+					VariableStorage.tc_charge -= 1
+			PlotState.GROWN, PlotState.WITHERED:
+				if VariableStorage.current_tool != VariableStorage.TOOL_SCYTHE:
+					VariableStorage.current_tool = VariableStorage.TOOL_SCYTHE
+					VariableStorage.tc_charge -= 1
+
 	match current_state:
 		PlotState.UNTILLED:
 			if VariableStorage.current_tool == VariableStorage.TOOL_PLOW:

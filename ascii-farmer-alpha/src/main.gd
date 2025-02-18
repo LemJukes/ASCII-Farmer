@@ -1,9 +1,5 @@
 extends Control
 
-#  ----------------------------------------  AI AGENT PLAYTESTER CODE  ----------------------------------------  #
-
-
-
 #  ----------------------------------------  DEFAULT GODOT FUCNTIONS  ---------------------------------------- #
 
 # Runs when the application is opened
@@ -13,7 +9,7 @@ func _ready() -> void:
 	_setup_input_actions()
 	_initialize_game_labels()
 	_set_sys_buttons_gameOFF()
-    
+	
 	if FileAccess.file_exists(SaveManager.SAVE_FILE_PATH):
 		load_game()
 		if !VariableStorage.is_game_paused:
@@ -56,7 +52,9 @@ func _process(delta: float) -> void:
 @onready var plot_price_label: Label = %PlotPriceLabel
 
 # Upgrade Labels
-@onready var UpgradesStoreContainer = %UpgradesVBoxContainer
+@onready var UpgradesContainer = %UpgradesVBoxContainer
+@onready var ClickUpgradeControlsContainer = %ClickUpgradeControlsVBoxContainer
+@onready var StoreUpgradesContainer = %StoreUpgradesVBoxContainer
 
 @onready var BuyWaterUpgradesContainer = %BuyWaterCapUpgradesVBoxContainer
 @onready var water_cap_mk_label: Label = %WaterCapUpgradeMkLabel
@@ -65,6 +63,17 @@ func _process(delta: float) -> void:
 @onready var BuyClickUpgradeContainer = %BuyClickUpgradesVBoxContainer
 @onready var click_mk_label: Label = %ClickUpgradeMkLabel
 @onready var click_price_label: Label = %ClickUpgradePriceLabel
+
+@onready var ToolChangerUpgradeControlsContainer = %ToolChangerUpgradeControlsVBoxContainer
+@onready var tc_mk_value_label: Label = %TCMkValueLabel
+@onready var tc_charge_cap_label: Label = %TCCapacityValueLabel
+@onready var tc_charges_value_label: Label = %TCChargesValueLabel
+
+@onready var BuyToolChangerUpgradeContainer = %BuyToolChangerUpgradeVBoxContainer
+@onready var tool_changer_mk_label: Label = %ToolChangerMkLabel
+@onready var tool_changer_price_label: Label = %ToolChangerPriceLabel
+@onready var BuyToolChangerChargeContainer = %BuyToolChangerChargeVBoxContainer
+@onready var tc_charge_price_label: Label = %TCChargePriceLabel
 
 # Field Labels
 @onready var field_grid: GridContainer = %FieldGridContainer
@@ -88,6 +97,8 @@ func _update_inventory_labels() -> void:
 	crops_label.text = str(VariableStorage.crops)
 	water_label.text = str(VariableStorage.water)
 	water_cap_label.text = str(VariableStorage.water_cap)
+	tc_charges_value_label.text = str(VariableStorage.tc_charge)
+	tc_charge_cap_label.text = str(VariableStorage.tc_charge_cap)
 
 func _update_tool_labels() -> void:
 	current_tool_label.text = VariableStorage.current_tool
@@ -97,6 +108,9 @@ func _update_store_labels() -> void:
 	water_price_label.text = str(VariableStorage.water_price)
 	crop_price_label.text = str(VariableStorage.crop_price)
 	plot_price_label.text = str(VariableStorage.plot_price)
+	tool_changer_mk_label.text = str(VariableStorage.tc_upgrade_mk + 1)
+	tool_changer_price_label.text = str(VariableStorage.tc_upgrade_price)
+	tc_charge_price_label.text = str(VariableStorage.tc_upgrade_price)
 
 func _update_upgrade_labels() -> void:
 	water_cap_mk_label.text = str(VariableStorage.water_cap_upgrade_mk)
@@ -105,10 +119,14 @@ func _update_upgrade_labels() -> void:
 	click_mk_label.text = str(VariableStorage.click_upgrade_mk + 1)
 	click_price_label.text = str(VariableStorage.click_upgrade_price)
 
+	tc_mk_value_label.text = str(VariableStorage.tc_upgrade_mk)
+	tc_charges_value_label.text = str(VariableStorage.tc_charge)
+
 func _update_upgrade_toggles() -> void:
 	mkOne_toggle.button_pressed = VariableStorage.mkOne_toggle_ON
 	mkTwo_toggle.button_pressed = VariableStorage.mkTwo_toggle_ON
 	mkThree_toggle.button_pressed = VariableStorage.mkThree_toggle_ON
+	tc_control_toggle.button_pressed = VariableStorage.tc_toggle_ON	
 
 func _timestamp_printout() -> void:
 	print("This action occured at msec: " + str(VariableStorage.time_elapsed_app))
@@ -150,6 +168,8 @@ func _update_timer_display() -> void:
 @onready var mkTwo_toggle: CheckButton = %MkTwoControlToggle
 @onready var mkThree_toggle: CheckButton = %MkThreeControlToggle
 
+@onready var tc_control_toggle: CheckButton = %TCControlToggle
+
 # Store Buttons
 @onready var buy_one_seed_button: Button = %BuyOneSeedButton
 @onready var buy_three_seed_button: Button = %BuyThreeSeedButton
@@ -165,8 +185,11 @@ func _update_timer_display() -> void:
 
 @onready var buy_plot_button: Button = %BuyPlotButton
 
+@onready var buy_tc_charge_button: Button = %BuyTCChargeButton
+
 @onready var buy_click_upgrade_button: Button = %BuyClickUpgradeButton
 @onready var buy_water_cap_upgrade_button: Button = %BuyWaterCapUpgradeButton
+@onready var buy_tool_changer_upgrade_button: Button = %BuyToolChangerUpgradeButton
 
 # Keboard Binding Actions Dictionary
 
@@ -283,11 +306,13 @@ func _connect_store_button_signals() -> void:
 	buy_click_upgrade_button.pressed.connect(_on_buy_click_upgrade_button_pressed)
 	buy_water_cap_upgrade_button.pressed.connect(_on_buy_water_cap_upgrade_button_pressed)
 
+	buy_tool_changer_upgrade_button.pressed.connect(_on_buy_tool_changer_upgrade_button_pressed)
 
 func _connect_upgrade_button_signals() -> void:
 	mkOne_toggle.toggled.connect(_on_mkOne_toggle_toggled)
 	mkTwo_toggle.toggled.connect(_on_mkTwo_toggle_toggled)
 	mkThree_toggle.toggled.connect(_on_mkThree_toggle_toggled)
+	tc_control_toggle.toggled.connect(_on_tc_control_toggle_toggled)
 
 # ----------------------------------------  Game Initialization  ----------------------------------------  #
 
@@ -318,18 +343,18 @@ func _initialize_game_labels() -> void:
 
 func _start_up_message() -> void:
 	NotificationManager.show_notification(
-        "Welcome to ASCII Farmer!",
-        "🌱 Plant and grow crops to earn coins!\n\n" +
-        "How to Play:\n" +
-        "1. Choose the right tool for the right task!\n" +
-        "2. Click plots or use the numpad to interact with them\n" +
-        "3. Wait for crops to grow and then harvest before they wither!\n" +
-        "4. Sell mature crops for coins\n\n" +
-        "Tips:\n" +
-        "• Unlock upgrades by playing\n" +
-        "• Watch for notifications about new features\n" +
-        "• Use your coins to expand and upgrade"
-    )
+		"Welcome to ASCII Farmer!",
+		"🌱 Plant and grow crops to earn coins!\n\n" +
+		"How to Play:\n" +
+		"1. Choose the right tool for the right task!\n" +
+		"2. Click plots or use the numpad to interact with them\n" +
+		"3. Wait for crops to grow and then harvest before they wither!\n" +
+		"4. Sell mature crops for coins\n\n" +
+		"Tips:\n" +
+		"• Unlock upgrades by playing\n" +
+		"• Watch for notifications about new features\n" +
+		"• Use your coins to expand and upgrade"
+	)
 # ----------------------------------------  Save Manager  ---------------------------------------- #
 
 # Step 1: Basic save with plot states
@@ -348,6 +373,7 @@ func save_game() -> void:
 		"mkOne_notification_shown": VariableStorage.mkOne_notification_shown,
 		"mkTwo_notification_shown": VariableStorage.mkTwo_notification_shown,
 		"mkThree_notification_shown": VariableStorage.mkThree_notification_shown,
+		"tool_changer_notification_shown": VariableStorage.tool_changer_notification_shown,
 
 		# Inventory Data
 		"coins": VariableStorage.coins,
@@ -386,10 +412,6 @@ func save_game() -> void:
 		"plots_purchased": VariableStorage.plots_purchased,
 		"plots_clicked": VariableStorage.plots_clicked,
 
-		"water_cap_upgrade_mk": VariableStorage.water_cap_upgrade_mk,
-		"water_cap_mk_unlocked": VariableStorage.water_cap_mk_unlocked,
-		"water_cap_mk_purchased": VariableStorage.water_cap_mk_purchased,
-
 		# Upgrade Counters
 		"click_upgrade_mk": VariableStorage.click_upgrade_mk,
 
@@ -399,7 +421,17 @@ func save_game() -> void:
 
 		"mkOne_toggle_ON": VariableStorage.mkOne_toggle_ON,
 		"mkTwo_toggle_ON": VariableStorage.mkTwo_toggle_ON,
-		"mkThree_toggle_ON": VariableStorage.mkThree_toggle_ON
+		"mkThree_toggle_ON": VariableStorage.mkThree_toggle_ON,
+
+		"water_cap_upgrade_mk": VariableStorage.water_cap_upgrade_mk,
+		"water_cap_mk_unlocked": VariableStorage.water_cap_mk_unlocked,
+		"water_cap_mk_purchased": VariableStorage.water_cap_mk_purchased,
+
+		"tc_upgrade_mk": VariableStorage.tc_upgrade_mk,
+		"tc_mk_unlocked": VariableStorage.tc_mk_unlocked,
+		"tc_mk_purchased": VariableStorage.tc_mk_purchased,
+		"tc_charge_cap": VariableStorage.tc_charge_cap,
+		"tc_charge": VariableStorage.tc_charge
 
 	}
 	
@@ -457,6 +489,7 @@ func load_game() -> void:
 		VariableStorage.mkOne_notification_shown = save_data["mkOne_notification_shown"]
 		VariableStorage.mkTwo_notification_shown = save_data["mkTwo_notification_shown"]
 		VariableStorage.mkThree_notification_shown = save_data["mkThree_notification_shown"]
+		VariableStorage.tool_changer_notification_shown = save_data["tool_changer_notification_shown"]
 		
 		# Inventory Data
 		VariableStorage.coins = save_data["coins"]
@@ -498,6 +531,7 @@ func load_game() -> void:
 		VariableStorage.water_cap_upgrade_mk = save_data["water_cap_upgrade_mk"]
 		VariableStorage.water_cap_mk_unlocked = save_data["water_cap_mk_unlocked"]
 		VariableStorage.water_cap_mk_purchased = save_data["water_cap_mk_purchased"]
+		
 		VariableStorage.click_upgrade_mk = save_data["click_upgrade_mk"]
 		VariableStorage.mkOne_purchased = save_data["mkOne_purchased"]
 		VariableStorage.mkTwo_purchased = save_data["mkTwo_purchased"]
@@ -505,8 +539,13 @@ func load_game() -> void:
 		VariableStorage.mkOne_toggle_ON = save_data["mkOne_toggle_ON"]
 		VariableStorage.mkTwo_toggle_ON = save_data["mkTwo_toggle_ON"]
 		VariableStorage.mkThree_toggle_ON = save_data["mkThree_toggle_ON"]
-		
 
+		VariableStorage.tc_upgrade_mk = save_data["tc_upgrade_mk"]
+		VariableStorage.tc_mk_unlocked = save_data["tc_mk_unlocked"]
+		VariableStorage.tc_mk_purchased = save_data["tc_mk_purchased"]
+		VariableStorage.tc_charge_cap = save_data["tc_charge_cap"]
+		VariableStorage.tc_charge = save_data["tc_charge"]
+		
 		_set_sys_buttons_gameON()
 		_unlock_starting_buttons()
 		_check_all_unlock_counters()
@@ -643,12 +682,17 @@ func _on_mkTwo_toggle_toggled(_button_pressed: bool) -> void:
 	print("Mk. 2 toggle pressed" + str(VariableStorage.mkTwo_toggle_ON))
 	_update_game_labels()
 
-func _on_mkThree_toggle_toggled() -> void:
+func _on_mkThree_toggle_toggled(_button_pressed: bool) -> void:
 	if _game_paused_check(): return
 	VariableStorage.mkThree_toggle_ON = true
 	print("Mk. 3 toggle pressed" + str(VariableStorage.mkThree_toggle_ON))
 	_update_game_labels()
 
+func _on_tc_control_toggle_toggled(_button_pressed: bool) -> void:
+	if _game_paused_check(): return
+	VariableStorage.tc_toggle_ON = true
+	print("Tool Changer toggle pressed" + str(VariableStorage.tc_toggle_ON))
+	_update_game_labels()
 
 # ----------------------------------------  Store Buttons  ----------------------------------------  #
 
@@ -850,6 +894,8 @@ func _on_buy_click_upgrade_button_pressed() -> void:
 	match VariableStorage.click_upgrade_mk:
 		0:  # Buying Mk 1
 			if VariableStorage.coins >= VariableStorage.click_upgrade_price:
+				UpgradesContainer.visible = true
+				ClickUpgradeControlsContainer.visible = true
 				VariableStorage.coins -= VariableStorage.click_upgrade_price
 				VariableStorage.click_upgrade_mk = 1
 				VariableStorage.mkOne_purchased = true
@@ -912,7 +958,53 @@ func _on_buy_water_cap_upgrade_button_pressed() -> void:
 		NotificationManager.show_notification("Not enough coins", 
 			"You need " + str(VariableStorage.water_cap_upgrade_price) + 
 			" coins to purchase a water cap upgrade")
-# ----------------------------------------  Upgrade Unlock Checks ----------------------------------------  #
+
+func _on_buy_tool_changer_upgrade_button_pressed() -> void:
+	if _game_paused_check(): return
+	
+	if VariableStorage.coins >= VariableStorage.tc_upgrade_price:
+		VariableStorage.coins -= VariableStorage.tc_upgrade_price
+		VariableStorage.tc_mk_purchased += 1
+		VariableStorage.tc_upgrade_mk += 1
+		if VariableStorage.tc_charge_cap == 0:
+			VariableStorage.tc_charge_cap = 10
+		else:
+			VariableStorage.tc_charge_cap += 10
+		
+		# Calculate new price with cleaner rounding
+		var base_price = VariableStorage.TC_UPGRADE_BASE_PRICE
+		var multiplier = pow(1.5, VariableStorage.tc_upgrade_mk)
+		VariableStorage.tc_upgrade_price = roundf(base_price * multiplier)
+		
+		# First time purchase initialization
+		if VariableStorage.tc_mk_purchased == 1:
+			# Enable containers
+			BuyToolChangerChargeContainer.visible = true
+			UpgradesContainer.visible = true
+			ToolChangerUpgradeControlsContainer.visible = true
+			tc_control_toggle.disabled = false
+			
+			# Show initial tutorial notification
+			NotificationManager.show_notification(
+				"Tool Changer Unlocked!", 
+				"When toggled ON, your tool selection will be automated.\nUse charges to automatically switch between tools."
+			)
+		else:
+			# Regular upgrade notification
+			NotificationManager.show_notification(
+				"Tool Changer Upgrade Purchased", 
+				"Tool Changer capacity increased by 10!"
+			)
+		
+		buy_tool_changer_upgrade_button.disabled = true
+		_update_game_labels()
+	else:
+		print("Not enough coins to purchase tool changer upgrade")
+		NotificationManager.show_notification(
+			"Not enough coins", 
+			"You need " + str(VariableStorage.tc_upgrade_price) + 
+			" coins to purchase a tool changer upgrade"
+		)
 
 # ----------------------------------------  Upgrade Unlock Checks ----------------------------------------  #
 
@@ -920,9 +1012,10 @@ func _check_all_unlock_counters() -> void:
 	_check_bulk_purchases()
 	_check_click_upgrades()
 	_check_water_cap_upgrades()
+	_check_tool_usage()
 
 func _check_bulk_purchases() -> void:
-    # Check bulk seed unlocks
+	# Check bulk seed unlocks
 	if VariableStorage.seeds_purchased >= 150 && buy_nine_seed_button.disabled:
 		buy_three_seed_button.disabled = false
 		buy_nine_seed_button.disabled = false
@@ -931,7 +1024,7 @@ func _check_bulk_purchases() -> void:
 		buy_three_seed_button.disabled = false
 		NotificationManager.show_notification("Bulk Seed Purchase Unlocked", "You can now buy 3 seeds at a time!")
 
-    # Check bulk water unlocks
+	# Check bulk water unlocks
 	if VariableStorage.water_purchased >= 3000 && buy_ninety_water_button.disabled:
 		buy_thirty_water_button.disabled = false
 		buy_ninety_water_button.disabled = false
@@ -940,7 +1033,7 @@ func _check_bulk_purchases() -> void:
 		buy_thirty_water_button.disabled = false
 		NotificationManager.show_notification("Bulk Water Purchase Unlocked", "You can now buy 30 water at a time!")
 
-    # Check bulk crop unlocks
+	# Check bulk crop unlocks
 	if VariableStorage.crops_sold >= 150 && sell_nine_crop_button.disabled:
 		sell_three_crop_button.disabled = false
 		sell_nine_crop_button.disabled = false
@@ -950,24 +1043,24 @@ func _check_bulk_purchases() -> void:
 		NotificationManager.show_notification("Bulk Crop Sale Unlocked", "You can now sell 3 crops at a time!")
 
 func _check_click_upgrades() -> void:
-	if VariableStorage.plots_clicked < 100:
+	if VariableStorage.plots_clicked < 1000:
 		return
 
-	UpgradesStoreContainer.visible = true
+	StoreUpgradesContainer.visible = true
 	BuyClickUpgradeContainer.visible = true
 
-    # Update click upgrade availability based on progress
-	if VariableStorage.plots_clicked >= 1000 && !VariableStorage.mkThree_purchased && !VariableStorage.mkThree_notification_shown:
+	# Update click upgrade availability based on progress
+	if VariableStorage.plots_clicked >= 5000 && !VariableStorage.mkThree_purchased && !VariableStorage.mkThree_notification_shown:
 		_unlock_click_upgrade(3, VariableStorage.CLICK_UPGRADE_BASE_PRICE * 10)
 		VariableStorage.mkThree_notification_shown = true
-	elif VariableStorage.plots_clicked >= 500 && !VariableStorage.mkTwo_purchased && !VariableStorage.mkTwo_notification_shown:
+	elif VariableStorage.plots_clicked >= 2500 && !VariableStorage.mkTwo_purchased && !VariableStorage.mkTwo_notification_shown:
 		_unlock_click_upgrade(2, VariableStorage.CLICK_UPGRADE_BASE_PRICE * 5)
 		VariableStorage.mkTwo_notification_shown = true
 	elif !VariableStorage.mkOne_purchased && !VariableStorage.mkOne_notification_shown:
 		_unlock_click_upgrade(1, VariableStorage.CLICK_UPGRADE_BASE_PRICE)
 		VariableStorage.mkOne_notification_shown = true
 
-    # Update toggle buttons based on purchases
+	# Update toggle buttons based on purchases
 	mkOne_toggle.disabled = !VariableStorage.mkOne_purchased
 	mkTwo_toggle.disabled = !VariableStorage.mkTwo_purchased
 	mkThree_toggle.disabled = !VariableStorage.mkThree_purchased
@@ -980,18 +1073,18 @@ func _unlock_click_upgrade(mk: int, price: float) -> void:
 		"You can now purchase Mk. " + str(mk) + " Click Upgrade!")
 
 func _check_water_cap_upgrades() -> void:
-	if VariableStorage.water_used < 100:
+	if VariableStorage.water_used < 50:
 		return
 
 	if !BuyWaterUpgradesContainer.visible:
-		UpgradesStoreContainer.visible = true
+		StoreUpgradesContainer.visible = true
 		BuyWaterUpgradesContainer.visible = true
 		NotificationManager.show_notification("Water Cap Upgrade Unlocked", 
 			"You can now purchase Water Cap Upgrades!")
 
 	@warning_ignore("integer_division")
 	var current_water_tier: int = int(VariableStorage.water_used / 100)
-    
+	
 	if current_water_tier > VariableStorage.water_cap_mk_unlocked:
 		VariableStorage.water_cap_mk_unlocked = current_water_tier
 		buy_water_cap_upgrade_button.disabled = false
@@ -1000,8 +1093,30 @@ func _check_water_cap_upgrades() -> void:
 
 func _check_tool_usage() -> void:
 	var tools_used = VariableStorage.plow_used + VariableStorage.water_used + VariableStorage.crops_harvested
-	if tools_used >= 100:
-		pass#_unlock_tool_changer_upgrade()
+	if tools_used < 100:
+		return
+
+	# Show containers
+	StoreUpgradesContainer.visible = true
+	BuyToolChangerUpgradeContainer.visible = true
+
+	# Check for tool changer upgrade unlocks
+	@warning_ignore("integer_division")
+	var current_tc_tier: int = int(tools_used / 100)
+	
+	if current_tc_tier > VariableStorage.tc_mk_unlocked:
+		VariableStorage.tc_mk_unlocked = current_tc_tier
+		buy_tool_changer_upgrade_button.disabled = false
+	else:
+		buy_tool_changer_upgrade_button.disabled = current_tc_tier <= VariableStorage.tc_upgrade_mk
+
+	# Only show notification first time
+	if !VariableStorage.tool_changer_notification_shown:
+		NotificationManager.show_notification(
+			"Tool Changer Upgrade Unlocked", 
+			"You can now purchase the Tool Changer upgrade!"
+		)
+		VariableStorage.tool_changer_notification_shown = true
 		
 # ----------------------------------------  Helper Functions ----------------------------------------  #
 

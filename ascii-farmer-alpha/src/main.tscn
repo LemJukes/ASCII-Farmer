@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/fld_handler.gd" id="2_pe2g6"]
 
 [node name="Control" type="Control"]
-custom_minimum_size = Vector2(400, 1200)
+custom_minimum_size = Vector2(400, 600)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +16,7 @@ size_flags_vertical = 3
 script = ExtResource("1_8ggr0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(400, 600)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +35,7 @@ layout_mode = 2
 
 [node name="PrimaryVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 
@@ -310,6 +311,7 @@ text = "Scythe"
 
 [node name="UpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="UpgradeControlsLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradesVBoxContainer"]
@@ -319,6 +321,7 @@ horizontal_alignment = 1
 
 [node name="ClickUpgradeControlsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradesVBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -382,6 +385,7 @@ disabled = true
 
 [node name="ToolChangerUpgradeControlsVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradesVBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -450,9 +454,6 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "$TC_Charges"
 horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/ToolsAndUpgradeControlVBoxContainer/UpgradesVBoxContainer/ToolChangerUpgradeControlsVBoxContainer"]
-layout_mode = 2
 
 [node name="HSeparator3" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer"]
 layout_mode = 2
@@ -598,26 +599,62 @@ layout_mode = 2
 disabled = true
 text = "9x"
 
-[node name="BuyPlotVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
+layout_mode = 2
+
+[node name="BuyPlotVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="BuyPlotLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/BuyPlotVBoxContainer"]
+[node name="BuyPlotLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer/BuyPlotVBoxContainer"]
 layout_mode = 2
 text = "Buy Plot:"
 horizontal_alignment = 1
 
-[node name="PlotPriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/BuyPlotVBoxContainer"]
+[node name="PlotPriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer/BuyPlotVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "$PlotPrice"
 horizontal_alignment = 1
 
-[node name="BuyPlotButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/BuyPlotVBoxContainer"]
+[node name="BuyPlotButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer/BuyPlotVBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="BuyPlotButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/BuyPlotVBoxContainer/BuyPlotButtonsHBoxContainer"]
+[node name="BuyPlotButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer/BuyPlotVBoxContainer/BuyPlotButtonsHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "1x"
+
+[node name="BuyToolChangerChargeVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="BuyTCChargeLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer/BuyToolChangerChargeVBoxContainer"]
+layout_mode = 2
+text = "Buy TC Charge:"
+horizontal_alignment = 1
+
+[node name="TCChargePriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer/BuyToolChangerChargeVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$TCChargePrice"
+horizontal_alignment = 1
+
+[node name="BuyTCChargeButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer/BuyToolChangerChargeVBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuyTCChargeButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/HBoxContainer/BuyToolChangerChargeVBoxContainer/BuyTCChargeButtonsHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -626,6 +663,7 @@ text = "1x"
 
 [node name="StoreUpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -636,6 +674,7 @@ horizontal_alignment = 1
 
 [node name="BuyWaterCapUpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -677,6 +716,7 @@ text = "Buy Upgrade"
 
 [node name="BuyClickUpgradesVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -716,39 +756,43 @@ layout_mode = 2
 disabled = true
 text = "Buy Upgrade"
 
-[node name="BuyToolChangerUpgradeVBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer"]
+[node name="BuyToolChangerUpgradeVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="BuyToolChangerUpgradeLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer2"]
+[node name="BuyToolChangerUpgradeLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer"]
 layout_mode = 2
-text = "Buy Tool Chagner Upgrade:"
+text = "Buy Tool Changer Upgrade:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="ToolChangerMkLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer2/HBoxContainer"]
+[node name="ToolChangerMkLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$ToolChangerMk
 "
 horizontal_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer2/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="ToolChangerPriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer2/HBoxContainer"]
+[node name="ToolChangerPriceLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$ToolChangerCost"
 horizontal_alignment = 1
 
-[node name="BuyToolChangerUpgradeButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer2"]
+[node name="BuyToolChangerUpgradeButtonsHBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="BuyToolChangerUpgradeButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer2/BuyToolChangerUpgradeButtonsHBoxContainer"]
+[node name="BuyToolChangerUpgradeButton" type="Button" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyToolChangerUpgradeVBoxContainer/BuyToolChangerUpgradeButtonsHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Buy Upgrade"
