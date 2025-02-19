@@ -92,7 +92,7 @@ func _update_game_labels() -> void:
 	save_game()
 
 func _update_inventory_labels() -> void:
-	coins_label.text = str(VariableStorage.coins)
+	coins_label.text = "%.2f" % VariableStorage.coins
 	seeds_label.text = str(VariableStorage.seeds)
 	crops_label.text = str(VariableStorage.crops)
 	water_label.text = str(VariableStorage.water)
@@ -715,8 +715,9 @@ func _on_buy_one_seed_button_pressed() -> void:
 func _on_buy_three_seed_button_pressed() -> void:
 	if _game_paused_check(): return
 	print("Buy Three Seed button pressed")
-	if VariableStorage.coins >= VariableStorage.seed_price:
-		VariableStorage.coins -= VariableStorage.seed_price
+	var bulk_seed_price = ((VariableStorage.seed_price - VariableStorage.seed_price_modifier) * 3)
+	if VariableStorage.coins >= bulk_seed_price:
+		VariableStorage.coins -= bulk_seed_price
 		VariableStorage.seeds += 3
 		VariableStorage.seeds_purchased += 3
 		_update_game_labels()
@@ -727,8 +728,9 @@ func _on_buy_three_seed_button_pressed() -> void:
 
 func _on_buy_nine_seed_button_pressed() -> void:
 	if _game_paused_check(): return
-	if VariableStorage.coins >= VariableStorage.seed_price:
-		VariableStorage.coins -= VariableStorage.seed_price
+	var bulk_seed_price = ((VariableStorage.seed_price - VariableStorage.seed_price_modifier) * 9)
+	if VariableStorage.coins >= bulk_seed_price:
+		VariableStorage.coins -= bulk_seed_price
 		VariableStorage.seeds += 9
 		VariableStorage.seeds_purchased += 9
 		_update_game_labels()
@@ -777,7 +779,8 @@ func _on_buy_thirty_water_button_pressed() -> void:
 		NotificationManager.show_notification("Water Storage Full", "Water storage is at capacity!")
 		return
 
-	if VariableStorage.coins >= VariableStorage.water_price:
+	var bulk_water_price = ((VariableStorage.water_price - VariableStorage.water_price_modifier) * 30)	
+	if VariableStorage.coins >= bulk_water_price:
 		var space_remaining = VariableStorage.water_cap - VariableStorage.water
 		var water_to_add = min(30, space_remaining)
 		
@@ -785,8 +788,7 @@ func _on_buy_thirty_water_button_pressed() -> void:
 			print("Cannot add more water - at capacity!")
 			NotificationManager.show_notification("Water Storage Full", "Cannot add more water, storage is at capacity!")
 			return
-			
-		VariableStorage.coins -= VariableStorage.water_price
+		VariableStorage.coins -= bulk_water_price
 		VariableStorage.water += water_to_add
 		VariableStorage.water_purchased += water_to_add
 		_update_game_labels()
@@ -804,8 +806,8 @@ func _on_buy_ninety_water_button_pressed() -> void:
 		print("Water storage is at capacity!")
 		NotificationManager.show_notification("Water Storage Full", "Water storage is at capacity!")
 		return
-
-	if VariableStorage.coins >= VariableStorage.water_price:
+	var bulk_water_price = ((VariableStorage.water_price - VariableStorage.water_price_modifier) * 90)
+	if VariableStorage.coins >= bulk_water_price:
 		var space_remaining = VariableStorage.water_cap - VariableStorage.water
 		var water_to_add = min(90, space_remaining)
 		
@@ -814,7 +816,7 @@ func _on_buy_ninety_water_button_pressed() -> void:
 			NotificationManager.show_notification("Water Storage Full", "Cannot add more water, storage is at capacity!")
 			return
 			
-		VariableStorage.coins -= VariableStorage.water_price
+		VariableStorage.coins -= bulk_water_price
 		VariableStorage.water += water_to_add
 		VariableStorage.water_purchased += water_to_add
 		_check_bulk_purchases()
@@ -1010,6 +1012,7 @@ func _on_buy_tool_changer_upgrade_button_pressed() -> void:
 
 func _check_all_unlock_counters() -> void:
 	_check_bulk_purchases()
+	_check_crops_sold()
 	_check_click_upgrades()
 	_check_water_cap_upgrades()
 	_check_tool_usage()
@@ -1041,6 +1044,16 @@ func _check_bulk_purchases() -> void:
 	elif VariableStorage.crops_sold >= 50 && sell_three_crop_button.disabled:
 		sell_three_crop_button.disabled = false
 		NotificationManager.show_notification("Bulk Crop Sale Unlocked", "You can now sell 3 crops at a time!")
+
+func _check_crops_sold() -> void:
+	var modifier_increases = floor(float(VariableStorage.crops_sold) / 10.0)
+	
+	var new_modifier = 1.0 + (modifier_increases * 0.05)
+	
+	if new_modifier != VariableStorage.crop_price_modifier:
+		VariableStorage.crop_price_modifier = new_modifier
+		VariableStorage.crop_price = VariableStorage.CROP_BASE_PRICE * VariableStorage.crop_price_modifier
+		_update_game_labels()
 
 func _check_click_upgrades() -> void:
 	if VariableStorage.plots_clicked < 1000:

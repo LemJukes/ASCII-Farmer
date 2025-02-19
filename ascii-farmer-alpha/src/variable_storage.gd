@@ -149,10 +149,10 @@ const SEED_BASE_PRICE = 1
 const WATER_BASE_PRICE = 1
 const CROP_BASE_PRICE = 2.5
 
-const BASE_PRICE_MODIFIER = 1.1
+const BASE_PRICE_MODIFIER = 1.00
 
-var seed_price_modifier: float = BASE_PRICE_MODIFIER
-var water_price_modifier: float = BASE_PRICE_MODIFIER
+var seed_price_modifier: float = BASE_PRICE_MODIFIER - 1
+var water_price_modifier: float = BASE_PRICE_MODIFIER - 1
 var crop_price_modifier: float = BASE_PRICE_MODIFIER
 
 var seed_price: float = SEED_BASE_PRICE * seed_price_modifier
