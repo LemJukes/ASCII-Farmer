@@ -147,9 +147,9 @@ const TOOL_SCYTHE = "Scythe"
 # Supplies Variables
 const SEED_BASE_PRICE = 1
 const WATER_BASE_PRICE = 1
-const CROP_BASE_PRICE = 2
+const CROP_BASE_PRICE = 2.5
 
-const BASE_PRICE_MODIFIER = 1.0
+const BASE_PRICE_MODIFIER = 1.1
 
 var seed_price_modifier: float = BASE_PRICE_MODIFIER
 var water_price_modifier: float = BASE_PRICE_MODIFIER

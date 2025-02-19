@@ -847,7 +847,7 @@ func _on_sell_three_crop_button_pressed() -> void:
 	print("Sell Three Crop button pressed")
 	if VariableStorage.crops >= 3:
 		VariableStorage.crops -= 3
-		VariableStorage.add_coins(VariableStorage.crop_price * 3)
+		VariableStorage.add_coins((VariableStorage.crop_price * 3) * VariableStorage.crop_price_modifier)
 		VariableStorage.crops_sold += 3
 		_update_game_labels()
 	else:
@@ -859,7 +859,7 @@ func _on_sell_nine_crop_button_pressed() -> void:
 	print("Sell Nine Crop button pressed")
 	if VariableStorage.crops >= 9:
 		VariableStorage.crops -= 9
-		VariableStorage.add_coins(VariableStorage.crop_price * 9)
+		VariableStorage.add_coins((VariableStorage.crop_price * 9) * VariableStorage.crop_price_modifier)
 		VariableStorage.crops_sold += 9
 		_update_game_labels()
 	else:
