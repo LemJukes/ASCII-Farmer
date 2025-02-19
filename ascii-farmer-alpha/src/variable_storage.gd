@@ -83,7 +83,7 @@ func reset_game_data() -> void:
 	# Unlock Counters
 	coins_earned = 0
 	crops_harvested = 0
-	plow_used = 99
+	plow_used = 0
 	water_used = 0
 	seeds_purchased = 0
 	water_purchased = 0
@@ -185,7 +185,7 @@ var plot_count: int = 0
 var coins_earned: float = 0
 var crops_harvested: int = 0
 
-var plow_used: int = 99
+var plow_used: int = 0
 var water_used: int = 0
 
 var seeds_purchased: int = 0

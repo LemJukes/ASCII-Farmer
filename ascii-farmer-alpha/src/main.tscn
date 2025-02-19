@@ -687,6 +687,12 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
+[node name="WaterCapMkLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mk. "
+horizontal_alignment = 1
+
 [node name="WaterCapUpgradeMkLabel" type="Label" parent="MarginContainer/ScrollContainer/PrimaryVBoxContainer/GameVBoxContainer/PlayerVBoxContainer/StoreVBoxContainer/StoreUpgradesVBoxContainer/BuyWaterCapUpgradesVBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2

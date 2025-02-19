@@ -113,7 +113,7 @@ func _update_store_labels() -> void:
 	tc_charge_price_label.text = str(VariableStorage.tc_upgrade_price)
 
 func _update_upgrade_labels() -> void:
-	water_cap_mk_label.text = str(VariableStorage.water_cap_upgrade_mk)
+	water_cap_mk_label.text = str(VariableStorage.water_cap_mk_unlocked)
 	water_cap_price_label.text = str(VariableStorage.water_cap_upgrade_price)
 
 	click_mk_label.text = str(VariableStorage.click_upgrade_mk + 1)
@@ -1073,17 +1073,21 @@ func _unlock_click_upgrade(mk: int, price: float) -> void:
 		"You can now purchase Mk. " + str(mk) + " Click Upgrade!")
 
 func _check_water_cap_upgrades() -> void:
-	if VariableStorage.water_used < 50:
+	if VariableStorage.water_used < 10:
 		return
 
 	if !BuyWaterUpgradesContainer.visible:
 		StoreUpgradesContainer.visible = true
 		BuyWaterUpgradesContainer.visible = true
+		VariableStorage.water_cap_mk_unlocked = 1
+		buy_water_cap_upgrade_button.disabled = false
 		NotificationManager.show_notification("Water Cap Upgrade Unlocked", 
 			"You can now purchase Water Cap Upgrades!")
+		_update_game_labels()
+		return
 
 	@warning_ignore("integer_division")
-	var current_water_tier: int = int(VariableStorage.water_used / 100)
+	var current_water_tier: int = int(VariableStorage.water_used / 10)
 	
 	if current_water_tier > VariableStorage.water_cap_mk_unlocked:
 		VariableStorage.water_cap_mk_unlocked = current_water_tier
