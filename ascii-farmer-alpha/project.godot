@@ -24,7 +24,7 @@ NotificationManager="*res://src/notification_manager.gd"
 [display]
 
 window/size/viewport_width=400
-window/size/viewport_height=600
+window/size/viewport_height=1600
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=1

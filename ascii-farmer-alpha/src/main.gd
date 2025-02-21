@@ -69,6 +69,7 @@ func _process(delta: float) -> void:
 @onready var tc_charge_cap_label: Label = %TCCapacityValueLabel
 @onready var tc_charges_value_label: Label = %TCChargesValueLabel
 
+@onready var StoreToolChangerContainer = %StoreToolChangerHBoxContainer
 @onready var BuyToolChangerUpgradeContainer = %BuyToolChangerUpgradeVBoxContainer
 @onready var tool_changer_mk_label: Label = %ToolChangerMkLabel
 @onready var tool_changer_price_label: Label = %ToolChangerPriceLabel
@@ -108,19 +109,18 @@ func _update_store_labels() -> void:
 	water_price_label.text = str(VariableStorage.water_price)
 	crop_price_label.text = str(VariableStorage.crop_price)
 	plot_price_label.text = str(VariableStorage.plot_price)
-	tool_changer_mk_label.text = str(VariableStorage.tc_upgrade_mk + 1)
+	tool_changer_mk_label.text = "Mk. " + str(VariableStorage.tc_upgrade_mk + 1)
 	tool_changer_price_label.text = str(VariableStorage.tc_upgrade_price)
 	tc_charge_price_label.text = str(VariableStorage.tc_upgrade_price)
 
 func _update_upgrade_labels() -> void:
-	water_cap_mk_label.text = str(VariableStorage.water_cap_mk_unlocked)
+	water_cap_mk_label.text = "Mk. " + str(VariableStorage.water_cap_mk_unlocked)
 	water_cap_price_label.text = str(VariableStorage.water_cap_upgrade_price)
 
-	click_mk_label.text = str(VariableStorage.click_upgrade_mk + 1)
+	click_mk_label.text = "Mk. " + str(VariableStorage.click_upgrade_mk + 1)
 	click_price_label.text = str(VariableStorage.click_upgrade_price)
 
-	tc_mk_value_label.text = str(VariableStorage.tc_upgrade_mk)
-	tc_charges_value_label.text = str(VariableStorage.tc_charge)
+	tc_mk_value_label.text = "Mk. " + str(VariableStorage.tc_upgrade_mk)
 
 func _update_upgrade_toggles() -> void:
 	mkOne_toggle.button_pressed = VariableStorage.mkOne_toggle_ON
@@ -1115,6 +1115,7 @@ func _check_tool_usage() -> void:
 
 	# Show containers
 	StoreUpgradesContainer.visible = true
+	StoreToolChangerContainer.visible = true
 	BuyToolChangerUpgradeContainer.visible = true
 
 	# Check for tool changer upgrade unlocks
