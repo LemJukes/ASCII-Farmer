@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dl8shu6uat07l"]
 
-[ext_resource type="Script" path="res://src/fld_plot.gd" id="1_pwe3p"]
+[ext_resource type="Script" uid="uid://ckrox4cynj7ma" path="res://src/fld_plot.gd" id="1_pwe3p"]
 
 [node name="FldPlot" type="Control"]
 custom_minimum_size = Vector2(100, 100)

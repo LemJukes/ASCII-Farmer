@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://djwtqhqis7bn3"]
 
-[ext_resource type="Script" path="res://src/main.gd" id="1_8ggr0"]
-[ext_resource type="Script" path="res://src/fld_handler.gd" id="2_pe2g6"]
+[ext_resource type="Script" uid="uid://df0o3f40amj40" path="res://src/main.gd" id="1_8ggr0"]
+[ext_resource type="Script" uid="uid://cogoala3t01xy" path="res://src/fld_handler.gd" id="2_pe2g6"]
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(400, 1600)
