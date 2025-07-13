@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="ASCII FARMER ALPHA"
-run/main_scene="uid://dbxooyb8jplf4"
+run/main_scene="uid://wny822vco115"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+VarStor="*res://src/scripts/variable_storage.gd"
 
 [display]
 
@@ -21,6 +25,10 @@ window/size/viewport_width=500
 window/size/viewport_height=800
 window/size/resizable=false
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [rendering]
 
