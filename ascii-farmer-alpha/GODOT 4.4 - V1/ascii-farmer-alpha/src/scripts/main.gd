@@ -74,6 +74,8 @@ func _on_exit_button_pressed() -> void:
 # Window Scene Preloaders
 @onready var InventoryWindow: PackedScene = preload("res://src/scenes/windows/inventory_window.tscn")
 @onready var ToolsWindow: PackedScene = preload("res://src/scenes/windows/tools_window.tscn")
+@onready var UpgradesWindow: PackedScene = preload("res://src/scenes/windows/upgrades_window.tscn")
+@onready var StoreWindow: PackedScene = preload("res://src/scenes/windows/store_window.tscn")
 
 # Instantiation Function
 func _GameContainerINIT() -> void:
@@ -82,3 +84,9 @@ func _GameContainerINIT() -> void:
 
 	var tools_window_instance = ToolsWindow.instantiate()
 	GameContainer.add_child(tools_window_instance)
+
+	var upgrades_window_instance = UpgradesWindow.instantiate()
+	GameContainer.add_child(upgrades_window_instance)
+
+	var store_window_instance = StoreWindow.instantiate()
+	GameContainer.add_child(store_window_instance)

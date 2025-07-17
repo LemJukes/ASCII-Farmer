@@ -61,7 +61,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-text = "∨"
+text = "▽"
 
 [node name="MainContent_PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -132,6 +132,33 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="Panel2" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_anklp")
+
+[node name="VSeparator8" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fertilizer_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fertilizer_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fertilizer_VBoxContainer"]
+layout_mode = 2
+text = "Fertilizer"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fertilizer_VBoxContainer"]
+layout_mode = 2
+
+[node name="FertilizerValue_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fertilizer_VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="VSeparator7" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel7" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_anklp")

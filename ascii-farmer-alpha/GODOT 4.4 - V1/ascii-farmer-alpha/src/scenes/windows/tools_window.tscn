@@ -54,76 +54,100 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Tools"
 
-[node name="ToggleView_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+[node name="ToggleViewWindow_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-text = "∨"
+text = "▽"
 
 [node name="MainContent_PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer"]
+layout_mode = 2
+
+[node name="HandTools_MarginContainer" type="MarginContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_4yq3c")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="CurrentTool_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CurrentTool_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Current Tool:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CurrentToolValue_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CurrentToolValue_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "$CurrentTool"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel2" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="ToolHoe_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Hand Tools:"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="ToolHoe_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 text = "Hoe"
 
-[node name="ToolSeedBag_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ToolSeedBag_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 text = "Seed Bag
 "
 
-[node name="ToolWateringCan_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ToolWateringCan_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 text = "Watering
 Can"
 
-[node name="ToolSickle_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ToolSickle_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4

@@ -1,0 +1,160 @@
+[gd_scene load_steps=7 format=3 uid="uid://by8aoinndd32n"]
+
+[ext_resource type="Script" uid="uid://c1x5mdek23j3d" path="res://src/scripts/windows/upgrades_window.gd" id="1_ascua"]
+[ext_resource type="Theme" uid="uid://icficvua5gwt" path="res://primary_ui_theme.tres" id="2_3f51f"]
+[ext_resource type="Texture2D" uid="uid://cheorm07fgpx1" path="res://src/assets/icons/transition-up.svg" id="3_ascua"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyasr"]
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f51f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ascua"]
+
+[node name="UpgradesWindow_Container" type="VBoxContainer"]
+custom_minimum_size = Vector2(496, 40)
+offset_right = 496.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_ascua")
+
+[node name="Window_PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(496, 40)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Window_PanelContainer"]
+layout_mode = 2
+theme = ExtResource("2_3f51f")
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TopBar_HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_3f51f")
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_tyasr")
+
+[node name="TextureRect" type="TextureRect" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_ascua")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Upgrades"
+
+[node name="ToggleViewWindow_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "▽"
+
+[node name="MainContent_PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3f51f")
+
+[node name="MarginContainer" type="MarginContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer"]
+layout_mode = 2
+theme = ExtResource("2_3f51f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ExpandedClick_PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Expanded Click:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ascua")
+
+[node name="Mk1_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Mk1_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk1_VBoxContainer"]
+layout_mode = 2
+text = "Mk. 1"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk1_VBoxContainer"]
+layout_mode = 2
+
+[node name="Mk1_CheckButton" type="CheckButton" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk1_VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Mk2_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Mk2_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk2_VBoxContainer"]
+layout_mode = 2
+text = "Mk. 2"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk2_VBoxContainer"]
+layout_mode = 2
+
+[node name="Mk2_CheckButton" type="CheckButton" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk2_VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VSeparator2" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Mk3_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Mk3_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk3_VBoxContainer"]
+layout_mode = 2
+text = "Mk. 3"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk3_VBoxContainer"]
+layout_mode = 2
+
+[node name="Mk3_CheckButton" type="CheckButton" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer/Mk3_VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel2" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/ExpandedClick_PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ascua")

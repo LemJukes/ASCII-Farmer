@@ -19,6 +19,7 @@ func _ready() -> void:
 
 # Value Labels
 @onready var CoinsValueLabel: Label = $Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Coins_VBoxContainer/CoinsValue_Label
+@onready var FertilizerValueLabel: Label = $Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fertilizer_VBoxContainer/FertilizerValue_Label
 @onready var SeedsValueLabel: Label = $Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Seeds_VBoxContainer/SeedsValue_Label
 @onready var CropsValueLabel: Label = $Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Crops_VBoxContainer/CropsValue_Label
 @onready var WaterValueLabel: Label = $Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Water_VBoxContainer/WaterValue_Label
@@ -34,6 +35,7 @@ func _SpeciesOptionsSC() -> void:
 # Display Initializer
 func _inventoryDI() -> void:
 	CoinsValueLabel.text = str(VarStor.coins)
+	FertilizerValueLabel.text = str(VarStor.fertilizer)
 	WaterValueLabel.text = str(VarStor.water)
 	WaterCapValueLabel.text = str(VarStor.waterCap)
 
