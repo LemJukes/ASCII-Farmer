@@ -102,6 +102,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q3pmv")
 
 [node name="SuppliesViewButton" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 text = "▽"
@@ -136,6 +137,7 @@ horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/yenSeeds_VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/yenSeeds_VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -190,12 +192,14 @@ horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/poundSeeds_VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/poundSeeds_VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "₤ Seed Price:"
 
 [node name="poundSeedsCost_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/poundSeeds_VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "($₤)"
 horizontal_alignment = 1
@@ -208,14 +212,17 @@ layout_mode = 2
 alignment = 1
 
 [node name="poundSeeds1x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/poundSeeds_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "1x"
 
 [node name="poundSeeds3x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/poundSeeds_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "3x"
 
 [node name="poundSeeds9x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/poundSeeds_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "9x"
 
@@ -241,12 +248,14 @@ horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/euroSeeds_VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/euroSeeds_VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "€ Seed Price:"
 
 [node name="euroSeedsCost_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies1_HBoxContainer/euroSeeds_VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "($€)"
 horizontal_alignment = 1
@@ -314,6 +323,7 @@ layout_mode = 2
 text = "Price:"
 
 [node name="FertilizerCost_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies2_HBoxContainer/Fertilizer_VBoxContainer/FertilizerPrice_HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "($F)"
 horizontal_alignment = 1
@@ -362,12 +372,14 @@ horizontal_alignment = 1
 
 [node name="WaterCost_HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies2_HBoxContainer/Water_VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies2_HBoxContainer/Water_VBoxContainer/WaterCost_HBoxContainer"]
 layout_mode = 2
 text = "Price:"
 
 [node name="WaterCost_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies2_HBoxContainer/Water_VBoxContainer/WaterCost_HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "($W)"
 horizontal_alignment = 1
@@ -380,16 +392,19 @@ layout_mode = 2
 alignment = 1
 
 [node name="water10x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies2_HBoxContainer/Water_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "1x"
+text = "10x"
 
 [node name="water30x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies2_HBoxContainer/Water_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "3x"
+text = "30x"
 
 [node name="water90x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies2_HBoxContainer/Water_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "9x"
+text = "90x"
 
 [node name="VSeparator4" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer/Supplies2_HBoxContainer"]
 layout_mode = 2
@@ -400,4 +415,321 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_30hap")
 
 [node name="HSeparator2" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/Supplies_VBoxContainer"]
+layout_mode = 2
+
+[node name="Market_PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Market:"
+
+[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q3pmv")
+
+[node name="MarketViewButton" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "▽"
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Market_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Market_HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_77glo")
+
+[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+
+[node name="yenCrops_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer"]
+layout_mode = 2
+text = "Sell ¥ Crops"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "¥ Crop Price:"
+
+[node name="yenCropPrice_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "($¥)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="yenCrop1x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1x"
+
+[node name="yenCrop3x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3x"
+
+[node name="yenCrop9x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "9x"
+
+[node name="VSeparator2" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_77glo")
+
+[node name="VSeparator3" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+
+[node name="poundCrops_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer"]
+layout_mode = 2
+text = "Sell ₤ Crops"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "₤ Crop Price:"
+
+[node name="poundCropPrice_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "($₤)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="poundCrop1x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1x"
+
+[node name="poundCrop3x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3x"
+
+[node name="poundCrop9x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/poundCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "9x"
+
+[node name="VSeparator4" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_77glo")
+
+[node name="VSeparator5" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+
+[node name="euroCrops_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer"]
+layout_mode = 2
+text = "Buy € Seeds"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "€ Crop Price:"
+
+[node name="euroCropPrice_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "($€)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="euroCrop1x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1x"
+
+[node name="euroCrop3x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3x"
+
+[node name="euroCrop9x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer/euroCrops_VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "9x"
+
+[node name="VSeparator6" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel4" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer/Market_HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_77glo")
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/Market_VBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrades_PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Upgrades:"
+
+[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q3pmv")
+
+[node name="UpgradesViewButton" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "▽"
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrades_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Upgrades_HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_77glo")
+
+[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+layout_mode = 2
+
+[node name="yenCrops_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer"]
+layout_mode = 2
+text = "Buy Expanded Click Upgrade"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Upgrade Version:"
+
+[node name="yenCropPrice_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "($MK)"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Upgrade Price:"
+
+[node name="yenCropPrice_Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "($¥)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="yenCrop1x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "1x"
+
+[node name="yenCrop3x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "3x"
+
+[node name="yenCrop9x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "9x"
+
+[node name="VSeparator2" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_77glo")
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer"]
 layout_mode = 2
