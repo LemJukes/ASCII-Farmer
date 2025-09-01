@@ -63,7 +63,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Store"
 
-[node name="ToggleViewWindow_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+[node name="StoreWindowView_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -94,14 +95,14 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Purchase Supplies:"
+text = "Supplies:"
 
 [node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q3pmv")
 
-[node name="SuppliesViewButton" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="SuppliesView_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Supplies_PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
@@ -436,7 +437,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q3pmv")
 
-[node name="MarketViewButton" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="MarketView_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Market_PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
@@ -647,7 +648,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q3pmv")
 
-[node name="UpgradesViewButton" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="UpgradesView_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 text = "▽"
@@ -656,77 +658,73 @@ text = "▽"
 layout_mode = 2
 
 [node name="Upgrades_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Upgrades_HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+[node name="Panel" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_77glo")
 
-[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="yenCrops_VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer"]
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Buy Expanded Click Upgrade"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Upgrade Version:"
 
-[node name="yenCropPrice_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+[node name="UpgradeMk_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "($MK)"
 horizontal_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+[node name="Label3" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Upgrade Price:"
 
-[node name="yenCropPrice_Label2" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer2"]
+[node name="UpgradeCost_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "($¥)"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="yenCrop1x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
+[node name="UpgradeBuy_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "1x"
+text = "Buy Upgrade"
 
-[node name="yenCrop3x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "3x"
-
-[node name="yenCrop9x_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer/yenCrops_VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "9x"
-
-[node name="VSeparator2" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/Upgrades_HBoxContainer"]
+[node name="Panel2" type="Panel" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/Upgrades_PanelContainer/VBoxContainer/Upgrades_VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_77glo")

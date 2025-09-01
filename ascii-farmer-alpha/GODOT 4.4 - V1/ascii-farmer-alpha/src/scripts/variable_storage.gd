@@ -39,3 +39,6 @@ var WaterCost: float = 1.00
 var yenCropPrice: float = 1.00
 var poundCropPrice: float = 1.00
 var euroCropPrice: float = 1.00
+
+var upgradeMk: int = 0
+var upgradeCost: float = 10.00
