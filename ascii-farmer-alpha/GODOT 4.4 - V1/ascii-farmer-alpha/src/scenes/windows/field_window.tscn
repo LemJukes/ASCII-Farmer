@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://chqv4ved402of"]
+
+[ext_resource type="Theme" uid="uid://icficvua5gwt" path="res://primary_ui_theme.tres" id="1_1muih"]
+[ext_resource type="Texture2D" uid="uid://bmjyatk88q0w2" path="res://src/assets/icons/shop.svg" id="2_1fyok"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5nm2"]
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4liut"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = 158.0
+offset_right = 68.0
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Window_PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(496, 40)
+size_flags_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Window_PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_1muih")
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TopBar_HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_1muih")
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5nm2")
+
+[node name="TextureRect" type="TextureRect" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_1fyok")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Field"
+
+[node name="StoreWindowView_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "▽"
+
+[node name="MainContent_PanelContainer" type="PanelContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4liut")
+
+[node name="MarginContainer" type="MarginContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_1muih")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
