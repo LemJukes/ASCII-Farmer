@@ -58,7 +58,7 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Field"
+text = "Fields"
 
 [node name="StoreWindowView_Button" type="Button" parent="Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
@@ -78,3 +78,47 @@ theme = ExtResource("1_1muih")
 [node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer"]
 layout_mode = 2
 alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FieldSelector_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Field Selector:"
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentField_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Current Field"
+
+[node name="VSeparator" type="VSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FieldSelector_OptionButton" type="OptionButton" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_vertical = 6
+item_count = 3
+popup/item_0/text = "Field 1"
+popup/item_0/id = 0
+popup/item_1/text = "Field 2"
+popup/item_1/id = 1
+popup/item_2/text = "Field 3"
+popup/item_2/id = 2
+
+[node name="HSeparator" type="HSeparator" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="CurrentFieldValue_Label" type="Label" parent="Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "$Current Field #/Name"
+horizontal_alignment = 1
