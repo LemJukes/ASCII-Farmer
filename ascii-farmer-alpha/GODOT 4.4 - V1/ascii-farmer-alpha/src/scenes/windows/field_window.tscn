@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://chqv4ved402of"]
+[gd_scene load_steps=6 format=3 uid="uid://chqv4ved402of"]
 
+[ext_resource type="Script" uid="uid://b3xe0ine4whcw" path="res://src/scripts/windows/field_window.gd" id="1_1fyok"]
 [ext_resource type="Theme" uid="uid://icficvua5gwt" path="res://primary_ui_theme.tres" id="1_1muih"]
 [ext_resource type="Texture2D" uid="uid://bmjyatk88q0w2" path="res://src/assets/icons/shop.svg" id="2_1fyok"]
 
@@ -16,15 +17,15 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 68.0
-offset_top = 158.0
-offset_right = 68.0
-offset_bottom = 158.0
+offset_right = -500.0
+offset_bottom = -800.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1fyok")
 
 [node name="Window_PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(496, 40)
+layout_mode = 0
 size_flags_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Window_PanelContainer"]

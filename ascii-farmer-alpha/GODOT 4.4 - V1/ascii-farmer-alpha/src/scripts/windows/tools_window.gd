@@ -11,7 +11,7 @@ func _ready() -> void:
 @onready var MainContentPanel: PanelContainer = $Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer
 
 # Labels
-@onready var CurrentToolValueLabel: Label = $Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CurrentTool_Label
+@onready var CurrentToolValueLabel: Label = $Window_PanelContainer/MarginContainer/VBoxContainer/MainContent_PanelContainer/VBoxContainer/HandTools_MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CurrentToolValue_Label
 
 # Buttons
 @onready var ToggleViewButton: Button = $Window_PanelContainer/MarginContainer/VBoxContainer/TopBar_HBoxContainer/ToggleViewWindow_Button
